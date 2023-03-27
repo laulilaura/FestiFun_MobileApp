@@ -23,7 +23,7 @@ struct NavigationAdminView: View {
             .tint(Color("salmon"))
             
             NavigationView{
-                FestivalListBenevoleView(loggedBenevole: loggedBenevole)
+                BenevolesListAdminView(loggedBenevole: loggedBenevole)
                     .navigationTitle("Bénévoles")
             }
             .tabItem{
