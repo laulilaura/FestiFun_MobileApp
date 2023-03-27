@@ -25,7 +25,19 @@ struct JSONHelper{
     
     static func decode<T: Decodable>(data: Data) -> T? {
         
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+        let customDateDecodingStrategy = JSONDecoder.DateDecodingStrategy.custom { decoder in
+            let container = try decoder.singleValueContainer()
+            let dateString = try container.decode(String.self)
+            guard let date = dateFormatter.date(from: dateString) else {
+                throw DecodingError.dataCorruptedError(in: container, debugDescription: "Invalid date format")
+            }
+            return date
+        }
+        
         let decoder = JSONDecoder() // création d'un décodeur
+        decoder.dateDecodingStrategy = customDateDecodingStrategy
         if let decoded = try? decoder.decode(T.self, from: data) {
             debugPrint("test \(decoded)")
             return decoded
