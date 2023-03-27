@@ -1,0 +1,604 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		B7E70A1A29D18CCC00BF80AE /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E70A1929D18CCC00BF80AE /* Color.swift */; };
+		B7E70A1C29D1922900BF80AE /* NavigationBenevoleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E70A1B29D1922900BF80AE /* NavigationBenevoleView.swift */; };
+		B7E70A1E29D19DBB00BF80AE /* FestivalDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E70A1D29D19DBB00BF80AE /* FestivalDTO.swift */; };
+		B7E70A2029D1A0E000BF80AE /* FestivalIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E70A1F29D1A0E000BF80AE /* FestivalIntent.swift */; };
+		B7E70A2229D1A1DA00BF80AE /* Festival.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E70A2129D1A1DA00BF80AE /* Festival.swift */; };
+		B7E70A2529D1A33100BF80AE /* FestivalViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E70A2429D1A33100BF80AE /* FestivalViewModel.swift */; };
+		B7E70A2729D1A65000BF80AE /* FestivalListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E70A2629D1A65000BF80AE /* FestivalListViewModel.swift */; };
+		B7E70A2929D1A85900BF80AE /* FestivalDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E70A2829D1A85900BF80AE /* FestivalDAO.swift */; };
+		B7E70A2B29D1B13100BF80AE /* FestivalListBenevoleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E70A2A29D1B13100BF80AE /* FestivalListBenevoleView.swift */; };
+		B7E70A2D29D1B8FE00BF80AE /* NavigationAdminView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E70A2C29D1B8FE00BF80AE /* NavigationAdminView.swift */; };
+		D301C8E829CFC622009BB295 /* FestiFunApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D301C8E729CFC622009BB295 /* FestiFunApp.swift */; };
+		D301C8EA29CFC622009BB295 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D301C8E929CFC622009BB295 /* ContentView.swift */; };
+		D301C8EC29CFC622009BB295 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D301C8EB29CFC622009BB295 /* Assets.xcassets */; };
+		D301C8F029CFC622009BB295 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D301C8EF29CFC622009BB295 /* Preview Assets.xcassets */; };
+		D301C8FF29CFC949009BB295 /* BenevoleDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = D301C8FE29CFC949009BB295 /* BenevoleDTO.swift */; };
+		D301C90129CFC952009BB295 /* BenevoleDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = D301C90029CFC952009BB295 /* BenevoleDAO.swift */; };
+		D301C90429CFC969009BB295 /* BenevoleFormViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D301C90329CFC969009BB295 /* BenevoleFormViewModel.swift */; };
+		D301C90629CFC97B009BB295 /* BenevoleListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D301C90529CFC97B009BB295 /* BenevoleListViewModel.swift */; };
+		D301C90829CFC991009BB295 /* JSONHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D301C90729CFC991009BB295 /* JSONHelper.swift */; };
+		D301C90A29CFC9BB009BB295 /* TokenDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = D301C90929CFC9BB009BB295 /* TokenDTO.swift */; };
+		D301C90C29CFCA5C009BB295 /* Benevole.swift in Sources */ = {isa = PBXBuildFile; fileRef = D301C90B29CFCA5C009BB295 /* Benevole.swift */; };
+		D301C90E29CFCAFB009BB295 /* LoggedBenevole.swift in Sources */ = {isa = PBXBuildFile; fileRef = D301C90D29CFCAFB009BB295 /* LoggedBenevole.swift */; };
+		D301C91029CFCB80009BB295 /* CredentialsDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = D301C90F29CFCB80009BB295 /* CredentialsDTO.swift */; };
+		D301C91229CFCC11009BB295 /* URLSessionExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = D301C91129CFCC11009BB295 /* URLSessionExtention.swift */; };
+		D301C91529CFCC45009BB295 /* URLError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D301C91429CFCC45009BB295 /* URLError.swift */; };
+		D301C91829CFCCA6009BB295 /* KeychainHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D301C91729CFCCA6009BB295 /* KeychainHelper.swift */; };
+		D301C91A29CFCCC4009BB295 /* FormatterHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D301C91929CFCCC4009BB295 /* FormatterHelper.swift */; };
+		D301C91C29CFCCE4009BB295 /* JSONError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D301C91B29CFCCE4009BB295 /* JSONError.swift */; };
+		D301C91E29CFCCFD009BB295 /* HttpError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D301C91D29CFCCFD009BB295 /* HttpError.swift */; };
+		D301C92029CFCD20009BB295 /* UndefinedError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D301C91F29CFCD20009BB295 /* UndefinedError.swift */; };
+		D301C92229CFD185009BB295 /* BenevoleIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D301C92129CFD185009BB295 /* BenevoleIntent.swift */; };
+		D301C92429CFD664009BB295 /* HomeBenevoleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D301C92329CFD664009BB295 /* HomeBenevoleView.swift */; };
+		D301C92629CFD66E009BB295 /* HomeAdminView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D301C92529CFD66E009BB295 /* HomeAdminView.swift */; };
+		D301C92829CFD68F009BB295 /* AuthentificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D301C92729CFD68F009BB295 /* AuthentificationView.swift */; };
+		D32EE96829D08D3E00FA8833 /* BenevoleLoggedDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32EE96729D08D3E00FA8833 /* BenevoleLoggedDTO.swift */; };
+		D32EE96D29D0B2E100FA8833 /* JWTDecode in Frameworks */ = {isa = PBXBuildFile; productRef = D32EE96C29D0B2E100FA8833 /* JWTDecode */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		B7E70A1929D18CCC00BF80AE /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		B7E70A1B29D1922900BF80AE /* NavigationBenevoleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBenevoleView.swift; sourceTree = "<group>"; };
+		B7E70A1D29D19DBB00BF80AE /* FestivalDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FestivalDTO.swift; sourceTree = "<group>"; };
+		B7E70A1F29D1A0E000BF80AE /* FestivalIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FestivalIntent.swift; sourceTree = "<group>"; };
+		B7E70A2129D1A1DA00BF80AE /* Festival.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Festival.swift; sourceTree = "<group>"; };
+		B7E70A2429D1A33100BF80AE /* FestivalViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FestivalViewModel.swift; sourceTree = "<group>"; };
+		B7E70A2629D1A65000BF80AE /* FestivalListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FestivalListViewModel.swift; sourceTree = "<group>"; };
+		B7E70A2829D1A85900BF80AE /* FestivalDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FestivalDAO.swift; sourceTree = "<group>"; };
+		B7E70A2A29D1B13100BF80AE /* FestivalListBenevoleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FestivalListBenevoleView.swift; sourceTree = "<group>"; };
+		B7E70A2C29D1B8FE00BF80AE /* NavigationAdminView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationAdminView.swift; sourceTree = "<group>"; };
+		D301C8E429CFC622009BB295 /* FestiFun.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FestiFun.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D301C8E729CFC622009BB295 /* FestiFunApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FestiFunApp.swift; sourceTree = "<group>"; };
+		D301C8E929CFC622009BB295 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		D301C8EB29CFC622009BB295 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D301C8ED29CFC622009BB295 /* FestiFun.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FestiFun.entitlements; sourceTree = "<group>"; };
+		D301C8EF29CFC622009BB295 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		D301C8FE29CFC949009BB295 /* BenevoleDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BenevoleDTO.swift; sourceTree = "<group>"; };
+		D301C90029CFC952009BB295 /* BenevoleDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BenevoleDAO.swift; sourceTree = "<group>"; };
+		D301C90329CFC969009BB295 /* BenevoleFormViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BenevoleFormViewModel.swift; sourceTree = "<group>"; };
+		D301C90529CFC97B009BB295 /* BenevoleListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BenevoleListViewModel.swift; sourceTree = "<group>"; };
+		D301C90729CFC991009BB295 /* JSONHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONHelper.swift; sourceTree = "<group>"; };
+		D301C90929CFC9BB009BB295 /* TokenDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenDTO.swift; sourceTree = "<group>"; };
+		D301C90B29CFCA5C009BB295 /* Benevole.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Benevole.swift; sourceTree = "<group>"; };
+		D301C90D29CFCAFB009BB295 /* LoggedBenevole.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggedBenevole.swift; sourceTree = "<group>"; };
+		D301C90F29CFCB80009BB295 /* CredentialsDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CredentialsDTO.swift; sourceTree = "<group>"; };
+		D301C91129CFCC11009BB295 /* URLSessionExtention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionExtention.swift; sourceTree = "<group>"; };
+		D301C91429CFCC45009BB295 /* URLError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLError.swift; sourceTree = "<group>"; };
+		D301C91729CFCCA6009BB295 /* KeychainHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainHelper.swift; sourceTree = "<group>"; };
+		D301C91929CFCCC4009BB295 /* FormatterHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormatterHelper.swift; sourceTree = "<group>"; };
+		D301C91B29CFCCE4009BB295 /* JSONError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONError.swift; sourceTree = "<group>"; };
+		D301C91D29CFCCFD009BB295 /* HttpError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpError.swift; sourceTree = "<group>"; };
+		D301C91F29CFCD20009BB295 /* UndefinedError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UndefinedError.swift; sourceTree = "<group>"; };
+		D301C92129CFD185009BB295 /* BenevoleIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BenevoleIntent.swift; sourceTree = "<group>"; };
+		D301C92329CFD664009BB295 /* HomeBenevoleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeBenevoleView.swift; sourceTree = "<group>"; };
+		D301C92529CFD66E009BB295 /* HomeAdminView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeAdminView.swift; sourceTree = "<group>"; };
+		D301C92729CFD68F009BB295 /* AuthentificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthentificationView.swift; sourceTree = "<group>"; };
+		D32EE96729D08D3E00FA8833 /* BenevoleLoggedDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BenevoleLoggedDTO.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D301C8E129CFC621009BB295 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D32EE96D29D0B2E100FA8833 /* JWTDecode in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		B7E70A2329D1A31200BF80AE /* Festival */ = {
+			isa = PBXGroup;
+			children = (
+				B7E70A2429D1A33100BF80AE /* FestivalViewModel.swift */,
+				B7E70A2629D1A65000BF80AE /* FestivalListViewModel.swift */,
+			);
+			path = Festival;
+			sourceTree = "<group>";
+		};
+		D301C8DB29CFC621009BB295 = {
+			isa = PBXGroup;
+			children = (
+				D301C8E629CFC622009BB295 /* FestiFun */,
+				D301C8E529CFC622009BB295 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		D301C8E529CFC622009BB295 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D301C8E429CFC622009BB295 /* FestiFun.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D301C8E629CFC622009BB295 /* FestiFun */ = {
+			isa = PBXGroup;
+			children = (
+				D301C91629CFCC8C009BB295 /* Helpers */,
+				D301C91329CFCC30009BB295 /* Error */,
+				D301C8FD29CFC8D6009BB295 /* View */,
+				D301C8FC29CFC8D1009BB295 /* Model */,
+				D301C8FB29CFC8C7009BB295 /* Extensions */,
+				D301C8FA29CFC8BA009BB295 /* Utils */,
+				D301C8F929CFC8AE009BB295 /* ViewModel */,
+				D301C8F829CFC8A6009BB295 /* DAO */,
+				D301C8F729CFC8A2009BB295 /* DTO */,
+				D301C8F629CFC89C009BB295 /* Intent */,
+				D301C8E729CFC622009BB295 /* FestiFunApp.swift */,
+				D301C8EB29CFC622009BB295 /* Assets.xcassets */,
+				D301C8ED29CFC622009BB295 /* FestiFun.entitlements */,
+				D301C8EE29CFC622009BB295 /* Preview Content */,
+			);
+			path = FestiFun;
+			sourceTree = "<group>";
+		};
+		D301C8EE29CFC622009BB295 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				D301C8EF29CFC622009BB295 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		D301C8F629CFC89C009BB295 /* Intent */ = {
+			isa = PBXGroup;
+			children = (
+				D301C92129CFD185009BB295 /* BenevoleIntent.swift */,
+				B7E70A1F29D1A0E000BF80AE /* FestivalIntent.swift */,
+			);
+			path = Intent;
+			sourceTree = "<group>";
+		};
+		D301C8F729CFC8A2009BB295 /* DTO */ = {
+			isa = PBXGroup;
+			children = (
+				D301C8FE29CFC949009BB295 /* BenevoleDTO.swift */,
+				D32EE96729D08D3E00FA8833 /* BenevoleLoggedDTO.swift */,
+				D301C90F29CFCB80009BB295 /* CredentialsDTO.swift */,
+				D301C90929CFC9BB009BB295 /* TokenDTO.swift */,
+				B7E70A1D29D19DBB00BF80AE /* FestivalDTO.swift */,
+			);
+			path = DTO;
+			sourceTree = "<group>";
+		};
+		D301C8F829CFC8A6009BB295 /* DAO */ = {
+			isa = PBXGroup;
+			children = (
+				D301C90029CFC952009BB295 /* BenevoleDAO.swift */,
+				B7E70A2829D1A85900BF80AE /* FestivalDAO.swift */,
+			);
+			path = DAO;
+			sourceTree = "<group>";
+		};
+		D301C8F929CFC8AE009BB295 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				B7E70A2329D1A31200BF80AE /* Festival */,
+				D301C90229CFC95D009BB295 /* Benevole */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		D301C8FA29CFC8BA009BB295 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				D301C90729CFC991009BB295 /* JSONHelper.swift */,
+				B7E70A1929D18CCC00BF80AE /* Color.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		D301C8FB29CFC8C7009BB295 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				D301C91129CFCC11009BB295 /* URLSessionExtention.swift */,
+				D301C91929CFCCC4009BB295 /* FormatterHelper.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		D301C8FC29CFC8D1009BB295 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				D301C90B29CFCA5C009BB295 /* Benevole.swift */,
+				D301C90D29CFCAFB009BB295 /* LoggedBenevole.swift */,
+				B7E70A2129D1A1DA00BF80AE /* Festival.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		D301C8FD29CFC8D6009BB295 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				D301C8E929CFC622009BB295 /* ContentView.swift */,
+				D301C92329CFD664009BB295 /* HomeBenevoleView.swift */,
+				D301C92529CFD66E009BB295 /* HomeAdminView.swift */,
+				D301C92729CFD68F009BB295 /* AuthentificationView.swift */,
+				B7E70A1B29D1922900BF80AE /* NavigationBenevoleView.swift */,
+				B7E70A2A29D1B13100BF80AE /* FestivalListBenevoleView.swift */,
+				B7E70A2C29D1B8FE00BF80AE /* NavigationAdminView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		D301C90229CFC95D009BB295 /* Benevole */ = {
+			isa = PBXGroup;
+			children = (
+				D301C90329CFC969009BB295 /* BenevoleFormViewModel.swift */,
+				D301C90529CFC97B009BB295 /* BenevoleListViewModel.swift */,
+			);
+			path = Benevole;
+			sourceTree = "<group>";
+		};
+		D301C91329CFCC30009BB295 /* Error */ = {
+			isa = PBXGroup;
+			children = (
+				D301C91429CFCC45009BB295 /* URLError.swift */,
+				D301C91B29CFCCE4009BB295 /* JSONError.swift */,
+				D301C91D29CFCCFD009BB295 /* HttpError.swift */,
+				D301C91F29CFCD20009BB295 /* UndefinedError.swift */,
+			);
+			path = Error;
+			sourceTree = "<group>";
+		};
+		D301C91629CFCC8C009BB295 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				D301C91729CFCCA6009BB295 /* KeychainHelper.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D301C8E329CFC621009BB295 /* FestiFun */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D301C8F329CFC622009BB295 /* Build configuration list for PBXNativeTarget "FestiFun" */;
+			buildPhases = (
+				D301C8E029CFC621009BB295 /* Sources */,
+				D301C8E129CFC621009BB295 /* Frameworks */,
+				D301C8E229CFC621009BB295 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = FestiFun;
+			packageProductDependencies = (
+				D32EE96C29D0B2E100FA8833 /* JWTDecode */,
+			);
+			productName = FestiFun;
+			productReference = D301C8E429CFC622009BB295 /* FestiFun.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D301C8DC29CFC621009BB295 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1420;
+				LastUpgradeCheck = 1420;
+				TargetAttributes = {
+					D301C8E329CFC621009BB295 = {
+						CreatedOnToolsVersion = 14.2;
+					};
+				};
+			};
+			buildConfigurationList = D301C8DF29CFC621009BB295 /* Build configuration list for PBXProject "FestiFun" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = D301C8DB29CFC621009BB295;
+			packageReferences = (
+				D32EE96B29D0B2E100FA8833 /* XCRemoteSwiftPackageReference "JWTDecode" */,
+			);
+			productRefGroup = D301C8E529CFC622009BB295 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D301C8E329CFC621009BB295 /* FestiFun */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D301C8E229CFC621009BB295 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D301C8F029CFC622009BB295 /* Preview Assets.xcassets in Resources */,
+				D301C8EC29CFC622009BB295 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D301C8E029CFC621009BB295 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B7E70A2729D1A65000BF80AE /* FestivalListViewModel.swift in Sources */,
+				D32EE96829D08D3E00FA8833 /* BenevoleLoggedDTO.swift in Sources */,
+				D301C90829CFC991009BB295 /* JSONHelper.swift in Sources */,
+				D301C92429CFD664009BB295 /* HomeBenevoleView.swift in Sources */,
+				B7E70A1E29D19DBB00BF80AE /* FestivalDTO.swift in Sources */,
+				B7E70A2D29D1B8FE00BF80AE /* NavigationAdminView.swift in Sources */,
+				D301C91229CFCC11009BB295 /* URLSessionExtention.swift in Sources */,
+				D301C90A29CFC9BB009BB295 /* TokenDTO.swift in Sources */,
+				B7E70A1A29D18CCC00BF80AE /* Color.swift in Sources */,
+				B7E70A2929D1A85900BF80AE /* FestivalDAO.swift in Sources */,
+				B7E70A2029D1A0E000BF80AE /* FestivalIntent.swift in Sources */,
+				D301C91A29CFCCC4009BB295 /* FormatterHelper.swift in Sources */,
+				D301C92829CFD68F009BB295 /* AuthentificationView.swift in Sources */,
+				D301C90629CFC97B009BB295 /* BenevoleListViewModel.swift in Sources */,
+				D301C90129CFC952009BB295 /* BenevoleDAO.swift in Sources */,
+				D301C8EA29CFC622009BB295 /* ContentView.swift in Sources */,
+				B7E70A1C29D1922900BF80AE /* NavigationBenevoleView.swift in Sources */,
+				D301C92029CFCD20009BB295 /* UndefinedError.swift in Sources */,
+				D301C8FF29CFC949009BB295 /* BenevoleDTO.swift in Sources */,
+				D301C90C29CFCA5C009BB295 /* Benevole.swift in Sources */,
+				B7E70A2529D1A33100BF80AE /* FestivalViewModel.swift in Sources */,
+				D301C90429CFC969009BB295 /* BenevoleFormViewModel.swift in Sources */,
+				D301C8E829CFC622009BB295 /* FestiFunApp.swift in Sources */,
+				D301C91E29CFCCFD009BB295 /* HttpError.swift in Sources */,
+				D301C90E29CFCAFB009BB295 /* LoggedBenevole.swift in Sources */,
+				D301C92229CFD185009BB295 /* BenevoleIntent.swift in Sources */,
+				D301C91829CFCCA6009BB295 /* KeychainHelper.swift in Sources */,
+				B7E70A2229D1A1DA00BF80AE /* Festival.swift in Sources */,
+				D301C91029CFCB80009BB295 /* CredentialsDTO.swift in Sources */,
+				D301C92629CFD66E009BB295 /* HomeAdminView.swift in Sources */,
+				D301C91C29CFCCE4009BB295 /* JSONError.swift in Sources */,
+				B7E70A2B29D1B13100BF80AE /* FestivalListBenevoleView.swift in Sources */,
+				D301C91529CFCC45009BB295 /* URLError.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		D301C8F129CFC622009BB295 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		D301C8F229CFC622009BB295 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		D301C8F429CFC622009BB295 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = FestiFun/FestiFun.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"FestiFun/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				INFOPLIST_KEY_UIStatusBarStyle = "";
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 12.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = FestiFun.FestiFun;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		D301C8F529CFC622009BB295 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = FestiFun/FestiFun.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"FestiFun/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				INFOPLIST_KEY_UIStatusBarStyle = "";
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 12.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = FestiFun.FestiFun;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D301C8DF29CFC621009BB295 /* Build configuration list for PBXProject "FestiFun" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D301C8F129CFC622009BB295 /* Debug */,
+				D301C8F229CFC622009BB295 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D301C8F329CFC622009BB295 /* Build configuration list for PBXNativeTarget "FestiFun" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D301C8F429CFC622009BB295 /* Debug */,
+				D301C8F529CFC622009BB295 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		D32EE96B29D0B2E100FA8833 /* XCRemoteSwiftPackageReference "JWTDecode" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/auth0/JWTDecode.swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		D32EE96C29D0B2E100FA8833 /* JWTDecode */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D32EE96B29D0B2E100FA8833 /* XCRemoteSwiftPackageReference "JWTDecode" */;
+			productName = JWTDecode;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = D301C8DC29CFC621009BB295 /* Project object */;
+}
