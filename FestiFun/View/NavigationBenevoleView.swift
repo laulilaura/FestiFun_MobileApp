@@ -23,7 +23,7 @@ struct NavigationBenevoleView: View {
             .tint(Color("salmon"))
             
             NavigationView{
-                FestivalListBenevoleView()
+                FestivalListBenevoleView(loggedBenevole: loggedBenevole)
                     .navigationTitle("Découvrir")
             }
             .tabItem{

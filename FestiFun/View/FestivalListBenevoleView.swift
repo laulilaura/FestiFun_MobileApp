@@ -9,6 +9,8 @@ import SwiftUI
 
 struct FestivalListBenevoleView: View {
     
+    @StateObject var loggedBenevole: LoggedBenevole
+    
     @State var errorMessage = ""
     @State var festivals: [Festival] = []
     
@@ -51,6 +53,8 @@ struct FestivalListBenevoleView: View {
 
 struct FestivalListBenevoleView_Previews: PreviewProvider {
     static var previews: some View {
-        FestivalListBenevoleView()
+        var loggedBenevole: LoggedBenevole = LoggedBenevole(nom: "Benaiton", prenom: "Laura", email: "laura@gmail.com", isAdmin: false, isAuthenticated: false)
+        
+        FestivalListBenevoleView(loggedBenevole: loggedBenevole)
     }
 }

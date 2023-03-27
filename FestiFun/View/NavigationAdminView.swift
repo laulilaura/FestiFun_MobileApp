@@ -23,42 +23,32 @@ struct NavigationAdminView: View {
             .tint(Color("salmon"))
             
             NavigationView{
-                FestivalListBenevoleView()
-                    .navigationTitle("Découvrir")
+                FestivalListBenevoleView(loggedBenevole: loggedBenevole)
+                    .navigationTitle("Bénévoles")
             }
             .tabItem{
-                Image(systemName: "figure.and.child.holdinghands")
-                Text("Découvrir")
+                Image(systemName: "person.3.fill")
+                Text("Bénévoles")
+            }
+            
+            
+            NavigationView{
+                FestivalListBenevoleView(loggedBenevole: loggedBenevole)
+                    .navigationTitle("Gestion des festivals")
+            }
+            .tabItem{
+                Image(systemName: "signpost.right.and.left.fill")
+                Text("Festivals")
             }
             
             
             NavigationView{
                 HomeAdminView(loggedBenevole: loggedBenevole)
-                    .navigationTitle("Festival")
-            }
-            .tabItem{
-                Image(systemName: "figure.walk.arrival")
-                Text("Festival")
-            }
-            
-            
-            NavigationView{
-                HomeAdminView(loggedBenevole: loggedBenevole)
-                    .navigationTitle("Rejoindre")
-            }
-            .tabItem{
-                Image(systemName: "rectangle.and.hand.point.up.left.fill")
-                Text("Rejoindre")
-            }
-            
-            
-            NavigationView{
-                HomeAdminView(loggedBenevole: loggedBenevole)
-                    .navigationTitle("Utilisateur")
+                    .navigationTitle("Paramètres")
             }
             .tabItem{
                 Image(systemName: "person.circle")
-                Text("Utilisateur")
+                Text("Paramètres")
             }
         }
         .accentColor(.salmon)

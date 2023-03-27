@@ -14,11 +14,11 @@ struct ContentView: View {
     var body: some View {
         
         if loggedBenevole.isAdmin && loggedBenevole.isAuthenticated {
-            HomeAdminView(loggedBenevole: loggedBenevole)
+            NavigationAdminView(loggedBenevole: loggedBenevole)
                 .transition(.opacity)
                 .environmentObject(loggedBenevole)
         }
-        if loggedBenevole.isAuthenticated {
+        else if loggedBenevole.isAuthenticated {
             NavigationBenevoleView(loggedBenevole: loggedBenevole)
                 .transition(.opacity)
                 .environmentObject(loggedBenevole)

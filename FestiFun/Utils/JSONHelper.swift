@@ -34,7 +34,7 @@ struct JSONHelper{
                 throw DecodingError.dataCorruptedError(in: container, debugDescription: "Invalid date format")
             }
             return date
-        }
+        } 
         
         let decoder = JSONDecoder() // création d'un décodeur
         decoder.dateDecodingStrategy = customDateDecodingStrategy
