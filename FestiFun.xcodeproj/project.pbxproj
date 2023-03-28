@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B7E4136D29D2BE38004F846B /* ZoneDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E4136C29D2BE38004F846B /* ZoneDTO.swift */; };
+		B7E4136F29D2BF99004F846B /* JourDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E4136E29D2BF99004F846B /* JourDTO.swift */; };
+		B7E4137129D2BFF8004F846B /* CreneauDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E4137029D2BFF8004F846B /* CreneauDTO.swift */; };
+		B7E4137329D2C02E004F846B /* AffectationDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E4137229D2C02E004F846B /* AffectationDTO.swift */; };
+		B7E4137529D2C083004F846B /* AffectationDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E4137429D2C083004F846B /* AffectationDAO.swift */; };
 		B7E70A1A29D18CCC00BF80AE /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E70A1929D18CCC00BF80AE /* Color.swift */; };
 		B7E70A1C29D1922900BF80AE /* NavigationBenevoleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E70A1B29D1922900BF80AE /* NavigationBenevoleView.swift */; };
 		B7E70A1E29D19DBB00BF80AE /* FestivalDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E70A1D29D19DBB00BF80AE /* FestivalDTO.swift */; };
@@ -48,6 +53,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B7E4136C29D2BE38004F846B /* ZoneDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoneDTO.swift; sourceTree = "<group>"; };
+		B7E4136E29D2BF99004F846B /* JourDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourDTO.swift; sourceTree = "<group>"; };
+		B7E4137029D2BFF8004F846B /* CreneauDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreneauDTO.swift; sourceTree = "<group>"; };
+		B7E4137229D2C02E004F846B /* AffectationDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AffectationDTO.swift; sourceTree = "<group>"; };
+		B7E4137429D2C083004F846B /* AffectationDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AffectationDAO.swift; sourceTree = "<group>"; };
 		B7E70A1929D18CCC00BF80AE /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		B7E70A1B29D1922900BF80AE /* NavigationBenevoleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBenevoleView.swift; sourceTree = "<group>"; };
 		B7E70A1D29D19DBB00BF80AE /* FestivalDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FestivalDTO.swift; sourceTree = "<group>"; };
@@ -172,6 +182,10 @@
 				D301C90F29CFCB80009BB295 /* CredentialsDTO.swift */,
 				D301C90929CFC9BB009BB295 /* TokenDTO.swift */,
 				B7E70A1D29D19DBB00BF80AE /* FestivalDTO.swift */,
+				B7E4136C29D2BE38004F846B /* ZoneDTO.swift */,
+				B7E4136E29D2BF99004F846B /* JourDTO.swift */,
+				B7E4137029D2BFF8004F846B /* CreneauDTO.swift */,
+				B7E4137229D2C02E004F846B /* AffectationDTO.swift */,
 			);
 			path = DTO;
 			sourceTree = "<group>";
@@ -181,6 +195,7 @@
 			children = (
 				D301C90029CFC952009BB295 /* BenevoleDAO.swift */,
 				B7E70A2829D1A85900BF80AE /* FestivalDAO.swift */,
+				B7E4137429D2C083004F846B /* AffectationDAO.swift */,
 			);
 			path = DAO;
 			sourceTree = "<group>";
@@ -353,6 +368,7 @@
 				B7E70A1A29D18CCC00BF80AE /* Color.swift in Sources */,
 				B7E70A2929D1A85900BF80AE /* FestivalDAO.swift in Sources */,
 				B7E70A2029D1A0E000BF80AE /* FestivalIntent.swift in Sources */,
+				B7E4137129D2BFF8004F846B /* CreneauDTO.swift in Sources */,
 				D301C91A29CFCCC4009BB295 /* FormatterHelper.swift in Sources */,
 				D301C92829CFD68F009BB295 /* AuthentificationView.swift in Sources */,
 				B7E70A3629D1E70F00BF80AE /* BenevolesListAdminView.swift in Sources */,
@@ -368,6 +384,7 @@
 				B7E70A3429D1E6E100BF80AE /* FestivalListAdminView.swift in Sources */,
 				D301C8E829CFC622009BB295 /* FestiFunApp.swift in Sources */,
 				D301C91E29CFCCFD009BB295 /* HttpError.swift in Sources */,
+				B7E4137329D2C02E004F846B /* AffectationDTO.swift in Sources */,
 				D301C90E29CFCAFB009BB295 /* LoggedBenevole.swift in Sources */,
 				D301C92229CFD185009BB295 /* BenevoleIntent.swift in Sources */,
 				D301C91829CFCCA6009BB295 /* KeychainHelper.swift in Sources */,
@@ -375,8 +392,11 @@
 				D301C91029CFCB80009BB295 /* CredentialsDTO.swift in Sources */,
 				D301C92629CFD66E009BB295 /* HomeAdminView.swift in Sources */,
 				D301C91C29CFCCE4009BB295 /* JSONError.swift in Sources */,
+				B7E4136F29D2BF99004F846B /* JourDTO.swift in Sources */,
 				B7E70A2B29D1B13100BF80AE /* FestivalListBenevoleView.swift in Sources */,
 				D301C91529CFCC45009BB295 /* URLError.swift in Sources */,
+				B7E4136D29D2BE38004F846B /* ZoneDTO.swift in Sources */,
+				B7E4137529D2C083004F846B /* AffectationDAO.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
