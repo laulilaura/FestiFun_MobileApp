@@ -45,22 +45,7 @@ struct BenevoleDAO {
             return .success(getBenevoleFromBenevoleDTO(benevoleDTO: benevoleDTO))
             
         } catch {
-            print("Error while fetching ingredient from backend: \(error)")
-            return .failure(error)
-        }
-    }
-    
-    func getProfile() async -> Result<Benevole, Error> {
-        do {
-            
-            // decoder le JSON avec la fonction présente dans JSONHelper
-            let benevoleDTO : BenevoleDTO = try await URLSession.shared.get(from: FestiFunApp.apiUrl + "benevole/profile")
-            
-            // retourner un Result avec benevole ou error
-            return .success(getBenevoleFromBenevoleDTO(benevoleDTO: benevoleDTO))
-            
-        } catch {
-            print("Error while fetching ingredient from backend: \(error)")
+            print("Error while fetching benevole from backend: \(error)")
             return .failure(error)
         }
     }

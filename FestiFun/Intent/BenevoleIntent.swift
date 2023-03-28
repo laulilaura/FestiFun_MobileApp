@@ -93,7 +93,7 @@ struct BenevoleIntent {
     func intentToDelete(benevoleId id: String, benevoleIndex: Int) async {
         switch await BenevoleDAO.shared.deleteBenevoleById(id) {
         case .failure(let error):
-            self.listState.send(.error("Error while deleting ingredient \(id): \(error.localizedDescription)"))
+            self.listState.send(.error("Error while deleting benevole \(id): \(error.localizedDescription)"))
         case .success:
             self.listState.send(.deletingBenevole(benevoleIndex))
         }

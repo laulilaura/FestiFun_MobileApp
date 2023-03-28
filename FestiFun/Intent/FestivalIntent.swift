@@ -93,7 +93,7 @@ struct FestivalIntent {
     func intentToDelete(festivalId id: String, festivalIndex: Int) async {
         switch await FestivalDAO.shared.deleteFestivalById(id) {
         case .failure(let error):
-            self.listState.send(.error("Error while deleting ingredient \(id): \(error.localizedDescription)"))
+            self.listState.send(.error("Error while deleting festival \(id): \(error.localizedDescription)"))
         case .success:
             self.listState.send(.deletingFestival(festivalIndex))
         }
