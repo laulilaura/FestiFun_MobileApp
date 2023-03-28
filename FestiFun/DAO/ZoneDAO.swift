@@ -17,16 +17,16 @@ struct ZoneDAO {
     
     func getAllZone() async -> Result<[Zone], Error> {
         do {
-            // recupere tout les festivals de la base de donnee et les transforment en FestivalDTO
+            // recupere tout les zones de la base de donnee et les transforment en ZoneDTO
             let decoded : [ZoneDTO] = try await URLSession.shared.get(from: FestiFunApp.apiUrl + "zone")
             debugPrint(decoded)
-            // dans une boucle transformer chaque FestivalDTO en model Festival
+            // dans une boucle transformer chaque ZoneDTO en model Festival
             var zones: [Zone] = []
             for zoneDTO in decoded {
                 zones.append(getZoneFromZoneDTO(zoneDTO: zoneDTO))
             }
 
-            // retourner une liste de Festival
+            // retourner une liste de Zone
             return .success(zones)
             
         } catch {
