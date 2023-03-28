@@ -20,13 +20,13 @@ struct JourDAO {
             // recupere tout les festivals de la base de donnee et les transforment en FestivalDTO
             let decoded : [JourDTO] = try await URLSession.shared.get(from: FestiFunApp.apiUrl + "jour")
             debugPrint(decoded)
-            // dans une boucle transformer chaque FestivalDTO en model Festival
+            // dans une boucle transformer chaque JourDTO en model Jour
             var jours: [Jour] = []
             for jourDTO in decoded {
                 jours.append(getJourFromJourDTO(jourDTO: jourDTO))
             }
 
-            // retourner une liste de Festival
+            // retourner une liste de Jour
             return .success(jours)
             
         } catch {
@@ -42,7 +42,7 @@ struct JourDAO {
             // decoder le JSON avec la fonction présente dans JSONHelper
             let jourDTO : JourDTO = try await URLSession.shared.get(from: FestiFunApp.apiUrl + "jour/\(id)")
             
-            // retourner un Result avec festival ou error
+            // retourner un Result avec jour ou error
             return .success(getJourFromJourDTO(jourDTO: jourDTO))
             
         } catch {
