@@ -17,7 +17,7 @@ struct JourDAO {
     
     func getAllJour() async -> Result<[Jour], Error> {
         do {
-            // recupere tout les festivals de la base de donnee et les transforment en FestivalDTO
+            // recupere tout les jours de la base de donnee et les transforment en JourDTO
             let decoded : [JourDTO] = try await URLSession.shared.get(from: FestiFunApp.apiUrl + "jour")
             debugPrint(decoded)
             // dans une boucle transformer chaque JourDTO en model Jour

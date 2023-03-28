@@ -36,6 +36,10 @@
 		B7E70A2D29D1B8FE00BF80AE /* NavigationAdminView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E70A2C29D1B8FE00BF80AE /* NavigationAdminView.swift */; };
 		B7E70A3429D1E6E100BF80AE /* FestivalListAdminView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E70A3329D1E6E100BF80AE /* FestivalListAdminView.swift */; };
 		B7E70A3629D1E70F00BF80AE /* BenevolesListAdminView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E70A3529D1E70F00BF80AE /* BenevolesListAdminView.swift */; };
+		B7F924AB29D2F67F00336E58 /* ZoneFormViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7F924AA29D2F67F00336E58 /* ZoneFormViewModel.swift */; };
+		B7F924AD29D2F9B800336E58 /* ZoneListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7F924AC29D2F9B800336E58 /* ZoneListViewModel.swift */; };
+		B7F924AF29D2FA3600336E58 /* JourListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7F924AE29D2FA3600336E58 /* JourListViewModel.swift */; };
+		B7F924B129D2FA9F00336E58 /* JourFormViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7F924B029D2FA9F00336E58 /* JourFormViewModel.swift */; };
 		D301C8E829CFC622009BB295 /* FestiFunApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D301C8E729CFC622009BB295 /* FestiFunApp.swift */; };
 		D301C8EA29CFC622009BB295 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D301C8E929CFC622009BB295 /* ContentView.swift */; };
 		D301C8EC29CFC622009BB295 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D301C8EB29CFC622009BB295 /* Assets.xcassets */; };
@@ -94,6 +98,10 @@
 		B7E70A2C29D1B8FE00BF80AE /* NavigationAdminView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationAdminView.swift; sourceTree = "<group>"; };
 		B7E70A3329D1E6E100BF80AE /* FestivalListAdminView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FestivalListAdminView.swift; sourceTree = "<group>"; };
 		B7E70A3529D1E70F00BF80AE /* BenevolesListAdminView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BenevolesListAdminView.swift; sourceTree = "<group>"; };
+		B7F924AA29D2F67F00336E58 /* ZoneFormViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoneFormViewModel.swift; sourceTree = "<group>"; };
+		B7F924AC29D2F9B800336E58 /* ZoneListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoneListViewModel.swift; sourceTree = "<group>"; };
+		B7F924AE29D2FA3600336E58 /* JourListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourListViewModel.swift; sourceTree = "<group>"; };
+		B7F924B029D2FA9F00336E58 /* JourFormViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourFormViewModel.swift; sourceTree = "<group>"; };
 		D301C8E429CFC622009BB295 /* FestiFun.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FestiFun.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D301C8E729CFC622009BB295 /* FestiFunApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FestiFunApp.swift; sourceTree = "<group>"; };
 		D301C8E929CFC622009BB295 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -142,6 +150,24 @@
 				B7E70A2629D1A65000BF80AE /* FestivalListViewModel.swift */,
 			);
 			path = Festival;
+			sourceTree = "<group>";
+		};
+		B7F924A829D2F5D500336E58 /* Zone */ = {
+			isa = PBXGroup;
+			children = (
+				B7F924AA29D2F67F00336E58 /* ZoneFormViewModel.swift */,
+				B7F924AC29D2F9B800336E58 /* ZoneListViewModel.swift */,
+			);
+			path = Zone;
+			sourceTree = "<group>";
+		};
+		B7F924A929D2F5E300336E58 /* Jour */ = {
+			isa = PBXGroup;
+			children = (
+				B7F924AE29D2FA3600336E58 /* JourListViewModel.swift */,
+				B7F924B029D2FA9F00336E58 /* JourFormViewModel.swift */,
+			);
+			path = Jour;
 			sourceTree = "<group>";
 		};
 		D301C8DB29CFC621009BB295 = {
@@ -234,6 +260,8 @@
 		D301C8F929CFC8AE009BB295 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				B7F924A929D2F5E300336E58 /* Jour */,
+				B7F924A829D2F5D500336E58 /* Zone */,
 				B7E70A2329D1A31200BF80AE /* Festival */,
 				D301C90229CFC95D009BB295 /* Benevole */,
 			);
@@ -403,6 +431,7 @@
 				D301C91229CFCC11009BB295 /* URLSessionExtention.swift in Sources */,
 				B7E4138D29D2E131004F846B /* AffectationDAO.swift in Sources */,
 				D301C90A29CFC9BB009BB295 /* TokenDTO.swift in Sources */,
+				B7F924AD29D2F9B800336E58 /* ZoneListViewModel.swift in Sources */,
 				B7E4138329D2E063004F846B /* Creneau.swift in Sources */,
 				B7E4137929D2DFBF004F846B /* AffectationIntent.swift in Sources */,
 				B7E70A1A29D18CCC00BF80AE /* Color.swift in Sources */,
@@ -418,8 +447,10 @@
 				B7E4138529D2E081004F846B /* Jour.swift in Sources */,
 				B7E4137B29D2DFD9004F846B /* CreneauIntent.swift in Sources */,
 				D301C90629CFC97B009BB295 /* BenevoleListViewModel.swift in Sources */,
+				B7F924B129D2FA9F00336E58 /* JourFormViewModel.swift in Sources */,
 				D301C90129CFC952009BB295 /* BenevoleDAO.swift in Sources */,
 				B7E4137F29D2E01B004F846B /* ZoneIntent.swift in Sources */,
+				B7F924AF29D2FA3600336E58 /* JourListViewModel.swift in Sources */,
 				B7E4138B29D2E129004F846B /* JourDAO.swift in Sources */,
 				D301C8EA29CFC622009BB295 /* ContentView.swift in Sources */,
 				B7E70A1C29D1922900BF80AE /* NavigationBenevoleView.swift in Sources */,
@@ -434,6 +465,7 @@
 				D301C91E29CFCCFD009BB295 /* HttpError.swift in Sources */,
 				B7E4137329D2C02E004F846B /* AffectationDTO.swift in Sources */,
 				D301C90E29CFCAFB009BB295 /* LoggedBenevole.swift in Sources */,
+				B7F924AB29D2F67F00336E58 /* ZoneFormViewModel.swift in Sources */,
 				D301C92229CFD185009BB295 /* BenevoleIntent.swift in Sources */,
 				D301C91829CFCCA6009BB295 /* KeychainHelper.swift in Sources */,
 				B7E70A2229D1A1DA00BF80AE /* Festival.swift in Sources */,

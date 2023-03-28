@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 
-enum ZoneIntentState {
+enum ZoneFormIntentState {
     case ready
     case nomChanging(String)
     case nbBenevolesNecessairesChanging(Int)
@@ -30,10 +30,10 @@ struct ZoneIntent {
     // A subject (publisher) which emits elements to its subscribers
     // IntentState = Output type
     // Never = error type
-    private var formState = PassthroughSubject<ZoneIntentState, Never>()
+    private var formState = PassthroughSubject<ZoneFormIntentState, Never>()
     private var listState = PassthroughSubject<ZoneListIntentState, Never>()
     
-    func addObserver(zoneFormViewModel: ZoneViewModel) {
+    func addObserver(zoneFormViewModel: ZoneFormViewModel) {
         // a view model wants to be notified when this intent changes so it subscribes
         self.formState.subscribe(zoneFormViewModel)
     }
@@ -70,7 +70,7 @@ struct ZoneIntent {
     }
     
     func intentToCreate(Zone: Zone) async {
-            switch await ZoneDAO.shared.createZone(Zone: Zone) {
+            switch await ZoneDAO.shared.createZone(zone: Zone) {
             case .failure(let error):
                 self.formState.send(.error("\(error.localizedDescription)"))
                 break
