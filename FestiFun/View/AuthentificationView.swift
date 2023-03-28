@@ -16,9 +16,12 @@ struct AuthentificationView: View {
     
     @EnvironmentObject var loggedBenevole: LoggedBenevole
     
+    //var viewModel: BenevoleFormViewModel
+    //var intent: BenevoleIntent
+    
     var body: some View {
         
-        VStack {
+        NavigationStack(){
             Spacer()
             VStack {
                 Text("Bienvenue à FestiFun !")
@@ -87,8 +90,9 @@ struct AuthentificationView: View {
                 HStack {
                     Text("Pas de comtpte ? ")
                                         .foregroundColor(.black)
-                    Text("Inscrit toi")
-                        .foregroundColor(Color.salmon)
+                    //NavigationLink(destination: CreateBenevoleView(benevoleVM: viewModel, intent: intent) ){
+                        Text("Inscrit toi").foregroundColor(Color.salmon)
+                    //}
                 }
                 
             }
