@@ -24,6 +24,8 @@
 		B7E4138B29D2E129004F846B /* JourDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E4138A29D2E129004F846B /* JourDAO.swift */; };
 		B7E4138D29D2E131004F846B /* AffectationDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E4138C29D2E131004F846B /* AffectationDAO.swift */; };
 		B7E4138F29D2E139004F846B /* CreneauDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E4138E29D2E139004F846B /* CreneauDAO.swift */; };
+		B7E6DBBD29D30119009E2ED5 /* AffectationFormViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E6DBBC29D30119009E2ED5 /* AffectationFormViewModel.swift */; };
+		B7E6DBBF29D3012F009E2ED5 /* AffectationListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E6DBBE29D3012F009E2ED5 /* AffectationListViewModel.swift */; };
 		B7E70A1A29D18CCC00BF80AE /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E70A1929D18CCC00BF80AE /* Color.swift */; };
 		B7E70A1C29D1922900BF80AE /* NavigationBenevoleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E70A1B29D1922900BF80AE /* NavigationBenevoleView.swift */; };
 		B7E70A1E29D19DBB00BF80AE /* FestivalDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E70A1D29D19DBB00BF80AE /* FestivalDTO.swift */; };
@@ -86,6 +88,8 @@
 		B7E4138A29D2E129004F846B /* JourDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourDAO.swift; sourceTree = "<group>"; };
 		B7E4138C29D2E131004F846B /* AffectationDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AffectationDAO.swift; sourceTree = "<group>"; };
 		B7E4138E29D2E139004F846B /* CreneauDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreneauDAO.swift; sourceTree = "<group>"; };
+		B7E6DBBC29D30119009E2ED5 /* AffectationFormViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AffectationFormViewModel.swift; sourceTree = "<group>"; };
+		B7E6DBBE29D3012F009E2ED5 /* AffectationListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AffectationListViewModel.swift; sourceTree = "<group>"; };
 		B7E70A1929D18CCC00BF80AE /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		B7E70A1B29D1922900BF80AE /* NavigationBenevoleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBenevoleView.swift; sourceTree = "<group>"; };
 		B7E70A1D29D19DBB00BF80AE /* FestivalDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FestivalDTO.swift; sourceTree = "<group>"; };
@@ -143,6 +147,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B7E6DBBB29D3010A009E2ED5 /* Affectation */ = {
+			isa = PBXGroup;
+			children = (
+				B7E6DBBC29D30119009E2ED5 /* AffectationFormViewModel.swift */,
+				B7E6DBBE29D3012F009E2ED5 /* AffectationListViewModel.swift */,
+			);
+			path = Affectation;
+			sourceTree = "<group>";
+		};
 		B7E70A2329D1A31200BF80AE /* Festival */ = {
 			isa = PBXGroup;
 			children = (
@@ -260,6 +273,7 @@
 		D301C8F929CFC8AE009BB295 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				B7E6DBBB29D3010A009E2ED5 /* Affectation */,
 				B7F924A929D2F5E300336E58 /* Jour */,
 				B7F924A829D2F5D500336E58 /* Zone */,
 				B7E70A2329D1A31200BF80AE /* Festival */,
@@ -456,6 +470,7 @@
 				B7E70A1C29D1922900BF80AE /* NavigationBenevoleView.swift in Sources */,
 				D301C92029CFCD20009BB295 /* UndefinedError.swift in Sources */,
 				D301C8FF29CFC949009BB295 /* BenevoleDTO.swift in Sources */,
+				B7E6DBBD29D30119009E2ED5 /* AffectationFormViewModel.swift in Sources */,
 				D301C90C29CFCA5C009BB295 /* Benevole.swift in Sources */,
 				B7E70A2529D1A33100BF80AE /* FestivalViewModel.swift in Sources */,
 				D301C90429CFC969009BB295 /* BenevoleFormViewModel.swift in Sources */,
@@ -465,6 +480,7 @@
 				D301C91E29CFCCFD009BB295 /* HttpError.swift in Sources */,
 				B7E4137329D2C02E004F846B /* AffectationDTO.swift in Sources */,
 				D301C90E29CFCAFB009BB295 /* LoggedBenevole.swift in Sources */,
+				B7E6DBBF29D3012F009E2ED5 /* AffectationListViewModel.swift in Sources */,
 				B7F924AB29D2F67F00336E58 /* ZoneFormViewModel.swift in Sources */,
 				D301C92229CFD185009BB295 /* BenevoleIntent.swift in Sources */,
 				D301C91829CFCCA6009BB295 /* KeychainHelper.swift in Sources */,
