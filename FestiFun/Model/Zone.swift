@@ -13,6 +13,7 @@ protocol ZoneObserver {
     func changed(nom: String)
     func changed(nbBenevolesNecessaires: Int)
     func changed(nbBenevolesActuels: Int)
+    func changed(idFestival: String)
 }
 
 class Zone: Identifiable, Comparable {
@@ -35,12 +36,18 @@ class Zone: Identifiable, Comparable {
             self.observer?.changed(nbBenevolesActuels: self.nbBenevolesActuels) // this call makes possible observer to observe
         }
     }
+    var idFestival: String {
+        didSet {
+            self.observer?.changed(idFestival: self.idFestival) // this call makes possible observer to observe
+        }
+    }
     
-    internal init(id: String? = nil, nom: String, nbBenevolesNecessaires: Int, nbBenevolesActuels: Int) {
+    internal init(id: String? = nil, nom: String, nbBenevolesNecessaires: Int, nbBenevolesActuels: Int, idFestival: String) {
         self.id = id
         self.nom = nom
         self.nbBenevolesNecessaires = nbBenevolesNecessaires
         self.nbBenevolesActuels = nbBenevolesActuels
+        self.idFestival = idFestival
     }
 
     
