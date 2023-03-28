@@ -77,7 +77,6 @@ struct JourIntent {
     }
     
     func intentToCreate(jour: Jour) async {
-        if isJourValid(jour: jour) {
             switch await JourDAO.shared.createJour(jour: jour) {
             case .failure(let error):
                 self.formState.send(.error("\(error.localizedDescription)"))
@@ -87,7 +86,6 @@ struct JourIntent {
                 self.formState.send(.jourUpdatedInDatabase)
                 self.listState.send(.addingJour(jour))
             }
-        }
     }
     
     func intentToDelete(jourId id: String, jourIndex: Int) async {

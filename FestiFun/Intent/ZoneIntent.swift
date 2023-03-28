@@ -70,7 +70,6 @@ struct ZoneIntent {
     }
     
     func intentToCreate(Zone: Zone) async {
-        if isZoneValid(Zone: Zone) {
             switch await ZoneDAO.shared.createZone(Zone: Zone) {
             case .failure(let error):
                 self.formState.send(.error("\(error.localizedDescription)"))
@@ -80,7 +79,6 @@ struct ZoneIntent {
                 self.formState.send(.zoneUpdatedInDatabase)
                 self.listState.send(.addingZone(Zone))
             }
-        }
     }
     
     func intentToDelete(zoneId id: String, zoneIndex: Int) async {

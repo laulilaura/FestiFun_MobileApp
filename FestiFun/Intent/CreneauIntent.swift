@@ -63,7 +63,6 @@ struct CreneauIntent {
     }
     
     func intentToCreate(creneau: Creneau) async {
-        if isCreneauValid(creneau: creneau) {
             switch await CreneauDAO.shared.createCreneau(creneau: creneau) {
             case .failure(let error):
                 self.formState.send(.error("\(error.localizedDescription)"))
@@ -73,7 +72,6 @@ struct CreneauIntent {
                 self.formState.send(.creneauUpdatedInDatabase)
                 self.listState.send(.addingCreneau(creneau))
             }
-        }
     }
     
     func intentToDelete(creneauId id: String, creneauIndex: Int) async {
@@ -82,23 +80,6 @@ struct CreneauIntent {
             self.listState.send(.error("Error while deleting creneau \(id): \(error.localizedDescription)"))
         case .success:
             self.listState.send(.deletingCreneau(creneauIndex))
-        }
-    }
-    
-    private func isCreneauValid(creneau: Creneau) -> Bool {
-        if creneau.nom == "" {
-            self.formState.send(.error("Name cannot be empty"))
-            return false
-        } else if creneau.email == "" {
-            // TODO: ajouter fonction avec regexp pour le mail
-            
-            self.formState.send(.error("Email cannot be empty"))
-            return false
-        } else if creneau.password == "" {
-            self.formState.send(.error("Password cannot be empty"))
-            return false
-        } else {
-            return true
         }
     }
     

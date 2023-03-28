@@ -2,7 +2,7 @@
 //  AffectationIntent.swift
 //  FestiFun
 //
-//  Created by Laura on 28/03/2023.
+//  Created by etud on 28/03/2023.
 //
 
 import Foundation
@@ -13,7 +13,7 @@ enum AffectationFormIntentState {
     case idBenevolesChanging([String])
     case idCreneauChanging(String)
     case idZoneChanging(String)
-    case idFestivalChanging(String)    
+    case idFestivalChanging(String)
     case affectationUpdatedInDatabase
     case error(String)
 }
@@ -70,7 +70,6 @@ struct AffectationIntent {
     }
     
     func intentToCreate(affectation: Affectation) async {
-        if isAffectationValid(affectation: affectation) {
             switch await AffectationDAO.shared.createAffectation(affectation: affectation) {
             case .failure(let error):
                 self.formState.send(.error("\(error.localizedDescription)"))
@@ -80,7 +79,6 @@ struct AffectationIntent {
                 self.formState.send(.affectationUpdatedInDatabase)
                 self.listState.send(.addingAffectation(affectation))
             }
-        }
     }
     
     func intentToDelete(affectationId id: String, affectationIndex: Int) async {
