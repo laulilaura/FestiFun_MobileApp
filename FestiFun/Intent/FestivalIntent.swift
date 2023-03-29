@@ -23,6 +23,7 @@ enum FestivalListIntentState {
     case uptodate
     case addingFestival(Festival)
     case deletingFestival(Int)
+    case gettingFestival([Festival])
     case error(String)
 }
 
@@ -96,6 +97,15 @@ struct FestivalIntent {
             self.listState.send(.error("Error while deleting festival \(id): \(error.localizedDescription)"))
         case .success:
             self.listState.send(.deletingFestival(festivalIndex))
+        }
+    }
+    
+    func intentToGetAll() async {
+        switch await FestivalDAO.shared.getAllFestival() {
+        case .failure(let error):
+            self.formState.send(.error("Erreur : \(error.localizedDescription)"))
+        case .success(let festivals):
+            self.listState.send(.gettingFestival(festivals))
         }
     }
     

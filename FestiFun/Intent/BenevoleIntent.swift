@@ -21,7 +21,7 @@ enum BenevoleFormIntentState {
 
 enum BenevoleListIntentState {
     case uptodate
-    case addingBenevole(Benevole)
+    case addingBenevole(LoggedBenevole)
     case deletingBenevole(Int)
     case error(String)
 }
@@ -78,7 +78,7 @@ struct BenevoleIntent {
     
     func intentToCreate(benevole: Benevole) async {
         if isBenevoleValid(benevole: benevole) {
-            switch await BenevoleDAO.shared.createBenevole(benevole: benevole) {
+            switch await BenevoleDAO.shared.registerBenevole(benevole: benevole) {
             case .failure(let error):
                 self.formState.send(.error("\(error.localizedDescription)"))
                 break

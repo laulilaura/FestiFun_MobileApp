@@ -33,7 +33,7 @@ struct NavigationAdminView: View {
             
             
             NavigationView{
-                FestivalListBenevoleView(loggedBenevole: loggedBenevole)
+                FestivalListAdminView(loggedBenevole: loggedBenevole)
                     .navigationTitle("Gestion des festivals")
             }
             .tabItem{

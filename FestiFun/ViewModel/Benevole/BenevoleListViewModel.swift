@@ -11,10 +11,10 @@ import Combine
 
 class BenevoleListViewModel: ObservableObject, Subscriber {
     
-    @Published var benevoles : [Benevole]
+    @Published var benevoles : [LoggedBenevole]
     @Published var error: String?
     
-    init(benevoles: [Benevole] = []) {
+    init(benevoles: [LoggedBenevole] = []) {
         self.benevoles = benevoles
     }
     

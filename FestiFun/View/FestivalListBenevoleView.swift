@@ -11,18 +11,19 @@ struct FestivalListBenevoleView: View {
     
     @StateObject var loggedBenevole: LoggedBenevole
     
-    @State var errorMessage = ""
-    @State var festivals: [Festival] = []
+    var intentFestival: FestivalIntent = FestivalIntent()
+    
+    @ObservedObject var festivalsVM: FestivalListViewModel = FestivalListViewModel()
     
     var body: some View {
         VStack {
-            if !errorMessage.isEmpty {
-                Text(errorMessage).foregroundColor(.red)
+            if (festivalsVM.error != nil) {
+                Text(festivalsVM.error!).foregroundColor(.red)
             } else {
-                if(festivals.isEmpty){
+                if(festivalsVM.festivals.isEmpty){
                     Text("Il n'existe pas encore de festival").italic()
                 } else {
-                    ForEach(festivals, id: \.id) { festival in
+                    ForEach(festivalsVM.festivals, id: \.id) { festival in
                         VStack(alignment: .leading) {
                             Text(festival.nom).bold()
                             Text(festival.annee, style: .date).italic()
@@ -40,12 +41,7 @@ struct FestivalListBenevoleView: View {
         }
         .onAppear {
             Task {
-                switch await FestivalDAO.shared.getAllFestival() {
-                case .failure(let error):
-                    errorMessage = "Erreur : \(error.localizedDescription)"
-                case .success(let festivals):
-                    self.festivals = festivals
-                }
+                await intentFestival.intentToGetAll()
             }
         }
     }

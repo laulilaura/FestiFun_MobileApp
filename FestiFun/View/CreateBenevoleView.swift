@@ -31,9 +31,12 @@ struct CreateBenevoleView: View {
     */
     
     @State private var loginFailedMessage : String?
-    @State private var newBenevole: Benevole = Benevole(nom: "", prenom: "", email: "", password: "", isAdmin: false)
+    @State private var newBenevole: Benevole = Benevole(nom: "dsq", prenom: "sqdqs", email: "", password: "", isAdmin: false)
     
     @EnvironmentObject var loggedBenevole: LoggedBenevole
+    
+    @State private var email: String = ""
+    @State private var password: String = ""
     
     var body: some View {
         VStack {
@@ -89,13 +92,33 @@ struct CreateBenevoleView: View {
                     Spacer()
                     Button("Créer un bénévole") {
                         Task {
-                            switch await BenevoleDAO.shared.createBenevole(benevole: newBenevole){
+                            switch await BenevoleDAO.shared.registerBenevole(benevole: newBenevole){
                             case .success(let benevole):
-                                    loggedBenevole.email = benevole.email
-                                    loggedBenevole.nom = benevole.nom
-                                    loggedBenevole.prenom = benevole.prenom
-                                    loggedBenevole.isAdmin = benevole.isAdmin
-                                    loggedBenevole.isAuthenticated = true
+                                loggedBenevole.email = benevole.email
+                                loggedBenevole.nom = benevole.nom
+                                loggedBenevole.prenom = benevole.prenom
+                                loggedBenevole.isAdmin = benevole.isAdmin
+                                loggedBenevole.isAuthenticated = true
+                                /*
+                                email = $newBenevole.email
+                                password = $newBenevole.password
+                                switch await BenevoleDAO.shared.login(email: email, password: password) {
+                                case .success(let benevole):
+                                        loggedBenevole.email = benevole.email
+                                        loggedBenevole.nom = benevole.nom
+                                        loggedBenevole.prenom = benevole.prenom
+                                        loggedBenevole.isAdmin = benevole.isAdmin
+                                        loggedBenevole.isAuthenticated = true
+                                case .failure(let error):
+                                    switch(error){
+                                    case HttpError.unauthorized :
+                                        self.loginFailedMessage = "Mauvais identifiants de connexion"
+                                    default :
+                                        self.loginFailedMessage = "Erreur de connexion " + error.localizedDescription
+                                    }
+                                    print(error)
+                                }
+                                */
                             case .failure(let error):
                                 switch(error){
                                 case HttpError.unauthorized :

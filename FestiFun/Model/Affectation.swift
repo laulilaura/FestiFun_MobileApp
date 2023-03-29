@@ -9,7 +9,6 @@ import Foundation
 
 protocol AffectationObserver {
     
-    func changed(nom: String)
     func changed(idBenevoles: [String])
     func changed(idCreneau: String)
     func changed(idZone: String)

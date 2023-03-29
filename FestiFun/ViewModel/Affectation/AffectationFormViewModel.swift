@@ -28,9 +28,8 @@ class AffectationFormViewModel : ObservableObject, Subscriber, AffectationObserv
         self.idZone = model.idZone
         self.idFestival = model.idFestival
         self.model = model
-        self.modelCopy = Affectation(id: model.id, nom: model.nom, annee: model.annee, nbrJours: model.nbrJours, idBenevoles: model.idBenevoles, isClosed: model.isClosed)
+        self.modelCopy = Affectation(idBenevoles: model.idBenevoles, idCreneau: model.idCreneau, idZone: model.idZone, idFestival: model.idFestival)
         self.model.observer = self
-
     }
     
     func changed(idBenevoles: [String]) {

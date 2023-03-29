@@ -94,7 +94,7 @@ struct AuthentificationView: View {
                     NavigationLink(destination: //CreateBenevoleView(benevoleVM: viewModel, intent: intent) ){
                         //CreateBenevoleView(benevoleVM: BenevoleFormViewModel(model: self.$userToCreate), intent: self.intent){
                                    CreateBenevoleView()){
-                        Text("Inscrit toi").foregroundColor(Color.salmon)
+                        Text("Inscris toi").foregroundColor(Color.salmon)
                     }
                 }
                 

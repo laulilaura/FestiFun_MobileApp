@@ -15,16 +15,16 @@ struct BenevoleDAO {
     
     private init() {}
     
-    func getAllBenevole() async -> Result<[Benevole], Error> {
+    func getAllBenevole() async -> Result<[LoggedBenevole], Error> {
         do {
             // recupere tout les benevoles de la base de donnee et les transforment en BenevoleDTO
             let decoded : [BenevoleLoggedDTO] = try await URLSession.shared.get(from: FestiFunApp.apiUrl + "benevole")
-            // dans une boucle transformer chaque BenevoleDTO en model Benevole
-            var benevoles: [Benevole] = []
-            for benevoleLoggedDTO in decoded {
-                benevoles.append(getBenevoleFromBenevoleLoggedDTO(benevoleLoggedDTO: benevoleLoggedDTO))
+            
+            // Transformer chaque BenevoleLoggedDTO de decoded en LoggedBenevole
+            var benevoles: [LoggedBenevole] = []
+            for benevole in decoded {
+                benevoles.append(getLoggedBenevoleFromBenevoleLoggedDTO(benevoleLoggedDTO: benevole))
             }
-
             // retourner une liste de Benevole
             return .success(benevoles)
             
@@ -51,13 +51,13 @@ struct BenevoleDAO {
     }
     
     
-    func createBenevole(benevole: Benevole) async -> Result<Benevole, Error> {
-        debugPrint("dans createBenevoleDAO")
+    func registerBenevole(benevole: Benevole) async -> Result<LoggedBenevole, Error> {
+        debugPrint("dans BenevoleDAORegisterBenevole")
         let benevoleDTO = getBenevoleDTOFromBenevole(benevole: benevole)
-        do { 
-            let decoded : BenevoleDTO = try await URLSession.shared.create(from: FestiFunApp.apiUrl + "benevole/", object: benevoleDTO)
-            debugPrint(decoded)
-            return .success(getBenevoleFromBenevoleDTO(benevoleDTO: decoded))
+        do {
+            let decoded : LoggedBenevole = try await URLSession.shared.register(benevoleDTO: benevoleDTO)
+            debugPrint("Benevole register : \(decoded)")
+            return .success(decoded)
         } catch {
             // on propage l'erreur transmise par la fonction post
             debugPrint(error)
@@ -111,16 +111,17 @@ struct BenevoleDAO {
         return benevole
     }
     
-    private func getBenevoleFromBenevoleLoggedDTO(benevoleLoggedDTO : BenevoleLoggedDTO) -> Benevole {
-        let benevole = Benevole(
+    private func getLoggedBenevoleFromBenevoleLoggedDTO(benevoleLoggedDTO : BenevoleLoggedDTO) -> LoggedBenevole {
+        let benevole = LoggedBenevole(
             id: benevoleLoggedDTO.id,
             nom: benevoleLoggedDTO.nom,
             prenom: benevoleLoggedDTO.prenom,
             email: benevoleLoggedDTO.email,
-            password: "",
-            isAdmin: benevoleLoggedDTO.isAdmin )
+            isAdmin: benevoleLoggedDTO.isAdmin,
+            isAuthenticated: true)
         
         return benevole
     }
+     
 }
 

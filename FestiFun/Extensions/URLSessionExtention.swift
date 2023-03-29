@@ -166,7 +166,7 @@ extension URLSession {
             }
             
             let (data, response) = try await URLSession.shared.upload(for: request, from: encoded)
-            
+            debugPrint(String(data: data, encoding: .utf8))
             let httpresponse = response as! HTTPURLResponse
             if httpresponse.statusCode == 201{
                 
@@ -207,6 +207,42 @@ extension URLSession {
                 throw UndefinedError.error("Error while login")
             }
             return benevoleLogged
+        }
+        catch(let error){
+            throw error
+        }
+    }
+    
+    func register(benevoleDTO: BenevoleDTO) async throws -> LoggedBenevole {
+        guard let url = URL(string: FestiFunApp.apiUrl + "auth/") else {
+            throw URLError.failedInit
+        }
+        
+        do{
+            
+            var request = URLRequest(url: url)
+            
+            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+            request.httpMethod = "POST"
+            
+            guard let encoded = JSONHelper.encode(data: benevoleDTO) else {
+                throw JSONError.encode
+            }
+            
+            let (_, response) = try await URLSession.shared.upload(for: request, from: encoded)
+            
+            let httpresponse = response as! HTTPURLResponse
+            if httpresponse.statusCode == 201{
+                var connectionBenevole: CredentialsDTO = CredentialsDTO(email: benevoleDTO.email, password: benevoleDTO.password)
+                debugPrint("Connection après une inscription\n  Email : \(connectionBenevole.email)\n Password : \(connectionBenevole.password)")
+                return try await login(credentialsDTO: connectionBenevole)
+            } else if httpresponse.statusCode == 401 {
+                throw HttpError.unauthorized("Email or password invalid")
+            }
+            else{
+                print(httpresponse.statusCode)
+                throw UndefinedError.error("Error while login")
+            }
         }
         catch(let error){
             throw error

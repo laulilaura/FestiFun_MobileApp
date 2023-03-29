@@ -13,8 +13,8 @@ class FestivalListViewModel: ObservableObject, Subscriber {
     @Published var festivals : [Festival]
     @Published var error: String?
     
-    init(festivals: [Festival] = []) {
-        self.festivals = festivals
+    init() {
+        self.festivals = []
     }
     
     typealias Input = FestivalListIntentState
@@ -40,6 +40,8 @@ class FestivalListViewModel: ObservableObject, Subscriber {
         case .deletingFestival(let festivalIndex):
             let festival = self.festivals.remove(at: festivalIndex)
             print("Deleting \(festival.nom) of index \(festivalIndex)")
+        case .gettingFestival(let festivals):
+            self.festivals = festivals
         case .error(let errorMessage):
             self.error = errorMessage
         }

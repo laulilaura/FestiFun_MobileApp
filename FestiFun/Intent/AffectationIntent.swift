@@ -32,7 +32,7 @@ struct AffectationIntent {
     // Never = error type
     private var formState = PassthroughSubject<AffectationFormIntentState, Never>()
     private var listState = PassthroughSubject<AffectationListIntentState, Never>()
-    /*
+    
     func addObserver(affectationFormViewModel: AffectationFormViewModel) {
         // a view model wants to be notified when this intent changes so it subscribes
         self.formState.subscribe(affectationFormViewModel)
@@ -42,7 +42,7 @@ struct AffectationIntent {
         // a view model wants to be notified when this intent changes so it subscribes
         self.listState.subscribe(affectationListViewModel)
     }
-    */
+    
     // MARK: intentToChange functions
     
     func intentToChange(idBenevoles: [String]) {

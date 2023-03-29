@@ -53,7 +53,7 @@ struct NavigationBenevoleView: View {
             
             
             NavigationView{
-                HomeAdminView(loggedBenevole: loggedBenevole)
+                BenevolesListAdminView(loggedBenevole: loggedBenevole)
                     .navigationTitle("Utilisateur")
             }
             .tabItem{
