@@ -15,6 +15,7 @@ struct AuthentificationView: View {
     @State private var loginFailedMessage : String?
     
     @EnvironmentObject var loggedBenevole: LoggedBenevole
+    @State private var benevoleToCreate: Benevole?
     
     //var viewModel: BenevoleFormViewModel
     //var intent: BenevoleIntent
@@ -90,9 +91,11 @@ struct AuthentificationView: View {
                 HStack {
                     Text("Pas de comtpte ? ")
                                         .foregroundColor(.black)
-                    //NavigationLink(destination: CreateBenevoleView(benevoleVM: viewModel, intent: intent) ){
+                    NavigationLink(destination: //CreateBenevoleView(benevoleVM: viewModel, intent: intent) ){
+                        //CreateBenevoleView(benevoleVM: BenevoleFormViewModel(model: self.$userToCreate), intent: self.intent){
+                                   CreateBenevoleView()){
                         Text("Inscrit toi").foregroundColor(Color.salmon)
-                    //}
+                    }
                 }
                 
             }

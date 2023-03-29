@@ -32,6 +32,7 @@ struct CreneauIntent {
     private var formState = PassthroughSubject<CreneauFormIntentState, Never>()
     private var listState = PassthroughSubject<CreneauListIntentState, Never>()
     
+    /*
     func addObserver(creneauFormViewModel: CreneauFormViewModel) {
         // a view model wants to be notified when this intent changes so it subscribes
         self.formState.subscribe(creneauFormViewModel)
@@ -41,7 +42,7 @@ struct CreneauIntent {
         // a view model wants to be notified when this intent changes so it subscribes
         self.listState.subscribe(creneauListViewModel)
     }
-    
+    */
     // MARK: intentToChange functions
     
     func intentToChange(heureDebut: Date) {

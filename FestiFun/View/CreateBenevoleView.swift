@@ -16,28 +16,31 @@ struct CreateBenevoleView: View {
      @Published var password: String
      */
     
-    @Binding var isPresented: Benevole?
-    @ObservedObject var viewModel: BenevoleFormViewModel
+    //@Binding var isPresented: Benevole?
+    /*@ObservedObject var viewModel: BenevoleFormViewModel
     private var intent: BenevoleIntent
     
-    @State private var loginFailedMessage : String?
     
-    init(benevoleVM: BenevoleFormViewModel, intent: BenevoleIntent, isPresented: Binding<Benevole?>){
+    //init(benevoleVM: BenevoleFormViewModel, intent: BenevoleIntent, isPresented: Binding<Benevole?>){
+    init(benevoleVM: BenevoleFormViewModel, intent: BenevoleIntent){
+
         self.viewModel = benevoleVM
-        self._isPresented = isPresented
         self.intent = intent
         self.intent.addObserver(benevoleFormViewModel: benevoleVM)
     }
+    */
     
-    var columns = [GridItem(.adaptive(minimum: 300))]
+    @State private var loginFailedMessage : String?
+    @State private var newBenevole: Benevole = Benevole(nom: "", prenom: "", email: "", password: "", isAdmin: false)
     
+    @EnvironmentObject var loggedBenevole: LoggedBenevole
     
     var body: some View {
         VStack {
             HStack {
                 Spacer()
                 Button(action: {
-                    self.isPresented = nil
+                    //self.isPresented = nil
                 }) {
                     Text("Annuler")
                 }
@@ -48,28 +51,28 @@ struct CreateBenevoleView: View {
                 HStack {
                     Text("Nom")
                     Divider()
-                    TextField("Nom", text: $viewModel.nom)
-                        .onSubmit {
-                            intent.intentToChange(nom: viewModel.nom)
-                        }
+                    TextField("Nom", text: $newBenevole.nom)
+                        //.onSubmit {
+                        //    intent.intentToChange(nom: newBenevole.nom)
+                        //}
                 }
                 
                 HStack {
                     Text("Email")
                     Divider()
-                    TextField("Email", text: $viewModel.email)
-                        .onSubmit {
-                            intent.intentToChange(email: viewModel.email)
-                        }
+                    TextField("Email", text: $newBenevole.email)
+                        //.onSubmit {
+                        //    intent.intentToChange(email: viewModel.email)
+                        //}
                 }
                 
                 HStack {
                     Text("Mot de passe")
                     Divider()
-                    SecureField("Mot de passe", text: $viewModel.password)
-                        .onSubmit {
-                            intent.intentToChange(password: viewModel.password)
-                        }
+                    SecureField("Mot de passe", text: $newBenevole.password)
+                        //.onSubmit {
+                        //    intent.intentToChange(password: viewModel.password)
+                        //}
                 }
                 /*
                  HStack {
@@ -86,6 +89,23 @@ struct CreateBenevoleView: View {
                     Spacer()
                     Button("Créer un bénévole") {
                         Task {
+                            switch await BenevoleDAO.shared.createBenevole(benevole: newBenevole){
+                            case .success(let benevole):
+                                    loggedBenevole.email = benevole.email
+                                    loggedBenevole.nom = benevole.nom
+                                    loggedBenevole.prenom = benevole.prenom
+                                    loggedBenevole.isAdmin = benevole.isAdmin
+                                    loggedBenevole.isAuthenticated = true
+                            case .failure(let error):
+                                switch(error){
+                                case HttpError.unauthorized :
+                                    self.loginFailedMessage = "Mauvais identifiants de connexion"
+                                default :
+                                    self.loginFailedMessage = "Erreur de connexion " + error.localizedDescription
+                                }
+                                print(error)
+                            }
+                            /*
                             intent.intentToChange(isAdmin: false)
                             await intent.intentToCreate(benevole: viewModel.modelCopy)
                             if let error = viewModel.error {
@@ -93,7 +113,7 @@ struct CreateBenevoleView: View {
                             } else {
                                 self.isPresented = nil
                             }
-                            
+                            */
                         }
                     }
                 }

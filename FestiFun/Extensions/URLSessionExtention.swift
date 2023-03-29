@@ -105,10 +105,13 @@ extension URLSession {
     // TODO: factoriser fonction
     func create<T: Codable> (from url: String, object: T) async throws -> T {
         //TODO: factoriser la fonction avec la fonction créate pour éviter la duplication de code
+        debugPrint("Dans le URLSessionCreate")
         guard let url = URL(string: url) else {
             throw URLError.failedInit
         }
         do {
+            debugPrint(url)
+            debugPrint(object)
             var request = URLRequest(url: url)
             request.httpMethod = "POST"
             // append a value to a field
@@ -125,6 +128,7 @@ extension URLSession {
             
             let (data, response) = try await URLSession.shared.upload(for: request, from: encoded)
             let sdata = String(data: data, encoding: .utf8)!
+            debugPrint(sdata)
             // TODO: gérer les erreur dans une fonction à part pour la réutiliser
             let httpresponse = response as! HTTPURLResponse
             if httpresponse.statusCode == 201 {

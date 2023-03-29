@@ -52,12 +52,15 @@ struct BenevoleDAO {
     
     
     func createBenevole(benevole: Benevole) async -> Result<Benevole, Error> {
+        debugPrint("dans createBenevoleDAO")
         let benevoleDTO = getBenevoleDTOFromBenevole(benevole: benevole)
         do { 
             let decoded : BenevoleDTO = try await URLSession.shared.create(from: FestiFunApp.apiUrl + "benevole/", object: benevoleDTO)
+            debugPrint(decoded)
             return .success(getBenevoleFromBenevoleDTO(benevoleDTO: decoded))
         } catch {
             // on propage l'erreur transmise par la fonction post
+            debugPrint(error)
             return .failure(error)
         }
     }
