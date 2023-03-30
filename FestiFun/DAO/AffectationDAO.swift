@@ -71,6 +71,20 @@ struct AffectationDAO {
         }
     }
     
+    func updateAffectation(affectationVM: AffectationFormViewModel) async -> Result<Affectation, Error> {
+        guard affectationVM.id != nil else {
+            return .failure(UndefinedError.error("L'affectation ne possède pas d'id"))
+        }
+        
+        do {
+            let affectationDTO: AffectationDTO = getAffectationDTOFromAffectationVM(affectationVM: affectationVM)
+            let affectationUpdated: AffectationDTO = try await URLSession.shared.update(from: FestiFunApp.apiUrl + "affectation/\(affectationVM.id!)", object: affectationDTO)
+            return .success(getAffectationFromAffectationDTO(affectationDTO: affectationUpdated))
+        } catch {
+            return .failure(error)
+        }
+    }
+    
     private func getAffectationDTOFromAffectation(affectation : Affectation) ->AffectationDTO {
         let affectationDTO = AffectationDTO(
             idBenevoles: affectation.idBenevoles,
@@ -91,6 +105,17 @@ struct AffectationDAO {
         )
         
         return affectation
+    }
+    
+    private func getAffectationDTOFromAffectationVM(affectationVM: AffectationFormViewModel) -> AffectationDTO {
+        let affectationDTO = AffectationDTO(
+            idBenevoles: affectationVM.idBenevoles,
+            idCreneau: affectationVM.idCreneau,
+            idZone: affectationVM.idZone,
+            idFestival: affectationVM.idFestival
+        )
+        
+        return affectationDTO
     }
 }
 
