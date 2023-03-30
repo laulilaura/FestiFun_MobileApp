@@ -12,6 +12,7 @@ class ZoneListViewModel: ObservableObject, Subscriber {
     
     @Published var zones : [Zone]
     @Published var error: String?
+    @Published var loading: Bool = false
     
     init(zones: [Zone] = []) {
         self.zones = zones
@@ -34,13 +35,22 @@ class ZoneListViewModel: ObservableObject, Subscriber {
     func receive(_ input: ZoneListIntentState) -> Subscribers.Demand {
         switch input {
         case .uptodate:
+            self.loading = false
             break
+        case .loading:
+            self.loading = true
         case .addingZone(let zone):
+            self.loading = false
             self.zones.append(zone)
         case .deletingZone(let zoneIndex):
+            self.loading = false
             let zone = self.zones.remove(at: zoneIndex)
             print("Deleting \(zone.nom) of index \(zoneIndex)")
+        case .gettingZone(let zones):
+            self.loading = false
+            self.zones = zones
         case .error(let errorMessage):
+            self.loading = false
             self.error = errorMessage
         }
         return .none // on arrête de traiter cette demande et on attend un nouveau send

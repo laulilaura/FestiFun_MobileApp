@@ -10,6 +10,7 @@ import Combine
 
 enum BenevoleFormIntentState {
     case ready
+    case loading
     case nomChanging(String)
     case prenomChanging(String)
     case emailChanging(String)
@@ -21,8 +22,10 @@ enum BenevoleFormIntentState {
 
 enum BenevoleListIntentState {
     case uptodate
+    case loading
     case addingBenevole(LoggedBenevole)
     case deletingBenevole(Int)
+    case gettingBenevole([LoggedBenevole])
     case error(String)
 }
 
@@ -46,37 +49,44 @@ struct BenevoleIntent {
     
     // MARK: intentToChange functions
     
-    func intentToChange(nom: String) {
+    func intentToChange(nom: String) async {
+        self.formState.send(.loading)
         // Notify subscribers that the state changed
         // (they can use their receive method to react to those changes)
         self.formState.send(.nomChanging(nom)) // emits an object of type IntentState
     }
     
-    func intentToChange(prenom: String) {
+    func intentToChange(prenom: String) async {
+        self.formState.send(.loading)
         // Notify subscribers that the state changed
         // (they can use their receive method to react to those changes)
         self.formState.send(.prenomChanging(prenom)) // emits an object of type IntentState
     }
     
-    func intentToChange(email: String) {
+    func intentToChange(email: String) async {
+        self.formState.send(.loading)
         // Notify subscribers that the state changed
         // (they can use their receive method to react to those changes)
         self.formState.send(.emailChanging(email)) // emits an object of type IntentState
     }
     
-    func intentToChange(password: String) {
+    func intentToChange(password: String) async {
+        self.formState.send(.loading)
         // Notify subscribers that the state changed
         // (they can use their receive method to react to those changes)
         self.formState.send(.passwordChanging(password)) // emits an object of type IntentState
     }
     
-    func intentToChange(isAdmin: Bool) {
+    func intentToChange(isAdmin: Bool) async {
+        self.formState.send(.loading)
         // Notify subscribers that the state changed
         // (they can use their receive method to react to those changes)
         self.formState.send(.isAdminChanging(isAdmin)) // emits an object of type IntentState
     }
     
     func intentToCreate(benevole: Benevole) async {
+        self.formState.send(.loading)
+        self.listState.send(.loading)
         if isBenevoleValid(benevole: benevole) {
             switch await BenevoleDAO.shared.registerBenevole(benevole: benevole) {
             case .failure(let error):
@@ -91,11 +101,24 @@ struct BenevoleIntent {
     }
     
     func intentToDelete(benevoleId id: String, benevoleIndex: Int) async {
+        self.formState.send(.loading)
+        self.listState.send(.loading)
         switch await BenevoleDAO.shared.deleteBenevoleById(id) {
         case .failure(let error):
             self.listState.send(.error("Error while deleting benevole \(id): \(error.localizedDescription)"))
         case .success:
             self.listState.send(.deletingBenevole(benevoleIndex))
+        }
+    }
+    
+    func intentToGetAll() async {
+        self.listState.send(.loading)
+        self.formState.send(.loading)
+        switch await BenevoleDAO.shared.getAllBenevole() {
+        case .failure(let error):
+            self.formState.send(.error("Erreur : \(error.localizedDescription)"))
+        case .success(let benevoles):
+            self.listState.send(.gettingBenevole(benevoles))
         }
     }
     

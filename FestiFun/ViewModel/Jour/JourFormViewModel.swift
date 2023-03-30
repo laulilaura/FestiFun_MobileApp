@@ -21,6 +21,7 @@ class JourFormViewModel : ObservableObject, Subscriber, JourObserver {
     @Published var debutHeure: Date
     @Published var finHeure: Date
     @Published var idFestival: String
+    @Published var loading: Bool = false
     @Published var error: String?
     
     init(model: Jour) {
@@ -74,28 +75,37 @@ class JourFormViewModel : ObservableObject, Subscriber, JourObserver {
     func receive(_ input: JourFormIntentState) -> Subscribers.Demand {
         switch input {
         case .ready:
+            self.loading = false
             break
+        case .loading:
+            self.loading = true
         case .nomChanging(let nom):
+            self.loading = false
             let nameClean = nom.trimmingCharacters(in: .whitespacesAndNewlines)
             self.modelCopy.nom = nameClean
             if modelCopy.nom != nameClean { // there was an error
                 self.error = "The name can't be empty!"
             }
         case .dateChanging(let date):
+            self.loading = false
             self.modelCopy.date = date
         case .debutHeureChanging(let debutHeure):
+            self.loading = false
             self.modelCopy.debutHeure = debutHeure
             if modelCopy.debutHeure < Date.now { // there was an error
                 self.error = "La date ne peut être passéé"
             }
         case .finHeureChanging(let finHeure):
+            self.loading = false
             self.modelCopy.finHeure = finHeure
             if modelCopy.finHeure < modelCopy.debutHeure { // there was an error
                 self.error = "L'heure de fin ne peut pas être avant l'heure de début"
             }
         case .idFestivalChanging(let idFestival):
+            self.loading = false
             self.modelCopy.idFestival = idFestival
         case .jourUpdatedInDatabase:
+            self.loading = false
             self.error = nil
             self.model.nom = self.modelCopy.nom
             self.model.date = self.modelCopy.date
@@ -103,6 +113,7 @@ class JourFormViewModel : ObservableObject, Subscriber, JourObserver {
             self.model.finHeure = self.modelCopy.finHeure
             self.model.idFestival = self.modelCopy.idFestival
         case .error(let errorMessage):
+            self.loading = false
             self.error = errorMessage
         }
         

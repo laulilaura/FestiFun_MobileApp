@@ -1,24 +1,24 @@
 //
-//  JourListViewModel.swift
+//  CreneauListViewModel.swift
 //  FestiFun
 //
-//  Created by etud on 28/03/2023.
+//  Created by etud on 30/03/2023.
 //
 
 import Foundation
 import Combine
 
-class JourListViewModel: ObservableObject, Subscriber {
+class CreneauListViewModel: ObservableObject, Subscriber {
     
-    @Published var jours : [Jour]
+    @Published var creneaux : [Creneau]
     @Published var error: String?
     @Published var loading: Bool = false
     
-    init(jours: [Jour] = []) {
-        self.jours = jours
+    init() {
+        self.creneaux = []
     }
     
-    typealias Input = JourListIntentState
+    typealias Input = CreneauListIntentState
     typealias Failure = Never
     
     // Called by Subscriber protocol during subscription
@@ -32,23 +32,23 @@ class JourListViewModel: ObservableObject, Subscriber {
     }
     
     // Called each time the publisher calls the "send" method to notify about state modification
-    func receive(_ input: JourListIntentState) -> Subscribers.Demand {
+    func receive(_ input: CreneauListIntentState) -> Subscribers.Demand {
         switch input {
         case .uptodate:
             self.loading = false
             break
         case .loading:
             self.loading = true
-        case .addingJour(let jour):
+        case .addingCreneau(let creneau):
             self.loading = false
-            self.jours.append(jour)
-        case .deletingJour(let joursIndex):
+            self.creneaux.append(creneau)
+        case .deletingCreneau(let creneauIndex):
             self.loading = false
-            let jour = self.jours.remove(at: joursIndex)
-            print("Deleting \(jour.nom) of index \(joursIndex)")
-        case .gettingJour(let jours):
+            let creneau = self.creneaux.remove(at: creneauIndex)
+            print("Deleting \(creneau.heureDebut) : \(creneau.heureFin) of index \(creneauIndex)")
+        case .gettingCreneau(let creneaux):
             self.loading = false
-            self.jours = jours
+            self.creneaux = creneaux
         case .error(let errorMessage):
             self.loading = false
             self.error = errorMessage

@@ -13,6 +13,7 @@ class BenevoleListViewModel: ObservableObject, Subscriber {
     
     @Published var benevoles : [LoggedBenevole]
     @Published var error: String?
+    @Published var loading: Bool = false
     
     init(benevoles: [LoggedBenevole] = []) {
         self.benevoles = benevoles
@@ -35,13 +36,22 @@ class BenevoleListViewModel: ObservableObject, Subscriber {
     func receive(_ input: BenevoleListIntentState) -> Subscribers.Demand {
         switch input {
         case .uptodate:
+            self.loading = false
             break
+        case .loading:
+            self.loading = true
         case .addingBenevole(let benevole):
+            self.loading = false
             self.benevoles.append(benevole)
         case .deletingBenevole(let benevoleIndex):
+            self.loading = false
             let benevole = self.benevoles.remove(at: benevoleIndex)
             print("Deleting \(benevole.nom) of index \(benevoleIndex)")
+        case .gettingBenevole(let benevoles):
+            self.loading = false
+            self.benevoles = benevoles
         case .error(let errorMessage):
+            self.loading = false
             self.error = errorMessage
         }
         return .none // on arrête de traiter cette demande et on attend un nouveau send

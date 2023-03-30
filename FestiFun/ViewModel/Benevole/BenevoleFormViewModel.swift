@@ -21,6 +21,7 @@ class BenevoleFormViewModel : ObservableObject, Subscriber, BenevoleObserver {
     @Published var email: String
     @Published var password: String
     @Published var isAdmin: Bool
+    @Published var loading: Bool = false
     @Published var error: String?
     
     init(model: Benevole) {
@@ -74,27 +75,36 @@ class BenevoleFormViewModel : ObservableObject, Subscriber, BenevoleObserver {
     func receive(_ input: BenevoleFormIntentState) -> Subscribers.Demand {
         switch input {
         case .ready:
+            self.loading = false
             break
+        case .loading:
+            self.loading = true
         case .nomChanging(let nom):
+            self.loading = false
             let nameClean = nom.trimmingCharacters(in: .whitespacesAndNewlines)
             self.modelCopy.nom = nameClean
             if modelCopy.nom != nameClean { // there was an error
                 self.error = "The name can't be empty!"
             }
         case .prenomChanging(let prenom):
+            self.loading = false
             let nameClean = prenom.trimmingCharacters(in: .whitespacesAndNewlines)
             self.modelCopy.prenom = nameClean
             if modelCopy.prenom != nameClean { // there was an error
                 self.error = "The name can't be empty!"
             }
         case .emailChanging(let email):
+            self.loading = false
             let email = email.trimmingCharacters(in: .whitespacesAndNewlines)
             self.modelCopy.email = email
         case .passwordChanging(let password):
+            self.loading = false
             self.modelCopy.password = password
         case .isAdminChanging(let isAdmin):
+            self.loading = false
             self.modelCopy.isAdmin = isAdmin
         case .benevoleUpdatedInDatabase:
+            self.loading = false
             self.error = nil
             self.model.nom = self.modelCopy.nom
             self.model.prenom = self.modelCopy.prenom
@@ -102,6 +112,7 @@ class BenevoleFormViewModel : ObservableObject, Subscriber, BenevoleObserver {
             self.model.password = self.modelCopy.password
             self.model.isAdmin = self.modelCopy.isAdmin
         case .error(let errorMessage):
+            self.loading = false
             self.error = errorMessage
         }
         

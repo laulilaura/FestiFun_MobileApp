@@ -12,6 +12,7 @@ class FestivalListViewModel: ObservableObject, Subscriber {
     
     @Published var festivals : [Festival]
     @Published var error: String?
+    @Published var loading: Bool = false
     
     init() {
         self.festivals = []
@@ -34,15 +35,22 @@ class FestivalListViewModel: ObservableObject, Subscriber {
     func receive(_ input: FestivalListIntentState) -> Subscribers.Demand {
         switch input {
         case .uptodate:
+            self.loading = false
             break
+        case .loading:
+            self.loading = true
         case .addingFestival(let festival):
+            self.loading = false
             self.festivals.append(festival)
         case .deletingFestival(let festivalIndex):
+            self.loading = false
             let festival = self.festivals.remove(at: festivalIndex)
             print("Deleting \(festival.nom) of index \(festivalIndex)")
         case .gettingFestival(let festivals):
+            self.loading = false
             self.festivals = festivals
         case .error(let errorMessage):
+            self.loading = false
             self.error = errorMessage
         }
         return .none // on arrête de traiter cette demande et on attend un nouveau send

@@ -20,6 +20,7 @@ class ZoneFormViewModel : ObservableObject, Subscriber, ZoneObserver {
     @Published var nbBenevolesNecessaires: Int
     @Published var nbBenevolesActuels: Int
     @Published var idFestival: String
+    @Published var loading: Bool = false
     @Published var error: String?
     
     init(model: Zone) {
@@ -68,26 +69,35 @@ class ZoneFormViewModel : ObservableObject, Subscriber, ZoneObserver {
     func receive(_ input: ZoneFormIntentState) -> Subscribers.Demand {
         switch input {
         case .ready:
+            self.loading = false
             break
+        case .loading:
+            self.loading = true
         case .nomChanging(let nom):
+            self.loading = false
             let nameClean = nom.trimmingCharacters(in: .whitespacesAndNewlines)
             self.modelCopy.nom = nameClean
             if modelCopy.nom != nameClean { // there was an error
                 self.error = "The name can't be empty!"
             }
         case .nbBenevolesNecessairesChanging(let nbBenevolesNecessaires):
+            self.loading = false
             self.modelCopy.nbBenevolesNecessaires = nbBenevolesNecessaires
         case .nbBenevolesActuelsChanging(let nbBenevolesActuels):
+            self.loading = false
             self.modelCopy.nbBenevolesActuels = nbBenevolesActuels
         case .idFestivalChanging(let idFestival):
+            self.loading = false
             self.modelCopy.idFestival = idFestival
         case .zoneUpdatedInDatabase:
+            self.loading = false
             self.error = nil
             self.model.nom = self.modelCopy.nom
             self.model.nbBenevolesNecessaires = self.modelCopy.nbBenevolesNecessaires
             self.model.nbBenevolesActuels = self.modelCopy.nbBenevolesActuels
             self.model.idFestival = self.modelCopy.idFestival
         case .error(let errorMessage):
+            self.loading = false
             self.error = errorMessage
         }
         
