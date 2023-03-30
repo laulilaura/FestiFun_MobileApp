@@ -7,12 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B770E9D629D447E5002BB698 /* FestivalFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B770E9D529D447E5002BB698 /* FestivalFormView.swift */; };
+		B7326C0D29D59DE3006C16D7 /* ParametresAdminView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7326C0C29D59DE3006C16D7 /* ParametresAdminView.swift */; };
+		B7326C0F29D5AE54006C16D7 /* UpdateAdminView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7326C0E29D5AE54006C16D7 /* UpdateAdminView.swift */; };
+		B770E9D629D447E5002BB698 /* FestivalFormAdminView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B770E9D529D447E5002BB698 /* FestivalFormAdminView.swift */; };
 		B7E4136D29D2BE38004F846B /* ZoneDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E4136C29D2BE38004F846B /* ZoneDTO.swift */; };
 		B7E4136F29D2BF99004F846B /* JourDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E4136E29D2BF99004F846B /* JourDTO.swift */; };
 		B7E4137129D2BFF8004F846B /* CreneauDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E4137029D2BFF8004F846B /* CreneauDTO.swift */; };
 		B7E4137329D2C02E004F846B /* AffectationDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E4137229D2C02E004F846B /* AffectationDTO.swift */; };
-		B7E4137729D2C427004F846B /* CreateBenevoleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E4137629D2C427004F846B /* CreateBenevoleView.swift */; };
+		B7E4137729D2C427004F846B /* RegisterBenevoleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E4137629D2C427004F846B /* RegisterBenevoleView.swift */; };
 		B7E4137929D2DFBF004F846B /* AffectationIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E4137829D2DFBF004F846B /* AffectationIntent.swift */; };
 		B7E4137B29D2DFD9004F846B /* CreneauIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E4137A29D2DFD9004F846B /* CreneauIntent.swift */; };
 		B7E4137D29D2E000004F846B /* JourIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E4137C29D2E000004F846B /* JourIntent.swift */; };
@@ -72,12 +74,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		B770E9D529D447E5002BB698 /* FestivalFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FestivalFormView.swift; sourceTree = "<group>"; };
+		B7326C0C29D59DE3006C16D7 /* ParametresAdminView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParametresAdminView.swift; sourceTree = "<group>"; };
+		B7326C0E29D5AE54006C16D7 /* UpdateAdminView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateAdminView.swift; sourceTree = "<group>"; };
+		B770E9D529D447E5002BB698 /* FestivalFormAdminView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FestivalFormAdminView.swift; sourceTree = "<group>"; };
 		B7E4136C29D2BE38004F846B /* ZoneDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoneDTO.swift; sourceTree = "<group>"; };
 		B7E4136E29D2BF99004F846B /* JourDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourDTO.swift; sourceTree = "<group>"; };
 		B7E4137029D2BFF8004F846B /* CreneauDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreneauDTO.swift; sourceTree = "<group>"; };
 		B7E4137229D2C02E004F846B /* AffectationDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AffectationDTO.swift; sourceTree = "<group>"; };
-		B7E4137629D2C427004F846B /* CreateBenevoleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateBenevoleView.swift; sourceTree = "<group>"; };
+		B7E4137629D2C427004F846B /* RegisterBenevoleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterBenevoleView.swift; sourceTree = "<group>"; };
 		B7E4137829D2DFBF004F846B /* AffectationIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AffectationIntent.swift; sourceTree = "<group>"; };
 		B7E4137A29D2DFD9004F846B /* CreneauIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreneauIntent.swift; sourceTree = "<group>"; };
 		B7E4137C29D2E000004F846B /* JourIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourIntent.swift; sourceTree = "<group>"; };
@@ -321,15 +325,17 @@
 			children = (
 				D301C8E929CFC622009BB295 /* ContentView.swift */,
 				D301C92729CFD68F009BB295 /* AuthentificationView.swift */,
+				B7E4137629D2C427004F846B /* RegisterBenevoleView.swift */,
 				B7E70A1B29D1922900BF80AE /* NavigationBenevoleView.swift */,
-				B7E70A2C29D1B8FE00BF80AE /* NavigationAdminView.swift */,
 				D301C92329CFD664009BB295 /* HomeBenevoleView.swift */,
-				D301C92529CFD66E009BB295 /* HomeAdminView.swift */,
 				B7E70A2A29D1B13100BF80AE /* FestivalListBenevoleView.swift */,
+				B7E70A2C29D1B8FE00BF80AE /* NavigationAdminView.swift */,
+				D301C92529CFD66E009BB295 /* HomeAdminView.swift */,
 				B7E70A3329D1E6E100BF80AE /* FestivalListAdminView.swift */,
-				B770E9D529D447E5002BB698 /* FestivalFormView.swift */,
+				B770E9D529D447E5002BB698 /* FestivalFormAdminView.swift */,
 				B7E70A3529D1E70F00BF80AE /* BenevolesListAdminView.swift */,
-				B7E4137629D2C427004F846B /* CreateBenevoleView.swift */,
+				B7326C0C29D59DE3006C16D7 /* ParametresAdminView.swift */,
+				B7326C0E29D5AE54006C16D7 /* UpdateAdminView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -444,6 +450,7 @@
 				D301C92429CFD664009BB295 /* HomeBenevoleView.swift in Sources */,
 				B7E70A1E29D19DBB00BF80AE /* FestivalDTO.swift in Sources */,
 				B7E70A2D29D1B8FE00BF80AE /* NavigationAdminView.swift in Sources */,
+				B7326C0F29D5AE54006C16D7 /* UpdateAdminView.swift in Sources */,
 				B7E4137D29D2E000004F846B /* JourIntent.swift in Sources */,
 				D301C91229CFCC11009BB295 /* URLSessionExtention.swift in Sources */,
 				B7E4138D29D2E131004F846B /* AffectationDAO.swift in Sources */,
@@ -454,11 +461,12 @@
 				B7E70A1A29D18CCC00BF80AE /* Color.swift in Sources */,
 				B7E70A2929D1A85900BF80AE /* FestivalDAO.swift in Sources */,
 				B7E4138129D2E04E004F846B /* Affectation.swift in Sources */,
+				B7326C0D29D59DE3006C16D7 /* ParametresAdminView.swift in Sources */,
 				B7E70A2029D1A0E000BF80AE /* FestivalIntent.swift in Sources */,
 				B7E4137129D2BFF8004F846B /* CreneauDTO.swift in Sources */,
 				D301C91A29CFCCC4009BB295 /* FormatterHelper.swift in Sources */,
 				B7E4138729D2E090004F846B /* Zone.swift in Sources */,
-				B7E4137729D2C427004F846B /* CreateBenevoleView.swift in Sources */,
+				B7E4137729D2C427004F846B /* RegisterBenevoleView.swift in Sources */,
 				D301C92829CFD68F009BB295 /* AuthentificationView.swift in Sources */,
 				B7E70A3629D1E70F00BF80AE /* BenevolesListAdminView.swift in Sources */,
 				B7E4138529D2E081004F846B /* Jour.swift in Sources */,
@@ -490,7 +498,7 @@
 				B7E70A2229D1A1DA00BF80AE /* Festival.swift in Sources */,
 				D301C91029CFCB80009BB295 /* CredentialsDTO.swift in Sources */,
 				D301C92629CFD66E009BB295 /* HomeAdminView.swift in Sources */,
-				B770E9D629D447E5002BB698 /* FestivalFormView.swift in Sources */,
+				B770E9D629D447E5002BB698 /* FestivalFormAdminView.swift in Sources */,
 				D301C91C29CFCCE4009BB295 /* JSONError.swift in Sources */,
 				B7E4136F29D2BF99004F846B /* JourDTO.swift in Sources */,
 				B7E70A2B29D1B13100BF80AE /* FestivalListBenevoleView.swift in Sources */,

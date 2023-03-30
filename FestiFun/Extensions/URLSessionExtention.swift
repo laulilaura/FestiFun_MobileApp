@@ -199,7 +199,7 @@ extension URLSession {
                         throw HttpError.unauthorized("Could not decode JWT")
                     }
                 }
-            } else if httpresponse.statusCode == 401 {
+            } else if httpresponse.statusCode == 400 {
                 throw HttpError.unauthorized("Email or password invalid")
             }
             else{

@@ -9,12 +9,12 @@ import SwiftUI
 
 struct NavigationAdminView: View {
     
-    @StateObject var loggedBenevole: LoggedBenevole
-
+    @EnvironmentObject var loggedBenevole: LoggedBenevole
+    
     var body: some View {
         TabView{
             NavigationView{
-                HomeAdminView(loggedBenevole: loggedBenevole)
+                HomeAdminView()
             }
             .tabItem{
                 Image(systemName: "house")
@@ -23,7 +23,7 @@ struct NavigationAdminView: View {
             .tint(Color("salmon"))
             
             NavigationView{
-                BenevolesListAdminView(loggedBenevole: loggedBenevole)
+                BenevolesListAdminView()
                     .navigationTitle("Bénévoles")
             }
             .tabItem{
@@ -33,7 +33,7 @@ struct NavigationAdminView: View {
             
             
             NavigationView{
-                FestivalListAdminView(loggedBenevole: loggedBenevole)
+                FestivalListAdminView()
                     .navigationTitle("Gestion des festivals")
             }
             .tabItem{
@@ -43,7 +43,7 @@ struct NavigationAdminView: View {
             
             
             NavigationView{
-                HomeAdminView(loggedBenevole: loggedBenevole)
+                ParametresAdminView()
                     .navigationTitle("Paramètres")
             }
             .tabItem{

@@ -21,4 +21,8 @@ extension Color{
     public static var lightyellow : Color{
         return Color(red: 255.0/255, green: 251.0/255, blue: 193.0/255)
     }
+    
+    public static var lightgreen : Color{
+        return Color(red: 182.0/255, green: 226.0/255, blue: 161.0/255)
+    }
 }

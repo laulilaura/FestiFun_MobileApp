@@ -91,9 +91,8 @@ struct AuthentificationView: View {
                 HStack {
                     Text("Pas de comtpte ? ")
                                         .foregroundColor(.black)
-                    NavigationLink(destination: //CreateBenevoleView(benevoleVM: viewModel, intent: intent) ){
-                        //CreateBenevoleView(benevoleVM: BenevoleFormViewModel(model: self.$userToCreate), intent: self.intent){
-                                   CreateBenevoleView()){
+                    NavigationLink(destination:
+                                   RegisterBenevoleView()){
                         Text("Inscris toi").foregroundColor(Color.salmon)
                     }
                 }
@@ -103,9 +102,10 @@ struct AuthentificationView: View {
         }
     }
 }
-
+/*
 struct AuthentificationView_Previews: PreviewProvider {
     static var previews: some View {
         AuthentificationView()
     }
 }
+*/

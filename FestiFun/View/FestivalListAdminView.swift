@@ -9,7 +9,7 @@ import SwiftUI
 
 struct FestivalListAdminView: View {
     
-    @StateObject var loggedBenevole: LoggedBenevole
+    @EnvironmentObject var loggedBenevole: LoggedBenevole
     
     @State var errorMessage = ""
     @State var festivals: [Festival] = []
@@ -18,7 +18,7 @@ struct FestivalListAdminView: View {
         VStack {
             NavigationLink(destination: //CreateBenevoleView(benevoleVM: viewModel, intent: intent) ){
                 //CreateBenevoleView(benevoleVM: BenevoleFormViewModel(model: self.$userToCreate), intent: self.intent){
-                           FestivalFormView(loggedBenevole: loggedBenevole)){
+                           FestivalFormAdminView()){
                 Image(systemName: "plus.app.fill")
             }
             
@@ -56,7 +56,7 @@ struct FestivalListAdminView: View {
         }
     }
 }
-
+/*
 struct FestivalListAdminView_Previews: PreviewProvider {
     static var previews: some View {
         var loggedBenevole: LoggedBenevole = LoggedBenevole(nom: "Benaiton", prenom: "Laura", email: "laura@gmail.com", isAdmin: true, isAuthenticated: true)
@@ -64,3 +64,4 @@ struct FestivalListAdminView_Previews: PreviewProvider {
         FestivalListAdminView(loggedBenevole: loggedBenevole)
     }
 }
+*/

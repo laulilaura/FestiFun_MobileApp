@@ -9,7 +9,7 @@ import SwiftUI
 
 struct FestivalListBenevoleView: View {
     
-    @StateObject var loggedBenevole: LoggedBenevole
+    @EnvironmentObject var loggedBenevole: LoggedBenevole
     
     var intentFestival: FestivalIntent = FestivalIntent()
     
@@ -47,6 +47,7 @@ struct FestivalListBenevoleView: View {
     }
 }
 
+/*
 struct FestivalListBenevoleView_Previews: PreviewProvider {
     static var previews: some View {
         var loggedBenevole: LoggedBenevole = LoggedBenevole(nom: "Benaiton", prenom: "Laura", email: "laura@gmail.com", isAdmin: false, isAuthenticated: false)
@@ -54,3 +55,4 @@ struct FestivalListBenevoleView_Previews: PreviewProvider {
         FestivalListBenevoleView(loggedBenevole: loggedBenevole)
     }
 }
+*/

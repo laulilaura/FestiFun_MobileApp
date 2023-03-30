@@ -9,7 +9,7 @@ import SwiftUI
 
 struct HomeBenevoleView: View {
     
-    @StateObject var loggedBenevole: LoggedBenevole
+    @EnvironmentObject var loggedBenevole: LoggedBenevole
     
     var body: some View {
         VStack {

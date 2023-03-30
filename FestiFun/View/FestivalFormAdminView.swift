@@ -7,9 +7,9 @@
 
 import SwiftUI
 
-struct FestivalFormView: View {
+struct FestivalFormAdminView: View {
     
-    @StateObject var loggedBenevole: LoggedBenevole
+    @EnvironmentObject var loggedBenevole: LoggedBenevole
     
     var intent: FestivalIntent = FestivalIntent()
 
@@ -18,9 +18,11 @@ struct FestivalFormView: View {
     }
 }
 
+/*
 struct FestivalFormView_Previews: PreviewProvider {
     static var previews: some View {
         var loggedBenevole: LoggedBenevole = LoggedBenevole(nom: "Benaiton", prenom: "Laura", email: "laura@gmail.com", isAdmin: true, isAuthenticated: true)
         FestivalFormView(loggedBenevole: loggedBenevole)
     }
 }
+*/

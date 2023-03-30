@@ -9,7 +9,7 @@ import SwiftUI
 
 struct HomeAdminView: View {
     
-    @StateObject var loggedBenevole: LoggedBenevole
+    @EnvironmentObject var loggedBenevole: LoggedBenevole
     
     @State var errorMessage = ""
     @State var benevoles: [Benevole] = []
