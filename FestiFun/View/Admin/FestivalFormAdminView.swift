@@ -1,16 +1,17 @@
 //
-//  CreateBenevoleView.swift
+//  FestivalFormView.swift
 //  FestiFun
 //
-//  Created by etud on 28/03/2023.
+//  Created by etud on 30/03/2023.
 //
 
 import SwiftUI
 
-struct RegisterBenevoleView: View {
+struct FestivalFormAdminView: View {
     
-    @State private var registerFailedMessage : String?
-    @State private var newBenevole: Benevole = Benevole(nom: "", prenom: "", email: "", password: "", isAdmin: false)
+    @State private var festivalFormFailedMessage : String?
+    //var date : Date = Date.now
+    //@State private var newFestival: Festival = Festival(nom: "", annee: date, nbrJours: 0, idBenevoles: [], isClosed: false)
     
     @EnvironmentObject var loggedBenevole: LoggedBenevole
     
@@ -21,6 +22,7 @@ struct RegisterBenevoleView: View {
     
     var body: some View {
         VStack {
+            /*
             Text("Inscription")
                 .font(.title)
                 .fontWeight(.bold)
@@ -29,6 +31,7 @@ struct RegisterBenevoleView: View {
             Text("tous les champs doivent être rempli")
                 .font(.footnote)
             Spacer()
+            
             VStack {
                 HStack {
                     Text("Nom")
@@ -93,12 +96,15 @@ struct RegisterBenevoleView: View {
                         }
                 }
                 .padding([.horizontal], 20)
+             
             }
+            
             Spacer()
             HStack {
                 Spacer()
                 Button("Créer votre compte") {
                     Task {
+                        
                         switch await BenevoleDAO.shared.registerBenevole(benevole: newBenevole){
                         case .success(let benevole):
                             loggedBenevole.email = benevole.email
@@ -115,6 +121,7 @@ struct RegisterBenevoleView: View {
                                 self.registerFailedMessage = "Erreur de connexion " + error.localizedDescription
                             }
                             print(error)
+                         
                         }
                     }
                 }
@@ -122,19 +129,20 @@ struct RegisterBenevoleView: View {
                 .background(Color.salmon)
                 .foregroundColor(.white)
                 .cornerRadius(8)
-                Text(registerFailedMessage ?? "")
+                Text(festivalFormFailedMessage ?? "")
                     .foregroundColor(.red)
+             
             }
+             */
         }
         .listStyle(.plain)
         .padding()
     }
 }
-
 /*
-struct CreateBenevoleView_Previews: PreviewProvider {
+struct FestivalFormView_Previews: PreviewProvider {
     static var previews: some View {
-        CreateBenevoleView(benevoleVM: BenevoleFormViewModel(model: MockData.benevole), intent: BenevoleIntent(), isPresented: .constant(MockData.benevole))
+        FestivalFormAdminView()
     }
 }
 */

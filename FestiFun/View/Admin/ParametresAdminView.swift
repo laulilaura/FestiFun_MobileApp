@@ -18,8 +18,13 @@ struct ParametresAdminView: View {
     
     var body: some View {
         NavigationStack() {
+            Text("Paramètres")
+                .font(.title)
+                .fontWeight(.bold)
+            Spacer(minLength: 20)
             Text("Vos informations personnelles :")
                 .font(.footnote)
+            Spacer()
             LazyVGrid(columns: columns, spacing: 20) {
                 Text("Nom : ").frame(maxWidth: .infinity, alignment: .leading)
                 Text(loggedBenevole.nom).foregroundColor(Color.salmon).frame(maxWidth: .infinity, alignment: .leading)
@@ -34,13 +39,17 @@ struct ParametresAdminView: View {
                 Text("administrateur").foregroundColor(Color.salmon)
                 Text(" sur l'app FestiFun.")
             }
-            Button("Modifier vos information personnelles") {
-                NavigationLink(destination: RegisterBenevoleView()){}
+            Spacer(minLength: 40)
+            Button(action: { }) {
+                NavigationLink(destination: UpdateAdminView(nom: loggedBenevole.nom, prenom: loggedBenevole.prenom, email: loggedBenevole.email)){
+                    Text("Modifier vos information personnelles")
+                }
             }
             .padding(10)
             .background(Color.salmon)
             .foregroundColor(.white)
             .cornerRadius(8)
+            Spacer(minLength: 40)
             Button("Déconnexion") {
                 Task {
                     loggedBenevole.nom = ""

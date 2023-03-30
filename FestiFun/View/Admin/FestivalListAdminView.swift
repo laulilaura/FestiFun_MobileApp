@@ -16,6 +16,10 @@ struct FestivalListAdminView: View {
     
     var body: some View {
         VStack {
+            Text("Gestion des festivals")
+                .font(.title)
+                .fontWeight(.bold)
+            // ENLEVER LE BACK CAR JUSTE DANS LA VUE PAS NOUVELLE PAGE MACHIN ???
             NavigationLink(destination: //CreateBenevoleView(benevoleVM: viewModel, intent: intent) ){
                 //CreateBenevoleView(benevoleVM: BenevoleFormViewModel(model: self.$userToCreate), intent: self.intent){
                            FestivalFormAdminView()){

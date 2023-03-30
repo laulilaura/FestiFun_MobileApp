@@ -24,7 +24,6 @@ struct NavigationAdminView: View {
             
             NavigationView{
                 BenevolesListAdminView()
-                    .navigationTitle("Bénévoles")
             }
             .tabItem{
                 Image(systemName: "person.3.fill")
@@ -34,7 +33,6 @@ struct NavigationAdminView: View {
             
             NavigationView{
                 FestivalListAdminView()
-                    .navigationTitle("Gestion des festivals")
             }
             .tabItem{
                 Image(systemName: "signpost.right.and.left.fill")
@@ -44,7 +42,6 @@ struct NavigationAdminView: View {
             
             NavigationView{
                 ParametresAdminView()
-                    .navigationTitle("Paramètres")
             }
             .tabItem{
                 Image(systemName: "person.circle")

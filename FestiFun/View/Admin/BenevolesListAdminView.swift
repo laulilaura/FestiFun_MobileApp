@@ -17,6 +17,8 @@ struct BenevolesListAdminView: View {
     var body: some View {
         VStack {
             Text("Liste de bénévole")
+                .font(.title)
+                .fontWeight(.bold)
         }
     }
 }
