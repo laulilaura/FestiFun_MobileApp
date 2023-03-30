@@ -10,17 +10,20 @@ import Combine
 
 enum CreneauFormIntentState {
     case ready
+    case loading
     case heureDebutChanging(Date)
     case heureFinChanging(Date)
-    case jourChanging(Jour)
+    case idJourChanging(String)
     case creneauUpdatedInDatabase
     case error(String)
 }
 
 enum CreneauListIntentState {
     case uptodate
+    case loading
     case addingCreneau(Creneau)
     case deletingCreneau(Int)
+    case gettingCreneau([Creneau])
     case error(String)
 }
 
@@ -32,7 +35,7 @@ struct CreneauIntent {
     private var formState = PassthroughSubject<CreneauFormIntentState, Never>()
     private var listState = PassthroughSubject<CreneauListIntentState, Never>()
     
-    /*
+    
     func addObserver(creneauFormViewModel: CreneauFormViewModel) {
         // a view model wants to be notified when this intent changes so it subscribes
         self.formState.subscribe(creneauFormViewModel)
@@ -42,7 +45,7 @@ struct CreneauIntent {
         // a view model wants to be notified when this intent changes so it subscribes
         self.listState.subscribe(creneauListViewModel)
     }
-    */
+    
     // MARK: intentToChange functions
     
     func intentToChange(heureDebut: Date) {
@@ -57,10 +60,10 @@ struct CreneauIntent {
         self.formState.send(.heureFinChanging(heureFin)) // emits an object of type IntentState
     }
 
-    func intentToChange(jour: Jour) {
+    func intentToChange(jour: String) {
         // Notify subscribers that the state changed
         // (they can use their receive method to react to those changes)
-        self.formState.send(.jourChanging(jour)) // emits an object of type IntentState
+        self.formState.send(.idJourChanging(jour)) // emits an object of type IntentState
     }
     
     func intentToCreate(creneau: Creneau) async {

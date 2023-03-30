@@ -10,6 +10,7 @@ import Combine
 
 enum FestivalIntentState {
     case ready
+    case loading
     case nomChanging(String)
     case anneeChanging(Date)
     case nbrJoursChanging(Int)
@@ -20,6 +21,7 @@ enum FestivalIntentState {
 }
 
 enum FestivalListIntentState {
+    case loading
     case uptodate
     case addingFestival(Festival)
     case deletingFestival(Int)
@@ -47,37 +49,44 @@ struct FestivalIntent {
     
     // MARK: intentToChange functions
     
-    func intentToChange(nom: String) {
+    func intentToChange(nom: String) async {
+        self.formState.send(.loading)
         // Notify subscribers that the state changed
         // (they can use their receive method to react to those changes)
         self.formState.send(.nomChanging(nom)) // emits an object of type IntentState
     }
     
-    func intentToChange(annee: Date) {
+    func intentToChange(annee: Date) async {
+        self.formState.send(.loading)
         // Notify subscribers that the state changed
         // (they can use their receive method to react to those changes)
         self.formState.send(.anneeChanging(annee)) // emits an object of type IntentState
     }
     
-    func intentToChange(nbrJours: Int) {
+    func intentToChange(nbrJours: Int) async {
+        self.formState.send(.loading)
         // Notify subscribers that the state changed
         // (they can use their receive method to react to those changes)
         self.formState.send(.nbrJoursChanging(nbrJours)) // emits an object of type IntentState
     }
     
-    func intentToChange(idBenevoles: [String]) {
+    func intentToChange(idBenevoles: [String]) async {
+        self.formState.send(.loading)
         // Notify subscribers that the state changed
         // (they can use their receive method to react to those changes)
         self.formState.send(.idBenevolesChanging(idBenevoles)) // emits an object of type IntentState
     }
     
-    func intentToChange(isClosed: Bool) {
+    func intentToChange(isClosed: Bool) async {
+        self.formState.send(.loading)
         // Notify subscribers that the state changed
         // (they can use their receive method to react to those changes)
         self.formState.send(.isClosedChanging(isClosed)) // emits an object of type IntentState
     }
     
     func intentToCreate(festival: Festival) async {
+        self.listState.send(.loading)
+        self.formState.send(.loading)
         if isFestivalValid(festival: festival) {
             switch await FestivalDAO.shared.createFestival(festival: festival) {
             case .failure(let error):
@@ -92,6 +101,8 @@ struct FestivalIntent {
     }
     
     func intentToDelete(festivalId id: String, festivalIndex: Int) async {
+        self.listState.send(.loading)
+        self.formState.send(.loading)
         switch await FestivalDAO.shared.deleteFestivalById(id) {
         case .failure(let error):
             self.listState.send(.error("Error while deleting festival \(id): \(error.localizedDescription)"))
@@ -101,6 +112,8 @@ struct FestivalIntent {
     }
     
     func intentToGetAll() async {
+        self.listState.send(.loading)
+        self.formState.send(.loading)
         switch await FestivalDAO.shared.getAllFestival() {
         case .failure(let error):
             self.formState.send(.error("Erreur : \(error.localizedDescription)"))

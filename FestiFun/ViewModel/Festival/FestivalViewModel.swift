@@ -20,6 +20,7 @@ class FestivalViewModel : ObservableObject, Subscriber, FestivalObserver {
     @Published var nbrJours: Int
     @Published var idBenevoles: [String]
     @Published var isClosed: Bool
+    @Published var loading: Bool = false
     @Published var error: String?
     
     init(model: Festival) {
@@ -73,28 +74,37 @@ class FestivalViewModel : ObservableObject, Subscriber, FestivalObserver {
     func receive(_ input: FestivalIntentState) -> Subscribers.Demand {
         switch input {
         case .ready:
+            self.loading = false
             break
+        case .loading:
+            self.loading = true
         case .nomChanging(let nom):
+            self.loading = false
             let nameClean = nom.trimmingCharacters(in: .whitespacesAndNewlines)
             self.modelCopy.nom = nameClean
             if modelCopy.nom != nameClean { // there was an error
                 self.error = "Le nom ne peut être vide"
             }
         case .anneeChanging(let annee):
+            self.loading = false
             self.modelCopy.annee = annee
             if modelCopy.annee < Date.now { // there was an error
                 self.error = "La date ne peut être passéé"
             }
         case .nbrJoursChanging(let nbrJours):
+            self.loading = false
             self.modelCopy.nbrJours = nbrJours
             if modelCopy.nbrJours < 1 { // there was an error
                 self.error = "Le festival doit se dérouler sur au moins un jour"
             }
         case .idBenevolesChanging(let idBenevoles):
+            self.loading = false
             self.modelCopy.idBenevoles = idBenevoles
         case .isClosedChanging(let isClosed):
+            self.loading = false
             self.modelCopy.isClosed = isClosed
         case .festivalUpdatedInDatabase:
+            self.loading = false
             self.error = nil
             self.model.nom = self.modelCopy.nom
             self.model.annee = self.modelCopy.annee
@@ -102,6 +112,7 @@ class FestivalViewModel : ObservableObject, Subscriber, FestivalObserver {
             self.model.idBenevoles = self.modelCopy.idBenevoles
             self.model.isClosed = self.modelCopy.isClosed
         case .error(let errorMessage):
+            self.loading = false
             self.error = errorMessage
         }
         

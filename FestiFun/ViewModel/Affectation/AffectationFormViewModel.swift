@@ -19,6 +19,7 @@ class AffectationFormViewModel : ObservableObject, Subscriber, AffectationObserv
     @Published var idCreneau: String
     @Published var idZone: String
     @Published var idFestival: String
+    @Published var loading: Bool = false
     @Published var error: String?
     
     init(model: Affectation) {
@@ -66,22 +67,31 @@ class AffectationFormViewModel : ObservableObject, Subscriber, AffectationObserv
     func receive(_ input: AffectationFormIntentState) -> Subscribers.Demand {
         switch input {
         case .ready:
+            self.loading = false
             break
+        case .loading:
+            self.loading = true
         case .idBenevolesChanging(let idBenevoles) :
+            self.loading = false
             self.modelCopy.idBenevoles = idBenevoles
         case .idCreneauChanging(let idCreneau):
+            self.loading = false
             self.modelCopy.idCreneau = idCreneau
         case .idZoneChanging(let idZone):
+            self.loading = false
             self.modelCopy.idZone = idZone
         case .idFestivalChanging(let idFestival):
+            self.loading = false
             self.modelCopy.idFestival = idFestival
         case .affectationUpdatedInDatabase:
+            self.loading = false
             self.error = nil
             self.model.idBenevoles = self.modelCopy.idBenevoles
             self.model.idCreneau = self.modelCopy.idCreneau
             self.model.idZone = self.modelCopy.idZone
             self.model.idFestival = self.modelCopy.idFestival
         case .error(let errorMessage):
+            self.loading = false
             self.error = errorMessage
         }
         

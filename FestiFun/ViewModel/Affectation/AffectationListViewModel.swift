@@ -12,6 +12,7 @@ class AffectationListViewModel: ObservableObject, Subscriber {
     
     @Published var affectations : [Affectation]
     @Published var error: String?
+    @Published var loading: Bool = false
     
     init(affectations: [Affectation] = []) {
         self.affectations = affectations
@@ -34,13 +35,22 @@ class AffectationListViewModel: ObservableObject, Subscriber {
     func receive(_ input: AffectationListIntentState) -> Subscribers.Demand {
         switch input {
         case .uptodate:
+            self.loading = false
             break
+        case .loading:
+            self.loading = true
         case .addingAffectation(let affectation):
+            self.loading = false
             self.affectations.append(affectation)
         case .deletingAffectation(let affectationIndex):
+            self.loading = false
             let affectation = self.affectations.remove(at: affectationIndex)
             print("Deleting \(affectation.idBenevoles) of index \(affectationIndex)")
+        case .gettingAffectation(let affectations):
+            self.loading = false
+            self.affectations = affectations
         case .error(let errorMessage):
+            self.loading = false
             self.error = errorMessage
         }
         return .none // on arrête de traiter cette demande et on attend un nouveau send
