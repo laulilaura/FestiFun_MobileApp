@@ -19,10 +19,8 @@ struct FestivalListAdminView: View {
             Text("Gestion des festivals")
                 .font(.title)
                 .fontWeight(.bold)
-            // ENLEVER LE BACK CAR JUSTE DANS LA VUE PAS NOUVELLE PAGE MACHIN ???
-            NavigationLink(destination: //CreateBenevoleView(benevoleVM: viewModel, intent: intent) ){
-                //CreateBenevoleView(benevoleVM: BenevoleFormViewModel(model: self.$userToCreate), intent: self.intent){
-                           FestivalFormAdminView()){
+            
+            NavigationLink(destination: FestivalFormAdminView()){
                 Image(systemName: "plus.app.fill")
             }
             
@@ -32,7 +30,7 @@ struct FestivalListAdminView: View {
                 if(festivals.isEmpty){
                     Text("Il n'existe pas encore de festival").italic()
                 } else {
-                    List {
+                  
                         ForEach(festivals, id: \.id) { festival in
                             NavigationLink(destination : UpdateFestivalAdminView(fest : FestivalViewModel(model: festival))){
                                 VStack(alignment: .leading) {
@@ -49,7 +47,7 @@ struct FestivalListAdminView: View {
                                     )
                             }
                         }
-                    }
+                    
                     
                 }
             }

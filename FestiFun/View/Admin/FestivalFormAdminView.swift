@@ -15,43 +15,24 @@ struct FestivalFormAdminView: View {
     
     @Environment(\.presentationMode) var presentation
     
-    @State private var newFestival: Festival = Festival(nom: "", annee: "2023", nbrJours: 0, idBenevoles: [], isClosed: false)
-    
-    @State var dateTemp = Date.now
+    @State private var newFestival: Festival = Festival(nom: "", annee: "2023", nbrJours: 1, idBenevoles: [], isClosed: false)
     
     var intent : FestivalIntent = FestivalIntent()
-    //@ObservedObject var festivalVM : FestivalViewModel
+    
+    @State var tabJours : [Jour] = []
 
     
     @State private var festivalFormFailedMessage : String?
     @State private var selected: [Bool] = [false, false, false]
     
-    var dateFormatter = DateFormatter()
+    @State private var selectedYear = 2023
+    let years = Array(2023...2030)
     
-    let dateRange: ClosedRange<Date> = {
-        let calendar = Calendar.current
-        let startComponents = DateComponents(year: 2023, month: 3, day: 31)
-        let endComponents = DateComponents(year: 2025, month: 12, day: 31, hour: 23, minute: 59, second: 59)
-        return calendar.date(from:startComponents)!
-            ...
-            calendar.date(from:endComponents)!
-    }()
-    
-    @State private var isLinkActive = true
-
-    
-    init() {
-        dateFormatter.dateStyle = .medium
-        dateFormatter.timeStyle = .none
-        // French Locale (fr_FR)
-        dateFormatter.locale = Locale(identifier: "fr_FR")
-        // print(dateFormatter.string(from: date)) // 2 janv. 2001
-    }
+    var nbJourOk : Bool = true
 
         
     var body: some View {
-        // debugPrint(dateFormatter.string(from: newDate))
-        VStack {
+        ScrollView {
             
             Text("Création d'un festival")
                 .font(.title)
@@ -81,27 +62,18 @@ struct FestivalFormAdminView: View {
                 
                 HStack {
                     Text("Année")
-                    DatePicker(
-                        "",
-                        selection: $dateTemp,
-                        in: dateRange,
-                        displayedComponents: [.date]
-                    )
+                    Picker("Année", selection: $selectedYear) {
+                                ForEach(years, id: \.self) { year in
+                                    Text(verbatim: "\(year)")
+                                }
+                            }
+                            .pickerStyle(WheelPickerStyle())
                 }
                 .padding([.horizontal], 20)
                 
                 HStack {
                     Text("Nombre de jour")
                     TextField("nbrJours", value: $newFestival.nbrJours, format: .number)
-                        /*.keyboardType(.numberPad)
-                        .onChange(of: $jours) { newValue in
-                            if newValue < 1 {
-                                $newFestival.nbrJours = 1
-                                self.nbrJourFailedMessage = "Le festival doit avoir au moins 1 jour"
-                            } else if newValue > 31 {
-                                $newFestival.nbrJours = 31
-                            }
-                        }*/
                         .padding()
                         .cornerRadius(5.0)
                         .overlay(
@@ -112,24 +84,50 @@ struct FestivalFormAdminView: View {
                             selected = [false, false, false]
                             selected[1] = true
                         }
-                    Text(self.festivalFormFailedMessage ?? "")
-                        .foregroundColor(.red)
-                        .font(.footnote)
-                        .italic()
                 }
                 .padding([.horizontal], 20)
-               
-             
+                
+                VStack(spacing: 20) {
+                    if $newFestival.nbrJours.wrappedValue <= 0 {
+                        Text("Nombre de jour minimum : 0")
+                            .foregroundColor(.red)
+                            .font(.footnote)
+                            .italic()
+                    } else if $newFestival.nbrJours.wrappedValue > 20 {
+                        Text("Nombre de jour maximum : 20")
+                            .foregroundColor(.red)
+                            .font(.footnote)
+                            .italic()
+                    } else {
+                        /*
+                        VStack {
+                            createJours()
+                            ForEach(1...$newFestival.nbrJours.wrappedValue, id: \.self) { index in
+                                VStack {
+                                    Text("\(index)")
+                                }
+                                .padding()
+                                .border(Color.gray, width: 1)
+                            }
+                        }
+                         */
+                    }
+                }
+
+
+                Text(self.festivalFormFailedMessage ?? "")
+                    .foregroundColor(.red)
+                    .font(.footnote)
+                    .italic()
             }
             
             Spacer()
             HStack {
                 Spacer()
                 Button("Créer ce festival") {
-                    debugPrint(newFestival.nom)
-                    debugPrint(Date.now)
-                    debugPrint(newFestival.annee)
-                    debugPrint(newFestival.nbrJours)
+                    
+                    newFestival.annee = "\(selectedYear)"
+                    
                     var festivalVM : FestivalViewModel = FestivalViewModel(model: newFestival)
                     intent.addObserver(festivalFormViewModel: festivalVM)
                     
@@ -156,6 +154,13 @@ struct FestivalFormAdminView: View {
         }
         .listStyle(.plain)
         .padding()
+    }
+    
+    func createJours() {
+        tabJours.removeAll()
+        for i in 0..<$newFestival.nbrJours.wrappedValue {
+            tabJours.append(Jour(nom: "", date: "", debutHeure: "", finHeure: "", idFestival: ""))
+        }
     }
 }
 /*
