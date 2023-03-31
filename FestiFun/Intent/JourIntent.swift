@@ -12,9 +12,9 @@ enum JourFormIntentState {
     case ready
     case loading
     case nomChanging(String)
-    case dateChanging(Date)
-    case debutHeureChanging(Date)
-    case finHeureChanging(Date)
+    case dateChanging(String)
+    case debutHeureChanging(String)
+    case finHeureChanging(String)
     case idFestivalChanging(String)
     case jourUpdatedInDatabase(Jour)
     case error(String)
@@ -57,21 +57,21 @@ struct JourIntent {
         self.formState.send(.nomChanging(nom)) // emits an object of type IntentState
     }
     
-    func intentToChange(date: Date) async {
+    func intentToChange(date: String) async {
         self.formState.send(.loading)
         // Notify subscribers that the state changed
         // (they can use their receive method to react to those changes)
         self.formState.send(.dateChanging(date)) // emits an object of type IntentState
     }
 
-    func intentToChange(debutHeure: Date) async {
+    func intentToChange(debutHeure: String) async {
         self.formState.send(.loading)
         // Notify subscribers that the state changed
         // (they can use their receive method to react to those changes)
         self.formState.send(.debutHeureChanging(debutHeure)) // emits an object of type IntentState
     }
 
-    func intentToChange(finHeure: Date) async {
+    func intentToChange(finHeure: String) async {
         self.formState.send(.loading)
         // Notify subscribers that the state changed
         // (they can use their receive method to react to those changes)

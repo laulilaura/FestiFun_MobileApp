@@ -17,9 +17,9 @@ class JourFormViewModel : ObservableObject, Subscriber, JourObserver {
     
     var id: String?
     @Published var nom: String
-    @Published var date: Date
-    @Published var debutHeure: Date
-    @Published var finHeure: Date
+    @Published var date: String
+    @Published var debutHeure: String
+    @Published var finHeure: String
     @Published var idFestival: String
     @Published var loading: Bool = false
     @Published var error: String?
@@ -41,15 +41,15 @@ class JourFormViewModel : ObservableObject, Subscriber, JourObserver {
         self.nom = nom
     }
     
-    func changed(date: Date) {
+    func changed(date: String) {
         self.date = date
     }
     
-    func changed(debutHeure: Date) {
+    func changed(debutHeure: String) {
         self.debutHeure = debutHeure
     }
     
-    func changed(finHeure: Date) {
+    func changed(finHeure: String) {
         self.finHeure = finHeure
     }
     
@@ -92,7 +92,9 @@ class JourFormViewModel : ObservableObject, Subscriber, JourObserver {
         case .debutHeureChanging(let debutHeure):
             self.loading = false
             self.modelCopy.debutHeure = debutHeure
-            if modelCopy.debutHeure < Date.now { // there was an error
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+            if modelCopy.debutHeure < dateFormatter.string(from: Date.now) { // there was an error
                 self.error = "La date ne peut être passéé"
             }
         case .finHeureChanging(let finHeure):

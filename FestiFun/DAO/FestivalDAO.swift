@@ -88,7 +88,7 @@ struct FestivalDAO {
     
     private func getFestivalDTOFromFestival(festival : Festival) ->FestivalDTO {
         let festivalDTO = FestivalDTO(
-            _id: festival.id!,
+            _id: festival.id,
             nom: festival.nom,
             annee: festival.annee,
             nbrJours: festival.nbrJours,

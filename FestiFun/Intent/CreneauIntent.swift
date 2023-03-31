@@ -11,8 +11,8 @@ import Combine
 enum CreneauFormIntentState {
     case ready
     case loading
-    case heureDebutChanging(Date)
-    case heureFinChanging(Date)
+    case heureDebutChanging(String)
+    case heureFinChanging(String)
     case idJourChanging(String)
     case creneauUpdatedInDatabase(Creneau)
     case error(String)
@@ -49,13 +49,13 @@ struct CreneauIntent {
     
     // MARK: intentToChange functions
     
-    func intentToChange(heureDebut: Date) {
+    func intentToChange(heureDebut: String) {
         // Notify subscribers that the state changed
         // (they can use their receive method to react to those changes)
         self.formState.send(.heureDebutChanging(heureDebut)) // emits an object of type IntentState
     }
 
-    func intentToChange(heureFin: Date) {
+    func intentToChange(heureFin: String) {
         // Notify subscribers that the state changed
         // (they can use their receive method to react to those changes)
         self.formState.send(.heureFinChanging(heureFin)) // emits an object of type IntentState

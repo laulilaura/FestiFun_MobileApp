@@ -10,7 +10,7 @@ import Foundation
 struct CreneauDTO: Codable {
     
     var _id: String?
-    var heureDebut: Date
-    var heureFin: Date
+    var heureDebut: String
+    var heureFin: String
     var idJour: String
 }

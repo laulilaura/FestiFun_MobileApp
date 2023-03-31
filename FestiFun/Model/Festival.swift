@@ -10,7 +10,7 @@ import Foundation
 protocol FestivalObserver {
     
     func changed(nom: String)
-    func changed(annee: Date)
+    func changed(annee: String)
     func changed(nbrJours: Int)
     func changed(idBenevoles: [String])
     func changed(isClosed: Bool)
@@ -26,7 +26,7 @@ class Festival: Identifiable, Comparable {
             self.observer?.changed(nom: self.nom) // this call makes possible observer to observe
         }
     }
-    var annee: Date {
+    var annee: String {
         didSet {
             self.observer?.changed(annee: self.annee) // this call makes possible observer to observe
         }
@@ -47,7 +47,7 @@ class Festival: Identifiable, Comparable {
         }
     }
     
-    internal init(id: String? = nil, nom: String, annee: Date, nbrJours: Int, idBenevoles: [String], isClosed: Bool) {
+    internal init(id: String? = nil, nom: String, annee: String, nbrJours: Int, idBenevoles: [String], isClosed: Bool) {
         self.id = id
         self.nom = nom
         self.annee = annee

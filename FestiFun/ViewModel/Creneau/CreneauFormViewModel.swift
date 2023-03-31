@@ -15,8 +15,8 @@ class CreneauFormViewModel : ObservableObject, Subscriber, CreneauObserver {
     private (set) var modelCopy: Creneau
     
     var id: String?
-    @Published var heureDebut: Date
-    @Published var heureFin: Date
+    @Published var heureDebut: String
+    @Published var heureFin: String
     @Published var idJour: String
     @Published var loading: Bool = false
     @Published var error: String?
@@ -32,11 +32,11 @@ class CreneauFormViewModel : ObservableObject, Subscriber, CreneauObserver {
     }
     
     
-    func changed(heureDebut: Date) {
+    func changed(heureDebut: String) {
         self.heureDebut = heureDebut
     }
     
-    func changed(heureFin: Date) {
+    func changed(heureFin: String) {
         self.heureFin = heureFin
     }
     

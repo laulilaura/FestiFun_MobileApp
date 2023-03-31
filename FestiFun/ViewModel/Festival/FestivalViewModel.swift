@@ -16,7 +16,7 @@ class FestivalViewModel : ObservableObject, Subscriber, FestivalObserver {
     
     var id: String?
     @Published var nom: String
-    @Published var annee: Date
+    @Published var annee: String
     @Published var nbrJours: Int
     @Published var idBenevoles: [String]
     @Published var isClosed: Bool
@@ -40,7 +40,7 @@ class FestivalViewModel : ObservableObject, Subscriber, FestivalObserver {
         self.nom = nom
     }
     
-    func changed(annee: Date) {
+    func changed(annee: String) {
         self.annee = annee
     }
     
@@ -88,7 +88,9 @@ class FestivalViewModel : ObservableObject, Subscriber, FestivalObserver {
         case .anneeChanging(let annee):
             self.loading = false
             self.modelCopy.annee = annee
-            if modelCopy.annee < Date.now { // there was an error
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+            if modelCopy.annee < dateFormatter.string(from: Date.now) { // there was an error
                 self.error = "La date ne peut être passéé"
             }
         case .nbrJoursChanging(let nbrJours):

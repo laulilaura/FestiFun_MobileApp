@@ -12,7 +12,7 @@ enum FestivalIntentState {
     case ready
     case loading
     case nomChanging(String)
-    case anneeChanging(Date)
+    case anneeChanging(String)
     case nbrJoursChanging(Int)
     case idBenevolesChanging([String])
     case isClosedChanging(Bool)
@@ -57,7 +57,7 @@ struct FestivalIntent {
         self.formState.send(.nomChanging(nom)) // emits an object of type IntentState
     }
     
-    func intentToChange(annee: Date) async {
+    func intentToChange(annee: String) async {
         self.formState.send(.loading)
         // Notify subscribers that the state changed
         // (they can use their receive method to react to those changes)
@@ -141,13 +141,13 @@ struct FestivalIntent {
     
     private func isFestivalValid(festival: Festival) -> Bool {
         if festival.nom == "" {
-            self.formState.send(.error("Name cannot be empty"))
+            self.formState.send(.error("Le nom ne peux être vide"))
             return false
-        } else if festival.annee < Date.now {
-            self.formState.send(.error("Date cannot be passed"))
+        } /*else if DateFormatter.formatDate1.string(from: festival.annee) <= DateFormatter.formatDate1.string(from: Date.now) {
+            self.formState.send(.error("La date ne peut être passée ou dans plus de 2 ans"))
             return false
-        } else if festival.nbrJours < 1  {
-            self.formState.send(.error("NbrJours cannot be 0"))
+        }*/ else if festival.nbrJours < 1  && festival.nbrJours > 31 {
+            self.formState.send(.error("Il faut au moins 1 jour et moins de 31"))
             return false
         } else {
             return true

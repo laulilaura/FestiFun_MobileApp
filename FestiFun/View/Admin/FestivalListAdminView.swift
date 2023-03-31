@@ -35,7 +35,7 @@ struct FestivalListAdminView: View {
                     ForEach(festivals, id: \.id) { festival in
                         VStack(alignment: .leading) {
                             Text(festival.nom).bold()
-                            Text(festival.annee, style: .date).italic()
+                            Text(festival.annee).italic()
                         }.padding()
                         .cornerRadius(5.0)
                         .background(

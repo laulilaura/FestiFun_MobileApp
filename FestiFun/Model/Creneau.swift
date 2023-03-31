@@ -9,8 +9,8 @@ import Foundation
 
 protocol CreneauObserver {
     
-    func changed(heureDebut: Date)
-    func changed(heureFin: Date)
+    func changed(heureDebut: String)
+    func changed(heureFin: String)
     func changed(idJour: String)
 }
 
@@ -19,12 +19,12 @@ class Creneau: Identifiable, Comparable {
     var observer: CreneauObserver?
     
     var id: String?
-    var heureDebut: Date {
+    var heureDebut: String {
         didSet {
             self.observer?.changed(heureDebut: self.heureDebut) // this call makes possible observer to observe
         }
     }
-    var heureFin: Date {
+    var heureFin: String {
         didSet {
             self.observer?.changed(heureFin: self.heureFin) // this call makes possible observer to observe
         }
@@ -35,7 +35,7 @@ class Creneau: Identifiable, Comparable {
         }
     }
 
-    internal init(id: String? = nil, heureDebut: Date, heureFin: Date, idJour: String) {
+    internal init(id: String? = nil, heureDebut: String, heureFin: String, idJour: String) {
         self.id = id
         self.heureDebut = heureDebut
         self.heureFin = heureFin

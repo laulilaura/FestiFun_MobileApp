@@ -9,7 +9,10 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @StateObject var loggedBenevole: LoggedBenevole = LoggedBenevole(nom: "", prenom: "", email: "", isAdmin: false, isAuthenticated: false)
+    //@StateObject var loggedBenevole: LoggedBenevole = LoggedBenevole(nom: "", prenom: "", email: "", isAdmin: false, isAuthenticated: false)
+    
+    @StateObject var loggedBenevole: LoggedBenevole = LoggedBenevole(nom: "laura", prenom: "corentin", email: "A@g.de", isAdmin: true, isAuthenticated: true)
+
     
     var body: some View {
         

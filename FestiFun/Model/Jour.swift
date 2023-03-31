@@ -10,9 +10,9 @@ import Foundation
 protocol JourObserver {
     
     func changed(nom: String)
-    func changed(date: Date)
-    func changed(debutHeure: Date)
-    func changed(finHeure: Date)
+    func changed(date: String)
+    func changed(debutHeure: String)
+    func changed(finHeure: String)
     func changed(idFestival: String)
 }
 
@@ -26,17 +26,17 @@ class Jour: Identifiable, Comparable {
             self.observer?.changed(nom: self.nom) // this call makes possible observer to observe
         }
     }
-    var date: Date {
+    var date: String {
         didSet {
             self.observer?.changed(date: self.date) // this call makes possible observer to observe
         }
     }
-    var debutHeure: Date {
+    var debutHeure: String {
         didSet {
             self.observer?.changed(debutHeure: self.debutHeure) // this call makes possible observer to observe
         }
     }
-    var finHeure: Date {
+    var finHeure: String {
         didSet {
             self.observer?.changed(finHeure: self.finHeure) // this call makes possible observer to observe
         }
@@ -47,7 +47,7 @@ class Jour: Identifiable, Comparable {
         }
     }
     
-    internal init(id: String? = nil, nom: String, date: Date, debutHeure: Date, finHeure: Date, idFestival: String) {
+    internal init(id: String? = nil, nom: String, date: String, debutHeure: String, finHeure: String, idFestival: String) {
         self.id = id
         self.nom = nom
         self.date = date

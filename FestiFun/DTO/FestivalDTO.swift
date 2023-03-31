@@ -9,9 +9,9 @@ import Foundation
 
 struct FestivalDTO: Codable {
     
-    var _id: String
+    var _id: String?
     var nom: String
-    var annee: Date
+    var annee: String
     var nbrJours: Int
     var idBenevoles: [String]
     var isClosed: Bool
