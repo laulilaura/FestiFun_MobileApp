@@ -88,7 +88,7 @@ struct ZoneDAO {
     
     private func getZoneDTOFromZone(zone : Zone) -> ZoneDTO {
         let zoneDTO = ZoneDTO(
-            _id: zone.id!,
+            _id: zone.id,
             nom: zone.nom,
             nbBenevolesNecessaires: zone.nbBenevolesNecessaires,
             nbBenevolesActuels: zone.nbBenevolesActuels,

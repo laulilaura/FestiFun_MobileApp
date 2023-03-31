@@ -112,7 +112,7 @@ struct FestivalDAO {
     
     private func getFestivalDTOFromFestivalVM(festivalVM: FestivalViewModel) -> FestivalDTO {
         let festivalDTO = FestivalDTO(
-            _id: festivalVM.id!,
+            _id: festivalVM.id,
             nom: festivalVM.nom,
             annee: festivalVM.annee,
             nbrJours: festivalVM.nbrJours,

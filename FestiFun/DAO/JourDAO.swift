@@ -88,7 +88,7 @@ struct JourDAO {
     
     private func getJourDTOFromJour(jour : Jour) -> JourDTO {
         let jourDTO = JourDTO(
-            _id: jour.id!,
+            _id: jour.id,
             nom: jour.nom,
             date: jour.date,
             debutHeure: jour.debutHeure,
