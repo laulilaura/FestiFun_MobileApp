@@ -12,7 +12,7 @@ struct FestivalListAdminView: View {
     @EnvironmentObject var loggedBenevole: LoggedBenevole
     
     @State var errorMessage = ""
-    @State var festivals: [Festival] = []
+    @ObservedObject var festivalLVM: FestivalListViewModel = FestivalListViewModel()
     
     var body: some View {
         VStack {
@@ -27,11 +27,11 @@ struct FestivalListAdminView: View {
             if !errorMessage.isEmpty {
                 Text(errorMessage).foregroundColor(.red)
             } else {
-                if(festivals.isEmpty){
+                if(festivalLVM.festivals.isEmpty){
                     Text("Il n'existe pas encore de festival").italic()
                 } else {
                   
-                        ForEach(festivals, id: \.id) { festival in
+                    ForEach(festivalLVM.festivals, id: \.id) { festival in
                             NavigationLink(destination : UpdateFestivalAdminView(fest : FestivalViewModel(model: festival))){
                                 VStack(alignment: .leading) {
                                     Text(festival.nom).bold()
@@ -43,8 +43,8 @@ struct FestivalListAdminView: View {
                                         .stroke(Color.lightyellow, lineWidth: 1)
                                         .background(Color.lightyellow)
                                         .frame(width: 280, height: 60)
-                                        
                                     )
+                                    .disabled(festival.isClosed)
                             }
                         }
                     
@@ -58,7 +58,7 @@ struct FestivalListAdminView: View {
                 case .failure(let error):
                     errorMessage = "Erreur : \(error.localizedDescription)"
                 case .success(let festivals):
-                    self.festivals = festivals
+                    self.festivalLVM.festivals = festivals
                 }
             }
         }
