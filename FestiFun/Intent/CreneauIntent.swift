@@ -14,7 +14,7 @@ enum CreneauFormIntentState {
     case heureDebutChanging(Date)
     case heureFinChanging(Date)
     case idJourChanging(String)
-    case creneauUpdatedInDatabase
+    case creneauUpdatedInDatabase(Creneau)
     case error(String)
 }
 
@@ -24,6 +24,7 @@ enum CreneauListIntentState {
     case addingCreneau(Creneau)
     case deletingCreneau(Int)
     case gettingCreneau([Creneau])
+    case creneauUpdatedInDatabase(Creneau)
     case error(String)
 }
 
@@ -66,6 +67,19 @@ struct CreneauIntent {
         self.formState.send(.idJourChanging(jour)) // emits an object of type IntentState
     }
     
+    func intentToChange(creneauVM: CreneauFormViewModel) async {
+        self.formState.send(.loading)
+        switch await CreneauDAO.shared.updateCreneau(creneauVM: creneauVM) {
+        case .failure(let error):
+            self.formState.send(.error("\(error.localizedDescription)"))
+            break
+        case .success(let creneau):
+            // si ça a marché : modifier le view model et le model
+            self.formState.send(.creneauUpdatedInDatabase(creneau))
+            self.listState.send(.creneauUpdatedInDatabase(creneau))
+        }
+    }
+    
     func intentToCreate(creneau: Creneau) async {
             switch await CreneauDAO.shared.createCreneau(creneau: creneau) {
             case .failure(let error):
@@ -73,7 +87,7 @@ struct CreneauIntent {
                 break
             case .success(let creneau):
                 // si ça a marché : modifier le view model et le model
-                self.formState.send(.creneauUpdatedInDatabase)
+                self.formState.send(.creneauUpdatedInDatabase(creneau))
                 self.listState.send(.addingCreneau(creneau))
             }
     }

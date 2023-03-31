@@ -83,13 +83,13 @@ class AffectationFormViewModel : ObservableObject, Subscriber, AffectationObserv
         case .idFestivalChanging(let idFestival):
             self.loading = false
             self.modelCopy.idFestival = idFestival
-        case .affectationUpdatedInDatabase:
+        case .affectationUpdatedInDatabase(let affectation):
             self.loading = false
             self.error = nil
-            self.model.idBenevoles = self.modelCopy.idBenevoles
-            self.model.idCreneau = self.modelCopy.idCreneau
-            self.model.idZone = self.modelCopy.idZone
-            self.model.idFestival = self.modelCopy.idFestival
+            self.model.idBenevoles = affectation.idBenevoles
+            self.model.idCreneau = affectation.idCreneau
+            self.model.idZone = affectation.idZone
+            self.model.idFestival = affectation.idFestival
         case .error(let errorMessage):
             self.loading = false
             self.error = errorMessage

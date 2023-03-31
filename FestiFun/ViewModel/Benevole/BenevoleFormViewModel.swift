@@ -103,14 +103,14 @@ class BenevoleFormViewModel : ObservableObject, Subscriber, BenevoleObserver {
         case .isAdminChanging(let isAdmin):
             self.loading = false
             self.modelCopy.isAdmin = isAdmin
-        case .benevoleUpdatedInDatabase:
+        case .benevoleUpdatedInDatabase(let benevole):
             self.loading = false
             self.error = nil
-            self.model.nom = self.modelCopy.nom
-            self.model.prenom = self.modelCopy.prenom
-            self.model.email = self.modelCopy.email
-            self.model.password = self.modelCopy.password
-            self.model.isAdmin = self.modelCopy.isAdmin
+            self.model.nom = benevole.nom
+            self.model.prenom = benevole.prenom
+            self.model.email = benevole.email
+            self.model.password = benevole.password
+            self.model.isAdmin = benevole.isAdmin
         case .error(let errorMessage):
             self.loading = false
             self.error = errorMessage

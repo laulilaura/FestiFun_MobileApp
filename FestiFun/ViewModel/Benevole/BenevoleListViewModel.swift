@@ -50,6 +50,12 @@ class BenevoleListViewModel: ObservableObject, Subscriber {
         case .gettingBenevole(let benevoles):
             self.loading = false
             self.benevoles = benevoles
+        case .benevoleUpdatedInDatabase(let benevole):
+            self.loading = false
+            var benevoleUpdated: LoggedBenevole = LoggedBenevole(nom: benevole.nom, prenom: benevole.prenom, email: benevole.email, isAdmin: benevole.isAdmin, isAuthenticated: false)
+            if let index = self.benevoles.firstIndex(where: { $0.id == benevole.id }) {
+                self.benevoles[index] = benevoleUpdated
+                    }
         case .error(let errorMessage):
             self.loading = false
             self.error = errorMessage

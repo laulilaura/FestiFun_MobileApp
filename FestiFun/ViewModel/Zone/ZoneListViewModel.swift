@@ -49,6 +49,11 @@ class ZoneListViewModel: ObservableObject, Subscriber {
         case .gettingZone(let zones):
             self.loading = false
             self.zones = zones
+        case .zoneUpdatedInDatabase(let zone):
+            self.loading = false
+            if let index = self.zones.firstIndex(where: { $0.id == zone.id }) {
+                self.zones[index] = zone
+                    }
         case .error(let errorMessage):
             self.loading = false
             self.error = errorMessage

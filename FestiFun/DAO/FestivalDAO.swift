@@ -62,6 +62,21 @@ struct FestivalDAO {
         }
     }
     
+    func updateFestival(festivalVM: FestivalViewModel) async -> Result<Festival, Error> {
+        guard festivalVM.id != nil else {
+            return .failure(UndefinedError.error("Le festival ne possède pas d'id"))
+        }
+        
+        let festivalDTO = getFestivalDTOFromFestivalVM(festivalVM: festivalVM)
+        do {
+            let decoded : FestivalDTO = try await URLSession.shared.update(from: FestiFunApp.apiUrl + "festival/\(festivalVM.id!)", object: festivalDTO)
+            return .success(getFestivalFromFestivalDTO(festivalDTO: decoded))
+        } catch {
+            // on propage l'erreur transmise par la fonction post
+            return .failure(error)
+        }
+    }
+    
     func deleteFestivalById(_ id: String) async -> Result<Bool, Error> {
         do {
             let deleted: Bool = try await URLSession.shared.delete(from: FestiFunApp.apiUrl + "festival/\(id)")
@@ -93,6 +108,19 @@ struct FestivalDAO {
             isClosed: festivalDTO.isClosed )
         
         return festival
+    }
+    
+    private func getFestivalDTOFromFestivalVM(festivalVM: FestivalViewModel) -> FestivalDTO {
+        let festivalDTO = FestivalDTO(
+            _id: festivalVM.id!,
+            nom: festivalVM.nom,
+            annee: festivalVM.annee,
+            nbrJours: festivalVM.nbrJours,
+            idBenevoles: festivalVM.idBenevoles,
+            isClosed: festivalVM.isClosed
+        )
+        
+        return festivalDTO
     }
 }
 

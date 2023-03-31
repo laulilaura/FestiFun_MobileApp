@@ -15,7 +15,7 @@ enum ZoneFormIntentState {
     case nbBenevolesNecessairesChanging(Int)
     case nbBenevolesActuelsChanging(Int)
     case idFestivalChanging(String)
-    case zoneUpdatedInDatabase
+    case zoneUpdatedInDatabase(Zone)
     case error(String)
 }
 
@@ -25,6 +25,7 @@ enum ZoneListIntentState {
     case addingZone(Zone)
     case deletingZone(Int)
     case gettingZone([Zone])
+    case zoneUpdatedInDatabase(Zone)
     case error(String)
 }
 
@@ -76,6 +77,19 @@ struct ZoneIntent {
         self.formState.send(.idFestivalChanging(idFestival)) // emits an object of type IntentState
     }
     
+    func intentToChange(zoneVM: ZoneFormViewModel) async {
+        self.formState.send(.loading)
+        switch await ZoneDAO.shared.updateZone(zoneVM: zoneVM) {
+        case .failure(let error):
+            self.formState.send(.error("\(error.localizedDescription)"))
+            break
+        case .success(let zone):
+            // si ça a marché : modifier le view model et le model
+            self.formState.send(.zoneUpdatedInDatabase(zone))
+            self.listState.send(.zoneUpdatedInDatabase(zone))
+        }
+    }
+    
     func intentToCreate(Zone: Zone) async {
         self.formState.send(.loading)
         self.listState.send(.loading)
@@ -83,10 +97,10 @@ struct ZoneIntent {
             case .failure(let error):
                 self.formState.send(.error("\(error.localizedDescription)"))
                 break
-            case .success(let Zone):
+            case .success(let zone):
                 // si ça a marché : modifier le view model et le model
-                self.formState.send(.zoneUpdatedInDatabase)
-                self.listState.send(.addingZone(Zone))
+                self.formState.send(.zoneUpdatedInDatabase(zone))
+                self.listState.send(.addingZone(zone))
             }
     }
     

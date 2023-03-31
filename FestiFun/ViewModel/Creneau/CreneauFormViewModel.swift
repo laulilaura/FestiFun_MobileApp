@@ -74,12 +74,12 @@ class CreneauFormViewModel : ObservableObject, Subscriber, CreneauObserver {
         case .idJourChanging(let idJour):
             self.loading = false
             self.modelCopy.idJour = idJour
-        case .creneauUpdatedInDatabase:
+        case .creneauUpdatedInDatabase(let creneau):
             self.loading = false
             self.error = nil
-            self.model.heureDebut = self.modelCopy.heureDebut
-            self.model.heureFin = self.modelCopy.heureFin
-            self.model.idJour = self.modelCopy.idJour
+            self.model.heureDebut = creneau.heureDebut
+            self.model.heureFin = creneau.heureFin
+            self.model.idJour = creneau.idJour
         case .error(let errorMessage):
             self.loading = false
             self.error = errorMessage

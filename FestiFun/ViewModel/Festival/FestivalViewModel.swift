@@ -103,14 +103,14 @@ class FestivalViewModel : ObservableObject, Subscriber, FestivalObserver {
         case .isClosedChanging(let isClosed):
             self.loading = false
             self.modelCopy.isClosed = isClosed
-        case .festivalUpdatedInDatabase:
+        case .festivalUpdatedInDatabase(let festival):
             self.loading = false
             self.error = nil
-            self.model.nom = self.modelCopy.nom
-            self.model.annee = self.modelCopy.annee
-            self.model.nbrJours = self.modelCopy.nbrJours
-            self.model.idBenevoles = self.modelCopy.idBenevoles
-            self.model.isClosed = self.modelCopy.isClosed
+            self.model.nom = festival .nom
+            self.model.annee = festival.annee
+            self.model.nbrJours = festival.nbrJours
+            self.model.idBenevoles = festival.idBenevoles
+            self.model.isClosed = festival.isClosed
         case .error(let errorMessage):
             self.loading = false
             self.error = errorMessage

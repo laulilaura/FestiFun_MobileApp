@@ -65,6 +65,25 @@ struct BenevoleDAO {
         }
     }
     
+    func updateBenevole(benevoleVM: BenevoleFormViewModel) async -> Result<Benevole, Error> {
+        guard benevoleVM.id != nil else {
+            return .failure(UndefinedError.error("Le bénévole ne possède pas d'id"))
+        }
+        
+        let benevoleDTO = getBenevoleDTOFromBenevoleVM(benevoleVM: benevoleVM)
+        do {
+            let response : BenevoleDTO = try await URLSession.shared.update(from: FestiFunApp.apiUrl + "benevole/\(benevoleVM.id!)", object: benevoleDTO)
+            // TODO: faire comme lucas mettre string jsp .utf8
+            debugPrint("Benevole updated : \(response)")
+            let decoded: Benevole = getBenevoleFromBenevoleDTO(benevoleDTO: response)
+            return .success(decoded)
+        } catch {
+            // on propage l'erreur transmise par la fonction post
+            debugPrint(error)
+            return .failure(error)
+        }
+    }
+    
     func deleteBenevoleById(_ id: String) async -> Result<Bool, Error> {
         do {
             let deleted: Bool = try await URLSession.shared.delete(from: FestiFunApp.apiUrl + "benevole/\(id)")
@@ -121,6 +140,18 @@ struct BenevoleDAO {
             isAuthenticated: true)
         
         return benevole
+    }
+    
+    private func getBenevoleDTOFromBenevoleVM(benevoleVM: BenevoleFormViewModel) -> BenevoleDTO {
+        let benevoleDTO: BenevoleDTO = BenevoleDTO(
+            nom: benevoleVM.nom,
+            prenom: benevoleVM.prenom,
+            email: benevoleVM.email,
+            password: benevoleVM.password,
+            isAdmin: benevoleVM.isAdmin
+        )
+        
+        return benevoleDTO
     }
      
 }

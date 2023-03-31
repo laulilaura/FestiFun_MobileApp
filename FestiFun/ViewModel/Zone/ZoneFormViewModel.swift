@@ -89,13 +89,13 @@ class ZoneFormViewModel : ObservableObject, Subscriber, ZoneObserver {
         case .idFestivalChanging(let idFestival):
             self.loading = false
             self.modelCopy.idFestival = idFestival
-        case .zoneUpdatedInDatabase:
+        case .zoneUpdatedInDatabase(let zone):
             self.loading = false
             self.error = nil
-            self.model.nom = self.modelCopy.nom
-            self.model.nbBenevolesNecessaires = self.modelCopy.nbBenevolesNecessaires
-            self.model.nbBenevolesActuels = self.modelCopy.nbBenevolesActuels
-            self.model.idFestival = self.modelCopy.idFestival
+            self.model.nom = zone.nom
+            self.model.nbBenevolesNecessaires = zone.nbBenevolesNecessaires
+            self.model.nbBenevolesActuels = zone.nbBenevolesActuels
+            self.model.idFestival = zone.idFestival
         case .error(let errorMessage):
             self.loading = false
             self.error = errorMessage

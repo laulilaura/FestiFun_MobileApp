@@ -49,6 +49,11 @@ class AffectationListViewModel: ObservableObject, Subscriber {
         case .gettingAffectation(let affectations):
             self.loading = false
             self.affectations = affectations
+        case .affectationUpdatedInDatabase(let affectation):
+            self.loading = false
+            if let index = self.affectations.firstIndex(where: { $0.id == affectation.id }) {
+                self.affectations[index] = affectation
+                    }
         case .error(let errorMessage):
             self.loading = false
             self.error = errorMessage

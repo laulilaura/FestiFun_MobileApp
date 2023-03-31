@@ -16,7 +16,7 @@ enum FestivalIntentState {
     case nbrJoursChanging(Int)
     case idBenevolesChanging([String])
     case isClosedChanging(Bool)
-    case festivalUpdatedInDatabase
+    case festivalUpdatedInDatabase(Festival)
     case error(String)
 }
 
@@ -26,6 +26,7 @@ enum FestivalListIntentState {
     case addingFestival(Festival)
     case deletingFestival(Int)
     case gettingFestival([Festival])
+    case festivalUpdatedInDatabase(Festival)
     case error(String)
 }
 
@@ -84,6 +85,22 @@ struct FestivalIntent {
         self.formState.send(.isClosedChanging(isClosed)) // emits an object of type IntentState
     }
     
+    func intentToChange(festivalVM: FestivalViewModel) async {
+        self.formState.send(.loading)
+        let festival: Festival = Festival(nom: festivalVM.nom, annee: festivalVM.annee, nbrJours: festivalVM.nbrJours, idBenevoles: festivalVM.idBenevoles, isClosed: festivalVM.isClosed)
+        if isFestivalValid(festival: festival) {
+            switch await FestivalDAO.shared.updateFestival(festivalVM: festivalVM) {
+            case .failure(let error):
+                self.formState.send(.error("\(error.localizedDescription)"))
+                break
+            case .success(let festival):
+                // si ça a marché : modifier le view model et le model
+                self.formState.send(.festivalUpdatedInDatabase(festival))
+                self.listState.send(.festivalUpdatedInDatabase(festival))
+            }
+        }
+    }
+    
     func intentToCreate(festival: Festival) async {
         self.listState.send(.loading)
         self.formState.send(.loading)
@@ -94,7 +111,7 @@ struct FestivalIntent {
                 break
             case .success(let festival):
                 // si ça a marché : modifier le view model et le model
-                self.formState.send(.festivalUpdatedInDatabase)
+                self.formState.send(.festivalUpdatedInDatabase(festival))
                 self.listState.send(.addingFestival(festival))
             }
         }

@@ -61,7 +61,7 @@ extension URLSession {
             }
         }
     
-    func update<T: Codable> (from url: String, object: T) async throws -> Bool {
+    func update<T: Codable> (from url: String, object: T) async throws -> T {
         
         guard let url = URL(string: url) else {
             throw URLError.failedInit
@@ -89,7 +89,10 @@ extension URLSession {
             if httpresponse.statusCode == 200 {
                 print("GoRest Result: \(sdata)")
 
-                return true
+                guard let decoded : T = JSONHelper.decode(data: data) else {
+                    throw JSONError.decode
+                }
+                return decoded
                 
             }
             else{

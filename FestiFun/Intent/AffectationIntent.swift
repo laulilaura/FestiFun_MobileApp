@@ -15,7 +15,7 @@ enum AffectationFormIntentState {
     case idCreneauChanging(String)
     case idZoneChanging(String)
     case idFestivalChanging(String)
-    case affectationUpdatedInDatabase
+    case affectationUpdatedInDatabase(Affectation)
     case error(String)
 }
 
@@ -25,6 +25,7 @@ enum AffectationListIntentState {
     case addingAffectation(Affectation)
     case deletingAffectation(Int)
     case gettingAffectation([Affectation])
+    case affectationUpdatedInDatabase(Affectation)
     case error(String)
 }
 
@@ -76,6 +77,18 @@ struct AffectationIntent {
         self.formState.send(.idFestivalChanging(idFestival)) // emits an object of type IntentState
     }
     
+    func intentToChange(affectationVM: AffectationFormViewModel) async {
+        self.formState.send(.loading)
+        
+        switch await AffectationDAO.shared.updateAffectation(affectationVM: affectationVM) {
+        case .failure(let error):
+            self.formState.send(.error("\(error.localizedDescription)"))
+        case .success(let affectation):
+            self.formState.send(.affectationUpdatedInDatabase(affectation))
+            self.listState.send(.affectationUpdatedInDatabase(affectation))
+        }
+    }
+    
     func intentToCreate(affectation: Affectation) async {
         self.formState.send(.loading)
         self.listState.send(.loading)
@@ -85,7 +98,7 @@ struct AffectationIntent {
                 break
             case .success(let affectation):
                 // si ça a marché : modifier le view model et le model
-                self.formState.send(.affectationUpdatedInDatabase)
+                self.formState.send(.affectationUpdatedInDatabase(affectation))
                 self.listState.send(.addingAffectation(affectation))
         }
     }

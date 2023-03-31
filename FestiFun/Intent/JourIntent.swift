@@ -16,7 +16,7 @@ enum JourFormIntentState {
     case debutHeureChanging(Date)
     case finHeureChanging(Date)
     case idFestivalChanging(String)
-    case jourUpdatedInDatabase
+    case jourUpdatedInDatabase(Jour)
     case error(String)
 }
 
@@ -26,6 +26,7 @@ enum JourListIntentState {
     case addingJour(Jour)
     case deletingJour(Int)
     case gettingJour([Jour])
+    case jourUpdatedInDatabase(Jour)
     case error(String)
 }
 
@@ -84,6 +85,19 @@ struct JourIntent {
         self.formState.send(.idFestivalChanging(idFestival)) // emits an object of type IntentState
     }
     
+    func intentToChange(jourVM: JourFormViewModel) async {
+        self.formState.send(.loading)
+            switch await JourDAO.shared.updateJour(jourVM: jourVM) {
+            case .failure(let error):
+                self.formState.send(.error("\(error.localizedDescription)"))
+                break
+            case .success(let jour):
+                // si ça a marché : modifier le view model et le model
+                self.formState.send(.jourUpdatedInDatabase(jour))
+                self.listState.send(.jourUpdatedInDatabase(jour))
+            }
+    }
+    
     func intentToCreate(jour: Jour) async {
         self.formState.send(.loading)
         self.listState.send(.loading)
@@ -93,7 +107,7 @@ struct JourIntent {
                 break
             case .success(let jour):
                 // si ça a marché : modifier le view model et le model
-                self.formState.send(.jourUpdatedInDatabase)
+                self.formState.send(.jourUpdatedInDatabase(jour))
                 self.listState.send(.addingJour(jour))
             }
     }

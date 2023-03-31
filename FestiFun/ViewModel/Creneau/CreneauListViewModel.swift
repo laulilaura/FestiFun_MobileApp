@@ -49,6 +49,11 @@ class CreneauListViewModel: ObservableObject, Subscriber {
         case .gettingCreneau(let creneaux):
             self.loading = false
             self.creneaux = creneaux
+        case .creneauUpdatedInDatabase(let creneau):
+            self.loading = false
+            if let index = self.creneaux.firstIndex(where: { $0.id == creneau.id }) {
+                self.creneaux[index] = creneau
+                    }
         case .error(let errorMessage):
             self.loading = false
             self.error = errorMessage

@@ -104,14 +104,14 @@ class JourFormViewModel : ObservableObject, Subscriber, JourObserver {
         case .idFestivalChanging(let idFestival):
             self.loading = false
             self.modelCopy.idFestival = idFestival
-        case .jourUpdatedInDatabase:
+        case .jourUpdatedInDatabase(let jour):
             self.loading = false
             self.error = nil
-            self.model.nom = self.modelCopy.nom
-            self.model.date = self.modelCopy.date
-            self.model.debutHeure = self.modelCopy.debutHeure
-            self.model.finHeure = self.modelCopy.finHeure
-            self.model.idFestival = self.modelCopy.idFestival
+            self.model.nom = jour.nom
+            self.model.date = jour.date
+            self.model.debutHeure = jour.debutHeure
+            self.model.finHeure = jour.finHeure
+            self.model.idFestival = jour.idFestival
         case .error(let errorMessage):
             self.loading = false
             self.error = errorMessage

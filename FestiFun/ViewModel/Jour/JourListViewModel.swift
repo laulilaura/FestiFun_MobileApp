@@ -49,6 +49,11 @@ class JourListViewModel: ObservableObject, Subscriber {
         case .gettingJour(let jours):
             self.loading = false
             self.jours = jours
+        case .jourUpdatedInDatabase(let jour):
+            self.loading = false
+            if let index = self.jours.firstIndex(where: { $0.id == jour.id }) {
+                self.jours[index] = jour
+                    }
         case .error(let errorMessage):
             self.loading = false
             self.error = errorMessage

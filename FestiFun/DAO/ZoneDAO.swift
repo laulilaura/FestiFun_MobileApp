@@ -62,6 +62,21 @@ struct ZoneDAO {
         }
     }
     
+    func updateZone(zoneVM: ZoneFormViewModel) async -> Result<Zone, Error> {
+        guard zoneVM.id != nil else {
+            return .failure(UndefinedError.error("La zone ne possède pas d'id"))
+        }
+
+        let zoneDTO = getZoneDTOFromZoneVM(zoneVM: zoneVM)
+        do {
+            let decoded : ZoneDTO = try await URLSession.shared.update(from: FestiFunApp.apiUrl + "zone/\(zoneVM.id!)", object: zoneDTO)
+            return .success(getZoneFromZoneDTO(zoneDTO: decoded))
+        } catch {
+            // on propage l'erreur transmise par la fonction post
+            return .failure(error)
+        }
+    }
+    
     func deleteZoneById(_ id: String) async -> Result<Bool, Error> {
         do {
             let deleted: Bool = try await URLSession.shared.delete(from: FestiFunApp.apiUrl + "zone/\(id)")
@@ -89,6 +104,17 @@ struct ZoneDAO {
             nbBenevolesActuels: zoneDTO.nbBenevolesActuels,
             idFestival: zoneDTO.idFestival)
         return zone
+    }
+    
+    private func getZoneDTOFromZoneVM(zoneVM: ZoneFormViewModel) -> ZoneDTO {
+        let zoneDTO = ZoneDTO(
+            nom: zoneVM.nom,
+            nbBenevolesNecessaires: zoneVM.nbBenevolesNecessaires,
+            nbBenevolesActuels: zoneVM.nbBenevolesActuels,
+            idFestival: zoneVM.idFestival
+        )
+        
+        return zoneDTO
     }
 }
 

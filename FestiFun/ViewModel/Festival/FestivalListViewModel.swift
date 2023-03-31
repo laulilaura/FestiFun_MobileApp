@@ -49,6 +49,12 @@ class FestivalListViewModel: ObservableObject, Subscriber {
         case .gettingFestival(let festivals):
             self.loading = false
             self.festivals = festivals
+        case .festivalUpdatedInDatabase(let festival):
+            self.loading = false
+            if let index = self.festivals.firstIndex(where: { $0.id == festival.id }) {
+                self.festivals[index] = festival
+                    }
+
         case .error(let errorMessage):
             self.loading = false
             self.error = errorMessage

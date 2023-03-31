@@ -16,7 +16,7 @@ enum BenevoleFormIntentState {
     case emailChanging(String)
     case passwordChanging(String)
     case isAdminChanging(Bool)
-    case benevoleUpdatedInDatabase
+    case benevoleUpdatedInDatabase(Benevole)
     case error(String)
 }
 
@@ -26,6 +26,7 @@ enum BenevoleListIntentState {
     case addingBenevole(LoggedBenevole)
     case deletingBenevole(Int)
     case gettingBenevole([LoggedBenevole])
+    case benevoleUpdatedInDatabase(Benevole)
     case error(String)
 }
 
@@ -84,6 +85,22 @@ struct BenevoleIntent {
         self.formState.send(.isAdminChanging(isAdmin)) // emits an object of type IntentState
     }
     
+    func intentToChange(benevoleVM: BenevoleFormViewModel) async {
+        self.formState.send(.loading)
+        var benevole: Benevole = Benevole(nom: benevoleVM.nom, prenom: benevoleVM.prenom, email: benevoleVM.email, password: benevoleVM.password, isAdmin: benevoleVM.isAdmin)
+        if isBenevoleValid(benevole: benevole) {
+            switch await BenevoleDAO.shared.updateBenevole(benevoleVM: benevoleVM) {
+            case .failure(let error):
+                self.formState.send(.error("\(error.localizedDescription)"))
+                break
+            case .success(let benevole):
+                // si ça a marché : modifier le view model et le model
+                self.formState.send(.benevoleUpdatedInDatabase(benevole))
+                self.listState.send(.benevoleUpdatedInDatabase(benevole))
+            }
+        }
+    }
+    
     func intentToCreate(benevole: Benevole) async {
         self.formState.send(.loading)
         self.listState.send(.loading)
@@ -94,7 +111,6 @@ struct BenevoleIntent {
                 break
             case .success(let benevole):
                 // si ça a marché : modifier le view model et le model
-                self.formState.send(.benevoleUpdatedInDatabase)
                 self.listState.send(.addingBenevole(benevole))
             }
         }

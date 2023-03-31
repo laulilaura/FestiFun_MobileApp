@@ -62,6 +62,21 @@ struct CreneauDAO {
         }
     }
     
+    func updateCreneau(creneauVM: CreneauFormViewModel) async -> Result<Creneau, Error> {
+        guard creneauVM.id != nil else {
+            return .failure(UndefinedError.error("Le créneau ne possède pas d'id"))
+        }
+        
+        let creneauDTO: CreneauDTO = getCreneauDTOFromCreneauVM(creneauVM: creneauVM)
+        do {
+            let decoded : CreneauDTO = try await URLSession.shared.update(from: FestiFunApp.apiUrl + "creneau/\(creneauVM.id!)", object: creneauDTO)
+            return .success(getCreneauFromCreneauDTO(creneauDTO: decoded))
+        } catch {
+            // on propage l'erreur transmise par la fonction post
+            return .failure(error)
+        }
+    }
+    
     func deleteCreneauById(_ id: String) async -> Result<Bool, Error> {
         do {
             let deleted: Bool = try await URLSession.shared.delete(from: FestiFunApp.apiUrl + "creneau/\(id)")
@@ -86,6 +101,16 @@ struct CreneauDAO {
             heureDebut: creneauDTO.heureDebut,
             heureFin: creneauDTO.heureFin,
             idJour: creneauDTO.idJour
+        )
+        
+        return creneau
+    }
+    
+    private func getCreneauDTOFromCreneauVM(creneauVM: CreneauFormViewModel) -> CreneauDTO {
+        let creneau = CreneauDTO(
+            heureDebut: creneauVM.heureDebut,
+            heureFin: creneauVM.heureFin,
+            idJour: creneauVM.idJour
         )
         
         return creneau

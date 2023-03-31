@@ -62,6 +62,21 @@ struct JourDAO {
         }
     }
     
+    func updateJour(jourVM: JourFormViewModel) async -> Result<Jour, Error> {
+        guard jourVM.id != nil else {
+            return .failure(UndefinedError.error("Le jour ne possède pas d'id"))
+        }
+        
+        let jourDTO = getJourDTOFromJourVM(jourVM: jourVM)
+        do {
+            let decoded : JourDTO = try await URLSession.shared.update(from: FestiFunApp.apiUrl + "jour\(jourVM.id!)/", object: jourDTO)
+            return .success(getJourFromJourDTO(jourDTO: decoded))
+        } catch {
+            // on propage l'erreur transmise par la fonction post
+            return .failure(error)
+        }
+    }
+    
     func deleteJourById(_ id: String) async -> Result<Bool, Error> {
         do {
             let deleted: Bool = try await URLSession.shared.delete(from: FestiFunApp.apiUrl + "jour/\(id)")
@@ -91,6 +106,18 @@ struct JourDAO {
             finHeure: jourDTO.finHeure,
             idFestival: jourDTO.idFestival )
         return jour
+    }
+    
+    private func getJourDTOFromJourVM(jourVM: JourFormViewModel) -> JourDTO {
+        let jourDTO = JourDTO(
+            nom: jourVM.nom,
+            date: jourVM.date,
+            debutHeure: jourVM.debutHeure,
+            finHeure: jourVM.finHeure,
+            idFestival: jourVM.idFestival
+        )
+        
+        return jourDTO
     }
 }
 
