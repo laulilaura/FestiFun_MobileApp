@@ -32,19 +32,25 @@ struct FestivalListAdminView: View {
                 if(festivals.isEmpty){
                     Text("Il n'existe pas encore de festival").italic()
                 } else {
-                    ForEach(festivals, id: \.id) { festival in
-                        VStack(alignment: .leading) {
-                            Text(festival.nom).bold()
-                            Text(festival.annee).italic()
-                        }.padding()
-                        .cornerRadius(5.0)
-                        .background(
-                            RoundedRectangle(cornerRadius: 5)
-                            .stroke(Color.lightyellow, lineWidth: 1)
-                            .background(Color.lightyellow)
-                            .frame(width: 280, height: 60)
-                        )
+                    List {
+                        ForEach(festivals, id: \.id) { festival in
+                            NavigationLink(destination : UpdateFestivalAdminView(fest : FestivalViewModel(model: festival))){
+                                VStack(alignment: .leading) {
+                                    Text(festival.nom).bold()
+                                    Text(festival.annee).italic()
+                                    }.padding()
+                                    .cornerRadius(5.0)
+                                    .background(
+                                        RoundedRectangle(cornerRadius: 5)
+                                        .stroke(Color.lightyellow, lineWidth: 1)
+                                        .background(Color.lightyellow)
+                                        .frame(width: 280, height: 60)
+                                        
+                                    )
+                            }
+                        }
                     }
+                    
                 }
             }
         }
