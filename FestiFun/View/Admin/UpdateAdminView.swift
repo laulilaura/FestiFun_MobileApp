@@ -37,7 +37,7 @@ struct UpdateAdminView: View {
             Spacer()
             LazyVGrid(columns: columns, spacing: 20) {
                 Text("Nom : ").frame(maxWidth: .infinity, alignment: .leading)
-                TextField("Name", text: $nom)
+                TextField("Nom", text: $nom)
                     .padding()
                     .cornerRadius(5.0)
                     .overlay(
