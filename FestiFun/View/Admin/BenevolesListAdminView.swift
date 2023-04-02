@@ -16,6 +16,8 @@ struct BenevolesListAdminView: View {
     
     @ObservedObject var benevoleLVM: BenevoleListViewModel = BenevoleListViewModel()
     
+    var intentBenevole : BenevoleIntent = BenevoleIntent()
+    
     var body: some View {
         VStack {
             Text("Liste des bénévoles")
@@ -28,14 +30,25 @@ struct BenevolesListAdminView: View {
                     if(benevoleLVM.benevoles.isEmpty){
                         Text("Il n'existe pas encore de benevole").italic()
                     } else {
-                        ForEach(benevoleLVM.benevoles, id: \.id) { benevole in
-                            VStack(alignment: .leading) {
-                                if(benevole.isAdmin) {
-                                    Text("Utilisateur admin").font(.footnote)
+                        ForEach(Array(benevoleLVM.benevoles.enumerated()), id: \.element.id) { index, benevole in
+                            HStack {
+                                VStack(alignment: .leading) {
+                                    if(benevole.isAdmin) {
+                                        Text("Utilisateur admin").font(.footnote)
+                                    }
+                                    Text("\(benevole.nom) \(benevole.prenom)").bold()
+                                    Text(benevole.email).italic()
                                 }
-                                Text("\(benevole.nom) \(benevole.prenom)").bold()
-                                Text(benevole.email).italic()
-                            }.padding()
+                                Button(action: { Task {
+                                        do {
+                                            await self.delete(benevole: benevole, index: index)
+                                        }
+                                }})
+                                {
+                                    Image(systemName: "xmark.bin.circle.fill")
+                                }
+                            }
+                            .padding()
                             .cornerRadius(5.0)
                             .background(
                                 RoundedRectangle(cornerRadius: 5)
@@ -56,10 +69,18 @@ struct BenevolesListAdminView: View {
                 case .success(let benevoles):
                     self.benevoleLVM.benevoles = benevoles
                 }
+                intentBenevole.addObserver(benevoleListViewModel: benevoleLVM)
             }
         }
     }
+    
+    
+    func delete(benevole: LoggedBenevole, index: Int) async {
+        await intentBenevole.intentToDelete(benevoleId: benevole.id!, benevoleIndex: index)
+    }
+    
 }
+
 
 /*
 struct BenevolesListAdminView_Previews: PreviewProvider {

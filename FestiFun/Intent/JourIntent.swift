@@ -134,10 +134,10 @@ struct JourIntent {
         }
     }
     
-    func intentToGetAllByFestival(festivalId id: String) async {
+    func intentToGetAllByFestival(festivalId: String) async {
         self.listState.send(.loading)
         self.formState.send(.loading)
-        switch await JourDAO.shared.getJoursByFestival(id: id) {
+        switch await JourDAO.shared.getJoursByFestival(id: festivalId) {
         case .failure(let error):
             self.formState.send(.error("Erreur : \(error.localizedDescription)"))
         case .success(let jours):

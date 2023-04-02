@@ -12,11 +12,22 @@ struct AffectationFestivalBenevoleView: View {
     @EnvironmentObject var loggedBenevole: LoggedBenevole
     
     @ObservedObject var festVM : FestivalViewModel
+    @ObservedObject var jourLVM : JourListViewModel = JourListViewModel()
+    @ObservedObject var zoneLVM : ZoneListViewModel = ZoneListViewModel()
     
-    @State var intentFestival : FestivalIntent = FestivalIntent()
+    var intentFestival : FestivalIntent = FestivalIntent()
+    var intentJour : JourIntent = JourIntent()
+    var intentZone : ZoneIntent = ZoneIntent()
+    
     
     @State var errorMessage : String = ""
+    @State var errorMessageJour : String = ""
+    @State var selectedZonesIndex : [String] =  [String](repeating: "", count: 30)
+
     
+    // Trouver un moyen d'initialiser avant mais pose problème
+    @State var isChecked: [Bool] = [Bool](repeating: false, count: 30)
+
     @Environment(\.dismiss) var dismiss
     
     let columns = [
@@ -25,6 +36,10 @@ struct AffectationFestivalBenevoleView: View {
         ]
     
     @State var count: Int = 0
+    
+    init(festVM: FestivalViewModel) {
+        self.festVM = festVM
+    }
     
     var body: some View {
         VStack {
@@ -46,37 +61,119 @@ struct AffectationFestivalBenevoleView: View {
                 Text("\(festVM.nbrJours)").foregroundColor(Color.salmon).frame(maxWidth: .infinity, alignment: .leading)
             }
             .padding(.horizontal, 40)
-            
-            HStack {
-                Text("Nombre d'affectation souhaité :").padding()
-                Text("\(count)").padding()
-                
-                Button(action: {
-                    self.count -= 1
-                }) {
-                    Image(systemName: "minus.circle")
-                }
-                .padding()
+            if self.festVM.isClosed {
+                Text("Le festival est actuellement fermé, tu ne peux pas t'affecter") // Ne devrait jamais arriver
+            } else {
+                ScrollView {
+                    ForEach(Array(jourLVM.jours.enumerated().reversed()), id: \.element.id) { index, jour in
+                        HStack {
+                            VStack {
+                                Text(jour.nom)
+                                Text(jour.date)
+                                HStack {
+                                    Text(jour.debutHeure)
+                                    Text(jour.finHeure)
+                                }
+                            }.onAppear {
+                                Task {
+                                    debugPrint("index :")
+                                    debugPrint(index)
+                                    
+                                }
+                            }
+                            VStack {
+                                Text("Choisissez une zone :")
+                                
+                                Picker("Zones", selection: $selectedZonesIndex[index]) {
+                                    ForEach(zoneLVM.zones, id: \.self.id){ zone in
+                                        Text(zone.nom)
+                                    }
+                                }
+                            }
                             
-                Button(action: {
-                    self.count += 1
-                }) {
-                    Image(systemName: "plus.circle")
+                            Toggle(isOn: $isChecked[index]) {
+                                Text("Case")
+                            }
+                             
+                            
+                        }
+                    }
                 }
                 .padding()
+                
+                Text(self.errorMessage ?? "")
+                    .foregroundColor(.red)
+                    .font(.footnote)
+                    .italic()
+                Button("Créer ce festival") {
+                    Task {
+                        for j in 0...isChecked.count-1 {
+                            debugPrint(j)
+                            //await intentCreneau.shared.getCreneauByJourId(id: <#T##String#>)
+                            if (isChecked[j]) {
+                                // Rcupérer le creneau lié
+                                let tabBenevole : [String] = ["benevole1"]
+                                switch await AffectationDAO.shared.createAffectation(affectation: Affectation(idBenevoles: tabBenevole, idCreneau: "lala", idZone: selectedZonesIndex[j], idFestival: festVM.id!)) {
+                                case .failure(let error):
+                                    errorMessage = "erreur à la création \(error)"
+                                case .success(let affect):
+                                    errorMessage = "bien \(affect)"
+                                }
+                            }
+                        }
+                    }
+                }
+                .padding(10)
+                .background(Color.salmon)
+                .foregroundColor(.white)
+                .cornerRadius(8)
             }
             
-            ForEach(0..<count, id: \.self) { index in
-                VStack {
-                    Text("Stack \(index)")
-                        .font(.title)
-                        .padding()
-                    Divider()
-                }
-            }
             
             // les VStack permmettent de séléctionner un jour et une zone (select parmis ceux existant) (si même jour devenir disable ?)
             // Activer l'affectation à la fin
+        }
+        .onAppear {
+            Task {
+                intentJour.addObserver(jourListViewModel: jourLVM)
+                await intentJour.intentToGetAllByFestival(festivalId: festVM.id! )
+                if jourLVM.error != nil {
+                    errorMessageJour = "Erreur : \(jourLVM.error ?? "Erreur au chargement")"
+                } else {
+                    isChecked = [Bool](repeating: false, count: jourLVM.jours.count)
+                }
+                intentZone.addObserver(zoneListViewModel: zoneLVM)
+                await intentZone.intentToGetAllByFestival(festivalId: festVM.id!)
+                if zoneLVM.error != nil {
+                    errorMessageJour = "Erreur : \(zoneLVM.error ?? "Erreur au chargement")"
+                } else {
+                    for i in 0...zoneLVM.zones.count-1 {
+                        selectedZonesIndex[i] = zoneLVM.zones[i].id!
+                    }
+                }
+                
+                /*
+                    async let addZoneObserver = intentZone.addObserver(zoneListViewModel: zoneLVM)
+                    async let addJourObserver = intentJour.addObserver(jourListViewModel: jourLVM)
+                await [addZoneObserver, addJourObserver]
+                    await intentZone.intentToGetAllByFestival(festivalId: festVM.id!)
+                debugPrint("111111")
+                await intentJour.intentToGetAllByFestival(festivalId: festVM.id! )
+                if jourLVM.error != nil {
+                    errorMessageJour = "Erreur : \(jourLVM.error ?? "Erreur au chargement")"
+                } else {
+                    self.isChecked = [Bool](repeating: false, count: self.jourLVM.jours.count)
+                }
+                debugPrint("22222")
+                debugPrint(jourLVM.jours.count)
+                debugPrint("prout")
+//                await [getZones, getJours]
+                debugPrint("dans la fin")
+
+                debugPrint(self.jourLVM.jours)
+                debugPrint(self.zoneLVM.zones)
+                debugPrint(self.jourLVM.jours.count)*/
+            }
         }
     }
 }

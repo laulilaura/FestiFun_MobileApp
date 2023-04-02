@@ -160,7 +160,7 @@ struct FestivalAfficheAdminView: View {
                 }
                 debugPrint(joursLVM.jours[0].nom)
                 intentZone.addObserver(zoneListViewModel: zoneLVM)
-                await intentZone.intentToGetAllByFestival(zoneId: festVM.id!)
+                await intentZone.intentToGetAllByFestival(festivalId: festVM.id!)
                 if zoneLVM.error != nil {
                     errorMessageJour = "Erreur : \(zoneLVM.error ?? "Erreur au chargement")"
                 }
