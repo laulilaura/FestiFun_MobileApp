@@ -126,5 +126,16 @@ struct ZoneIntent {
         }
     }
     
+    func intentToGetAllByFestival(zoneId id: String) async {
+        self.listState.send(.loading)
+        self.formState.send(.loading)
+        switch await ZoneDAO.shared.getZonensByFestival(id: id) {
+        case .failure(let error):
+            self.formState.send(.error("Erreur : \(error.localizedDescription)"))
+        case .success(let zones):
+            self.listState.send(.gettingZone(zones))
+        }
+    }
+    
 }
 

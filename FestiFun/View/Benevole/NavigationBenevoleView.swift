@@ -33,7 +33,7 @@ struct NavigationBenevoleView: View {
             
             
             NavigationView{
-                HomeAdminView()
+                HomeBenevoleView()
                     .navigationTitle("Festival")
             }
             .tabItem{
@@ -43,8 +43,8 @@ struct NavigationBenevoleView: View {
             
             
             NavigationView{
-                HomeAdminView()
-                    .navigationTitle("Rejoindre")
+                HomeBenevoleView()
+                    .navigationTitle("Gérer")
             }
             .tabItem{
                 Image(systemName: "rectangle.and.hand.point.up.left.fill")
@@ -53,7 +53,7 @@ struct NavigationBenevoleView: View {
             
             
             NavigationView{
-                BenevolesListAdminView()
+                ParametresAdminView()
                     .navigationTitle("Utilisateur")
             }
             .tabItem{

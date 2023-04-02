@@ -63,6 +63,7 @@ struct AuthentificationView: View {
                         switch await BenevoleDAO.shared.login(email: email, password: password) {
                         
                         case .success(let benevole):
+                            loggedBenevole.id = benevole.id
                                 loggedBenevole.email = benevole.email
                                 loggedBenevole.nom = benevole.nom
                                 loggedBenevole.prenom = benevole.prenom

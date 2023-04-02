@@ -11,6 +11,11 @@ struct HomeBenevoleView: View {
     
     @EnvironmentObject var loggedBenevole: LoggedBenevole
     
+    @State var errorMessage = ""
+    @ObservedObject var festivalLVM: FestivalListViewModel = FestivalListViewModel()
+    
+    @State var intentFestival : FestivalIntent = FestivalIntent()
+    
     var body: some View {
         VStack {
             Text("Bienvenue "+loggedBenevole.prenom)
@@ -31,13 +36,45 @@ struct HomeBenevoleView: View {
             }
             
             Spacer().frame(height: 10)
-            Text("Liste des festivals auquel vous êtes bénévole")
-                .font(.title2)
-            VStack{
-            }.task {
-                // Récupérer la liste des festivals où iel est bénévole, sinon afficher un texte : "vous ne participez pas encore à un festival (+bouton vers affectation ?)
+            Text("Liste des festivals auquel vous êtes bénévole").font(.title2)
+            if !errorMessage.isEmpty {
+                Text(errorMessage).foregroundColor(.red)
+            } else {
+                if(festivalLVM.festivals.isEmpty){
+                    Text("Vous n'êtes encore affecté à aucun festival").italic()
+                } else {
+                    ScrollView {
+                        ForEach(Array(festivalLVM.festivals.enumerated()), id: \.element.id) { index, festival in
+                            NavigationLink(destination : FestivalAfficheAdminView(festVM : FestivalViewModel(model: festival), indexFest : index)){
+                                    VStack(alignment: .leading) {
+                                        Text(festival.nom).bold()
+                                        Text(festival.annee).italic()
+                                        }.padding()
+                                        .cornerRadius(5.0)
+                                        .background(
+                                            RoundedRectangle(cornerRadius: 5)
+                                            .stroke(Color.lightyellow, lineWidth: 1)
+                                            .background(Color.lightyellow)
+                                            .frame(width: 360, height: 60)
+                                        )
+                                        .disabled(festival.isClosed)
+                                }
+                        }
+                    }
+                    .frame(width: 400)
+                    .padding()
+                }
             }
             
+        }
+        .onAppear {
+            Task {
+                intentFestival.addObserver(festivalListViewModel: festivalLVM)
+                await intentFestival.intentToGetAllByBenevole(benevoleId: loggedBenevole.id!)
+                if festivalLVM.error != nil {
+                    errorMessage = "Erreur : \(festivalLVM.error ?? "Erreur au chargement de la liste")"
+                }
+            }
         }
     }
 }

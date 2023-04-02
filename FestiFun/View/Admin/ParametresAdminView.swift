@@ -40,10 +40,12 @@ struct ParametresAdminView: View {
                     Text(loggedBenevole.email).foregroundColor(Color.salmon).frame(maxWidth: .infinity, alignment: .leading)
                 }
                 .padding(.horizontal, 40)
-                HStack {
-                    Text("Vous êtes ")
-                    Text("administrateur").foregroundColor(Color.salmon)
-                    Text(" sur l'app FestiFun.")
+                if(loggedBenevole.isAdmin){
+                    HStack {
+                        Text("Vous êtes ")
+                        Text("administrateur").foregroundColor(Color.salmon)
+                        Text(" sur l'app FestiFun.")
+                    }
                 }
                 //Spacer(minLength: 40)
                 Spacer()

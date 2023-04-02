@@ -51,6 +51,27 @@ struct ZoneDAO {
         }
     }
     
+    func getZonensByFestival(id: String) async -> Result<[Zone], Error> {
+        do {
+            
+            // decoder le JSON avec la fonction présente dans JSONHelper
+            let decoded : [ZoneDTO] = try await URLSession.shared.get(from: FestiFunApp.apiUrl + "zone/zonesByFestival/\(id)")
+            
+            // dans une boucle transformer chaque JourDTO en model Jour
+            var zones: [Zone] = []
+            for zoneDTO in decoded {
+                zones.append(getZoneFromZoneDTO(zoneDTO: zoneDTO))
+            }
+            
+            // retourner un Result avec jour ou error
+            return .success(zones)
+            
+        } catch {
+            print("Error while fetching zone from backend: \(error)")
+            return .failure(error)
+        }
+    }
+    
     func createZone(zone: Zone) async -> Result<Zone, Error> {
         let zoneDTO = getZoneDTOFromZone(zone: zone)
         do {

@@ -134,7 +134,7 @@ struct JourIntent {
         }
     }
     
-    func intentToGetAllByFestivalId(festivalId id: String) async {
+    func intentToGetAllByFestival(festivalId id: String) async {
         self.listState.send(.loading)
         self.formState.send(.loading)
         switch await JourDAO.shared.getJoursByFestival(id: id) {
