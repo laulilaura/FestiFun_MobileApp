@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		50989CF129D8E9C300ED2551 /* FestivalAfficheAdminView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50989CF029D8E9C300ED2551 /* FestivalAfficheAdminView.swift */; };
+		50989CF329D8F3F600ED2551 /* ZonesListAdminView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50989CF229D8F3F600ED2551 /* ZonesListAdminView.swift */; };
+		50989CF529D8F43000ED2551 /* UpdateZoneAdminView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50989CF429D8F43000ED2551 /* UpdateZoneAdminView.swift */; };
+		50989CF729D8F4F400ED2551 /* ZoneFormAdminView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50989CF629D8F4F400ED2551 /* ZoneFormAdminView.swift */; };
 		B7002F3729D5A7FD00DD24FD /* CreneauFormViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7002F3629D5A7FD00DD24FD /* CreneauFormViewModel.swift */; };
 		B7002F3929D5A80900DD24FD /* CreneauListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7002F3829D5A80900DD24FD /* CreneauListViewModel.swift */; };
 		B7326C0D29D59DE3006C16D7 /* ParametresAdminView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7326C0C29D59DE3006C16D7 /* ParametresAdminView.swift */; };
@@ -77,6 +81,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		50989CF029D8E9C300ED2551 /* FestivalAfficheAdminView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FestivalAfficheAdminView.swift; sourceTree = "<group>"; };
+		50989CF229D8F3F600ED2551 /* ZonesListAdminView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZonesListAdminView.swift; sourceTree = "<group>"; };
+		50989CF429D8F43000ED2551 /* UpdateZoneAdminView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateZoneAdminView.swift; sourceTree = "<group>"; };
+		50989CF629D8F4F400ED2551 /* ZoneFormAdminView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoneFormAdminView.swift; sourceTree = "<group>"; };
 		B7002F3629D5A7FD00DD24FD /* CreneauFormViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreneauFormViewModel.swift; sourceTree = "<group>"; };
 		B7002F3829D5A80900DD24FD /* CreneauListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreneauListViewModel.swift; sourceTree = "<group>"; };
 		B7326C0C29D59DE3006C16D7 /* ParametresAdminView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParametresAdminView.swift; sourceTree = "<group>"; };
@@ -185,10 +193,14 @@
 				D301C92529CFD66E009BB295 /* HomeAdminView.swift */,
 				B7E70A3329D1E6E100BF80AE /* FestivalListAdminView.swift */,
 				B7326C1029D5B84A006C16D7 /* FestivalFormAdminView.swift */,
+				50989CF029D8E9C300ED2551 /* FestivalAfficheAdminView.swift */,
 				B7E70A3529D1E70F00BF80AE /* BenevolesListAdminView.swift */,
 				B7326C0C29D59DE3006C16D7 /* ParametresAdminView.swift */,
 				B7326C0E29D5AE54006C16D7 /* UpdateAdminView.swift */,
 				B79AE4C229D6FDAC001BAFB2 /* UpdateFestivalAdminView.swift */,
+				50989CF229D8F3F600ED2551 /* ZonesListAdminView.swift */,
+				50989CF429D8F43000ED2551 /* UpdateZoneAdminView.swift */,
+				50989CF629D8F4F400ED2551 /* ZoneFormAdminView.swift */,
 			);
 			path = Admin;
 			sourceTree = "<group>";
@@ -484,6 +496,7 @@
 				D301C92429CFD664009BB295 /* HomeBenevoleView.swift in Sources */,
 				B7E70A1E29D19DBB00BF80AE /* FestivalDTO.swift in Sources */,
 				B7E70A2D29D1B8FE00BF80AE /* NavigationAdminView.swift in Sources */,
+				50989CF529D8F43000ED2551 /* UpdateZoneAdminView.swift in Sources */,
 				B7326C0F29D5AE54006C16D7 /* UpdateAdminView.swift in Sources */,
 				B7E4137D29D2E000004F846B /* JourIntent.swift in Sources */,
 				D301C91229CFCC11009BB295 /* URLSessionExtention.swift in Sources */,
@@ -514,6 +527,7 @@
 				B7E4137F29D2E01B004F846B /* ZoneIntent.swift in Sources */,
 				B7F924AF29D2FA3600336E58 /* JourListViewModel.swift in Sources */,
 				B7E4138B29D2E129004F846B /* JourDAO.swift in Sources */,
+				50989CF129D8E9C300ED2551 /* FestivalAfficheAdminView.swift in Sources */,
 				D301C8EA29CFC622009BB295 /* ContentView.swift in Sources */,
 				B7E70A1C29D1922900BF80AE /* NavigationBenevoleView.swift in Sources */,
 				D301C92029CFCD20009BB295 /* UndefinedError.swift in Sources */,
@@ -525,6 +539,7 @@
 				D301C90429CFC969009BB295 /* BenevoleFormViewModel.swift in Sources */,
 				B7E4138929D2E121004F846B /* ZoneDAO.swift in Sources */,
 				B7E70A3429D1E6E100BF80AE /* FestivalListAdminView.swift in Sources */,
+				50989CF729D8F4F400ED2551 /* ZoneFormAdminView.swift in Sources */,
 				D301C8E829CFC622009BB295 /* FestiFunApp.swift in Sources */,
 				D301C91E29CFCCFD009BB295 /* HttpError.swift in Sources */,
 				B7E4137329D2C02E004F846B /* AffectationDTO.swift in Sources */,
@@ -539,6 +554,7 @@
 				D301C91C29CFCCE4009BB295 /* JSONError.swift in Sources */,
 				B7E4136F29D2BF99004F846B /* JourDTO.swift in Sources */,
 				B7E70A2B29D1B13100BF80AE /* FestivalListBenevoleView.swift in Sources */,
+				50989CF329D8F3F600ED2551 /* ZonesListAdminView.swift in Sources */,
 				D301C91529CFCC45009BB295 /* URLError.swift in Sources */,
 				B7E4138F29D2E139004F846B /* CreneauDAO.swift in Sources */,
 				B7E4136D29D2BE38004F846B /* ZoneDTO.swift in Sources */,

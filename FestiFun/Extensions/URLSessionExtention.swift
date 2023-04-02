@@ -22,29 +22,21 @@ extension URLSession {
                 request.addValue("application/json", forHTTPHeaderField: "Content-Type")
                 // set (replace) a value to a field
                 if let token = KeychainHelper.standard.getJWT() {
-                    debugPrint("token")
-                    debugPrint(token)
+                    //debugPrint("token")
+                    //debugPrint(token)
                     request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
-                    debugPrint("Authorization !!!")
+                    //debugPrint("Authorization !!!")
                 }
                 let (data, response) = try await data(for: request)
                             
                 let httpresponse = response as! HTTPURLResponse
                 if httpresponse.statusCode == 200 {
-                    debugPrint("DATA = \(data)")
-                    
-                    /*let decoder = JSONDecoder() // création d'un décodeur
-                    
-                    debugPrint("T.self \(T.self)")
-                    if let decoded = try? decoder.decode(T.self, from: data) {
-                        debugPrint("test \(decoded)")
-                    }*/
-                    
+                    //debugPrint("DATA = \(data)")
                  
-                    debugPrint("T.self \(T.self)")
-                    debugPrint(String(data: data, encoding: .utf8))
+                    //debugPrint("T.self \(T.self)")
+                    //debugPrint(String(data: data, encoding: .utf8))
                     guard let decoded : T = JSONHelper.decode(data: data) else {
-                        debugPrint("erreur là sah plaisir")
+                        //debugPrint("erreur là sah plaisir")
                         throw JSONError.decode
                     }
                      
@@ -108,13 +100,13 @@ extension URLSession {
     // TODO: factoriser fonction
     func create<T: Codable> (from url: String, object: T) async throws -> T {
         //TODO: factoriser la fonction avec la fonction créate pour éviter la duplication de code
-        debugPrint("Dans le URLSessionCreate")
+        //debugPrint("Dans le URLSessionCreate")
         guard let url = URL(string: url) else {
             throw URLError.failedInit
         }
         do {
-            debugPrint(url)
-            debugPrint(object)
+            //debugPrint(url)
+            //debugPrint(object)
             var request = URLRequest(url: url)
             request.httpMethod = "POST"
             // append a value to a field
@@ -131,7 +123,7 @@ extension URLSession {
             
             let (data, response) = try await URLSession.shared.upload(for: request, from: encoded)
             let sdata = String(data: data, encoding: .utf8)!
-            debugPrint(sdata)
+            //debugPrint(sdata)
             // TODO: gérer les erreur dans une fonction à part pour la réutiliser
             let httpresponse = response as! HTTPURLResponse
             if httpresponse.statusCode == 201 {
@@ -169,7 +161,6 @@ extension URLSession {
             }
             
             let (data, response) = try await URLSession.shared.upload(for: request, from: encoded)
-            debugPrint(String(data: data, encoding: .utf8))
             let httpresponse = response as! HTTPURLResponse
             if httpresponse.statusCode == 201{
                 

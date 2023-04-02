@@ -39,7 +39,7 @@ struct JSONHelper{
         let decoder = JSONDecoder() // création d'un décodeur
         decoder.dateDecodingStrategy = customDateDecodingStrategy
         if let decoded = try? decoder.decode(T.self, from: data) {
-            debugPrint("test \(decoded)")
+            //debugPrint("test \(decoded)")
             return decoded
         }
         return nil

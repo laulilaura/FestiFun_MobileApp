@@ -78,9 +78,7 @@ struct UpdateFestivalAdminView: View {
                         fest.annee = self.annee
                         fest.nbrJours = self.nbrJours
                         fest.isClosed = !self.isClosed
-                        debugPrint("ICIIIII")
                         await intent.intentToChange(festivalVM: fest)
-                        debugPrint("LAAAAAA")
                         if fest.error == nil {
                             dismiss()
                         }

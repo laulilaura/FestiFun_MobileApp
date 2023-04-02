@@ -19,7 +19,7 @@ struct FestivalDAO {
         do {
             // recupere tout les festivals de la base de donnee et les transforment en FestivalDTO
             let decoded : [FestivalDTO] = try await URLSession.shared.get(from: FestiFunApp.apiUrl + "festival")
-            debugPrint(decoded)
+            //debugPrint(decoded)
             // dans une boucle transformer chaque FestivalDTO en model Festival
             var festivals: [Festival] = []
             for festivalDTO in decoded {

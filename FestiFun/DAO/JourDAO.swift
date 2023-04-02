@@ -51,6 +51,27 @@ struct JourDAO {
         }
     }
     
+    func getJoursByFestival(id: String) async -> Result<[Jour], Error> {
+        do {
+            
+            // decoder le JSON avec la fonction présente dans JSONHelper
+            let decoded : [JourDTO] = try await URLSession.shared.get(from: FestiFunApp.apiUrl + "jour/joursByFestival/\(id)")
+            
+            // dans une boucle transformer chaque JourDTO en model Jour
+            var jours: [Jour] = []
+            for jourDTO in decoded {
+                jours.append(getJourFromJourDTO(jourDTO: jourDTO))
+            }
+            
+            // retourner un Result avec jour ou error
+            return .success(jours)
+            
+        } catch {
+            print("Error while fetching jour from backend: \(error)")
+            return .failure(error)
+        }
+    }
+    
     func createJour(jour: Jour) async -> Result<Jour, Error> {
         let jourDTO = getJourDTOFromJour(jour: jour)
         do {

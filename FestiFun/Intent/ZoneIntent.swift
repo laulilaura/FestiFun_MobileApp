@@ -115,10 +115,10 @@ struct ZoneIntent {
         }
     }
     
-    func intentToGetAll() async {
+    func intentToGetAll(idFestival: String) async {
         self.listState.send(.loading)
         self.formState.send(.loading)
-        switch await ZoneDAO.shared.getAllZone() {
+        switch await ZoneDAO.shared.getAllZone(idFestival: idFestival) {
         case .failure(let error):
             self.formState.send(.error("Erreur : \(error.localizedDescription)"))
         case .success(let zones):

@@ -23,11 +23,10 @@ struct HomeAdminView: View {
                 .font(.footnote)
             Spacer().frame(height: 20)
             HStack {
-                Text("C'est un compte ")
+                Text("Vous êtes connecté à un compte")
                 Text("administrateur").foregroundColor(Color.salmon)
-                Text(" !")
             }
-            Spacer().frame(height: 30)
+            Spacer()
             Image("admin")
                 .resizable()
                 .aspectRatio(contentMode: .fit)
@@ -35,8 +34,8 @@ struct HomeAdminView: View {
                 .padding(.bottom,30)
             
             Spacer()
-            VStack {
-                Text("Bienvenue à FestiFun, l'application vous permettant de gérer la gestion des festivals.")
+            VStack (spacing: 12) {
+                Text("Bienvenue à FestiFun, l'application vous permettant de gérer des festivals.")
                 Text("Ici, il vous est possible de :").frame(maxWidth: .infinity, alignment: .leading)
                 Text("      - Créer des bénévoles").frame(maxWidth: .infinity, alignment: .leading)
                 Text("      - Créer des festivals").frame(maxWidth: .infinity, alignment: .leading)
@@ -47,6 +46,7 @@ struct HomeAdminView: View {
             }
             .padding(.horizontal, 20)
             Spacer()
+            Text("© 2023, “FestiFun, tous droits réservés”").font(.footnote)
         }
     }
 }

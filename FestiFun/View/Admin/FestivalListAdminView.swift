@@ -14,13 +14,21 @@ struct FestivalListAdminView: View {
     @State var errorMessage = ""
     @ObservedObject var festivalLVM: FestivalListViewModel = FestivalListViewModel()
     
+    @State var intentFestival : FestivalIntent = FestivalIntent()
+    
     var body: some View {
         VStack {
             Text("Gestion des festivals")
                 .font(.title)
                 .fontWeight(.bold)
+            Image("festival")
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(width: 100, height: 100, alignment: .center)
+                .padding(.bottom,30)
             
             NavigationLink(destination: FestivalFormAdminView()){
+                Text("Créer un nouveau festival")
                 Image(systemName: "plus.app.fill")
             }
             
@@ -30,35 +38,35 @@ struct FestivalListAdminView: View {
                 if(festivalLVM.festivals.isEmpty){
                     Text("Il n'existe pas encore de festival").italic()
                 } else {
-                  
-                    ForEach(festivalLVM.festivals, id: \.id) { festival in
-                            NavigationLink(destination : UpdateFestivalAdminView(fest : FestivalViewModel(model: festival))){
-                                VStack(alignment: .leading) {
-                                    Text(festival.nom).bold()
-                                    Text(festival.annee).italic()
-                                    }.padding()
-                                    .cornerRadius(5.0)
-                                    .background(
-                                        RoundedRectangle(cornerRadius: 5)
-                                        .stroke(Color.lightyellow, lineWidth: 1)
-                                        .background(Color.lightyellow)
-                                        .frame(width: 280, height: 60)
-                                    )
-                                    .disabled(festival.isClosed)
-                            }
+                    ScrollView {
+                        ForEach(Array(festivalLVM.festivals.enumerated()), id: \.element.id) { index, festival in
+                            NavigationLink(destination : FestivalAfficheAdminView(festVM : FestivalViewModel(model: festival), indexFest : index)){
+                                    VStack(alignment: .leading) {
+                                        Text(festival.nom).bold()
+                                        Text(festival.annee).italic()
+                                        }.padding()
+                                        .cornerRadius(5.0)
+                                        .background(
+                                            RoundedRectangle(cornerRadius: 5)
+                                            .stroke(Color.lightyellow, lineWidth: 1)
+                                            .background(Color.lightyellow)
+                                            .frame(width: 360, height: 60)
+                                        )
+                                        .disabled(festival.isClosed)
+                                }
                         }
-                    
-                    
+                    }
+                    .frame(width: 400)
+                    .padding()
                 }
             }
         }
         .onAppear {
             Task {
-                switch await FestivalDAO.shared.getAllFestival() {
-                case .failure(let error):
-                    errorMessage = "Erreur : \(error.localizedDescription)"
-                case .success(let festivals):
-                    self.festivalLVM.festivals = festivals
+                intentFestival.addObserver(festivalListViewModel: festivalLVM)
+                await intentFestival.intentToGetAll()
+                if festivalLVM.error != nil {
+                    errorMessage = "Erreur : \(festivalLVM.error)"
                 }
             }
         }

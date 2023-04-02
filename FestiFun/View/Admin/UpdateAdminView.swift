@@ -33,7 +33,7 @@ struct UpdateAdminView: View {
         VStack {
             Spacer().frame(height: 20)
             Text("Modification des informations personnelles")
-                .font(.footnote)
+                .font(.title3)
             Spacer()
             LazyVGrid(columns: columns, spacing: 20) {
                 Text("Nom : ").frame(maxWidth: .infinity, alignment: .leading)
@@ -64,15 +64,15 @@ struct UpdateAdminView: View {
                     )
                 
                 Text("Mot de passe : ").frame(maxWidth: .infinity, alignment: .leading)
-                TextField("mdp1", text: $mdp1)
+                TextField("Nouveau mot de passe", text: $mdp1)
                     .padding()
                     .cornerRadius(5.0)
                     .overlay(
                         RoundedRectangle(cornerRadius: 5)
                             .stroke(Color.gray, lineWidth: 1)
                     )
-                Text("").frame(maxWidth: .infinity, alignment: .leading)
-                TextField("mdp2", text: $mdp2)
+                Text("Confirmez le mot de passe").frame(maxWidth: .infinity, alignment: .leading).italic()
+                TextField("Nouveau mot de passe", text: $mdp2)
                     .padding()
                     .cornerRadius(5.0)
                     .overlay(
