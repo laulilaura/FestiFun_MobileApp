@@ -22,39 +22,28 @@ struct NavigationBenevoleView: View {
             }
             .tint(Color("salmon"))
             
+            
             NavigationView{
                 FestivalListBenevoleView()
-                    .navigationTitle("Découvrir")
-            }
-            .tabItem{
-                Image(systemName: "figure.and.child.holdinghands")
-                Text("Découvrir")
-            }
-            
-            
-            NavigationView{
-                HomeBenevoleView()
-                    .navigationTitle("Festival")
-            }
-            .tabItem{
-                Image(systemName: "figure.walk.arrival")
-                Text("Festival")
-            }
-            
-            
-            NavigationView{
-                HomeBenevoleView()
-                    .navigationTitle("Gérer")
             }
             .tabItem{
                 Image(systemName: "rectangle.and.hand.point.up.left.fill")
                 Text("Rejoindre")
             }
             
+            /*
+            NavigationView{
+                HomeBenevoleView()
+            }
+            .tabItem{
+                Image(systemName: "figure.walk.arrival")
+                //Image(systemName: "figure.and.child.holdinghands")
+                Text("Festival")
+            }
+            */
             
             NavigationView{
                 ParametresAdminView()
-                    .navigationTitle("Utilisateur")
             }
             .tabItem{
                 Image(systemName: "person.circle")

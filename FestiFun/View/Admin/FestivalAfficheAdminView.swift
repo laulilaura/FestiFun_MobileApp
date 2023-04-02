@@ -29,12 +29,12 @@ struct FestivalAfficheAdminView: View {
     @Environment(\.dismiss) var dismiss
     
     let columns = [
-            GridItem(.fixed(80)),
+            GridItem(.fixed(100)),
             GridItem(.flexible()),
         ]
     
     var body: some View {
-        NavigationStack {
+        VStack {
                 Text("Festival")
                     .font(.title)
                     .fontWeight(.bold)
@@ -43,11 +43,10 @@ struct FestivalAfficheAdminView: View {
                 Image("scene")
                     .resizable()
                     .aspectRatio(contentMode: .fit)
-                    .frame(width: 100, height: 100, alignment: .center)
-                    .padding(.bottom,30)
+                    .frame(width: 80, height: 80, alignment: .center)
                 Text("Informations :")
                     .font(.footnote)
-                LazyVGrid(columns: columns, spacing: 20) {
+                LazyVGrid(columns: columns, spacing: 10) {
                     Text("Année : ").frame(maxWidth: .infinity, alignment: .leading)
                     Text(festVM.annee).foregroundColor(Color.salmon).frame(maxWidth: .infinity, alignment: .leading)
                     Text("Nombre de jours : ").frame(maxWidth: .infinity, alignment: .leading)
@@ -57,7 +56,6 @@ struct FestivalAfficheAdminView: View {
                 if(festVM.isClosed){
                     Text("Ce festival est fermé.")
                 }
-                //Spacer()
                 Button(action: { }) {
                     NavigationLink(destination: UpdateFestivalAdminView(fest: festVM )){
                         Text("Modifier ce festival")
@@ -67,8 +65,15 @@ struct FestivalAfficheAdminView: View {
                 .background(Color.salmon)
                 .foregroundColor(.white)
                 .cornerRadius(8)
-            
-                NavigationStack() {
+                
+                HStack {
+                    Text("Jour du festival :")
+                    NavigationLink(destination: JourFormAdminView(festVM: festVM)){
+                        Text("Créer une nouvelle journée").font(.footnote).italic()
+                        Image(systemName: "plus.app.fill")
+                    }
+                }
+                VStack() {
                 if !errorMessageJour.isEmpty {
                     Text(errorMessageJour).foregroundColor(.red)
                 } else {
@@ -84,15 +89,22 @@ struct FestivalAfficheAdminView: View {
                                             RoundedRectangle(cornerRadius: 5)
                                             .stroke(Color.lightyellow, lineWidth: 1)
                                             .background(Color.lightyellow)
-                                            .frame(width: 360, height: 60)
+                                            .frame(width: 360, height: 50)
                                         )
                                 //}
                         }
                     }
-                    .frame(width: 400)
-                    .padding()
+                    .frame(width: 400, height: 100)
+                    .padding(5)
                 }
-                
+                    
+                HStack {
+                    Text("Zone du festival :")
+                    NavigationLink(destination: ZoneFormAdminView(festVM: festVM)){
+                        Text("Créer une nouvelle zone").font(.footnote).italic()
+                        Image(systemName: "plus.app.fill")
+                    }
+                }
                 if !errorMessageZone.isEmpty {
                     Text(errorMessageZone).foregroundColor(.red)
                 } else {
@@ -114,8 +126,8 @@ struct FestivalAfficheAdminView: View {
                                 //}
                         }
                     }
-                    .frame(width: 400)
-                    .padding()
+                    .frame(width: 400, height: 100)
+                    .padding(5)
                 }
 
                 Text(errorMessage).foregroundColor(.red)
@@ -135,6 +147,7 @@ struct FestivalAfficheAdminView: View {
                 .background(Color.lightgrey)
                 .foregroundColor(.red)
                 .cornerRadius(8)
+                Spacer()
                 
             }
         }
@@ -145,11 +158,13 @@ struct FestivalAfficheAdminView: View {
                 if joursLVM.error != nil {
                     errorMessageJour = "Erreur : \(joursLVM.error ?? "Erreur au chargement")"
                 }
+                debugPrint(joursLVM.jours[0].nom)
                 intentZone.addObserver(zoneListViewModel: zoneLVM)
                 await intentZone.intentToGetAllByFestival(zoneId: festVM.id!)
                 if zoneLVM.error != nil {
                     errorMessageJour = "Erreur : \(zoneLVM.error ?? "Erreur au chargement")"
                 }
+                debugPrint(zoneLVM.zones[0].nom)
             }
         }
     }

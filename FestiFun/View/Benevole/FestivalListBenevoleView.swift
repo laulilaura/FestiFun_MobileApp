@@ -27,11 +27,6 @@ struct FestivalListBenevoleView: View {
                 .frame(width: 100, height: 100, alignment: .center)
                 .padding(.bottom,30)
             
-            NavigationLink(destination: FestivalFormAdminView()){
-                Text("Créer un nouveau festival")
-                Image(systemName: "plus.app.fill")
-            }
-            
             if !errorMessage.isEmpty {
                 Text(errorMessage).foregroundColor(.red)
             } else {
@@ -40,9 +35,7 @@ struct FestivalListBenevoleView: View {
                 } else {
                     ScrollView {
                         ForEach(Array(festivalLVM.festivals.enumerated()), id: \.element.id) { index, festival in
-                            //NavigationLink(destination : FestivalAfficheAdminView(festVM : FestivalViewModel(model: festival), indexFest : index)){
-                            if(!festival.isClosed){
-                               // Button(action: rejoindre(festival: festival)) {
+                            NavigationLink(destination : AffectationFestivalBenevoleView(festVM : FestivalViewModel(model: festival))){
                                     HStack{
                                         VStack (alignment: .leading) {
                                             Text(festival.nom).bold()
@@ -58,9 +51,7 @@ struct FestivalListBenevoleView: View {
                                             .frame(width: 360, height: 60)
                                         )
                                         .disabled(festival.isClosed)
-                                //}
                             }
-                                //}
                         }
                     }
                     .frame(width: 400)
@@ -71,7 +62,7 @@ struct FestivalListBenevoleView: View {
         .onAppear {
             Task {
                 intentFestival.addObserver(festivalListViewModel: festivalLVM)
-                await intentFestival.intentToGetAll()
+                await intentFestival.getFestivalsNewByBenevole(benevoleId: loggedBenevole.id!)
                 if festivalLVM.error != nil {
                     errorMessage = "Erreur : \(festivalLVM.error ?? "Erreur au chargement de la liste")"
                 }

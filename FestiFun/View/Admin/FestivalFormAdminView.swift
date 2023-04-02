@@ -20,7 +20,7 @@ struct FestivalFormAdminView: View {
     var intent : FestivalIntent = FestivalIntent()
     var intentJour : JourIntent = JourIntent()
     var intentZone : ZoneIntent = ZoneIntent()
-    var intentCrenau : CreneauIntent = CreneauIntent()
+    var intentCreneau : CreneauIntent = CreneauIntent()
     
     @State var tabJours : [Jour] = Array(repeating: Jour(nom: "", date: "", debutHeure: "", finHeure: "", idFestival: ""), count: 1)
 
@@ -183,7 +183,7 @@ struct FestivalFormAdminView: View {
                                     case .failure(let error):
                                         festivalFormFailedMessage = "\(error)"
                                     case .success(let jour):
-                                        await intentCrenau.intentToCreate(creneau: Creneau(heureDebut: jo.debutHeure, heureFin: jo.finHeure, idJour: jour.id!))
+                                        await intentCreneau.intentToCreate(creneau: Creneau(id: jour.id, heureDebut: jo.debutHeure, heureFin: jo.finHeure, idJour: jour.id!))
                                     }
                                 }
                                 var zone : Zone = Zone(nom: "libre", nbBenevolesNecessaires: 0, nbBenevolesActuels: 0, idFestival: idFest!)

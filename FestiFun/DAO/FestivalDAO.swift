@@ -55,6 +55,26 @@ struct FestivalDAO {
         }
     }
     
+    func getFestivalsNewByBenevole(id: String) async -> Result<[Festival], Error> {
+        do {
+            
+            // decoder le JSON avec la fonction présente dans JSONHelper
+            let decoded : [FestivalDTO] = try await URLSession.shared.get(from: FestiFunApp.apiUrl + "festival/getFestivalsNewByBenevole/\(id)")
+            // dans une boucle transformer chaque FestivalDTO en model Festival
+            var festivals: [Festival] = []
+            for festivalDTO in decoded {
+                festivals.append(getFestivalFromFestivalDTO(festivalDTO: festivalDTO))
+            }
+
+            // retourner une liste de Festival
+            return .success(festivals)
+            
+        } catch {
+            print("Error while fetching festival from backend: \(error)")
+            return .failure(error)
+        }
+    }
+    
     func getFestivalById(id: String) async -> Result<Festival, Error> {
         do {
             

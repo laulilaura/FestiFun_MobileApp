@@ -150,6 +150,17 @@ struct FestivalIntent {
         }
     }
     
+    func getFestivalsNewByBenevole(benevoleId id: String) async {
+        self.listState.send(.loading)
+        self.formState.send(.loading)
+        switch await FestivalDAO.shared.getFestivalsNewByBenevole(id: id) {
+        case .failure(let error):
+            self.formState.send(.error("Erreur : \(error.localizedDescription)"))
+        case .success(let festivals):
+            self.listState.send(.gettingFestival(festivals))
+        }
+    }
+    
     private func isFestivalValid(festival: Festival) -> Bool {
         if festival.nom == "" {
             self.formState.send(.error("Le nom ne peux être vide"))
