@@ -45,7 +45,6 @@ struct HomeBenevoleView: View {
                 } else {
                     ScrollView {
                         ForEach(Array(festivalLVM.festivals.enumerated()), id: \.element.id) { index, festival in
-                            NavigationLink(destination : FestivalAfficheAdminView(festVM : FestivalViewModel(model: festival), indexFest : index)){
                                     VStack(alignment: .leading) {
                                         Text(festival.nom).bold()
                                         Text(festival.annee).italic()
@@ -58,7 +57,6 @@ struct HomeBenevoleView: View {
                                             .frame(width: 360, height: 60)
                                         )
                                         .disabled(festival.isClosed)
-                                }
                         }
                     }
                     .frame(width: 400)
