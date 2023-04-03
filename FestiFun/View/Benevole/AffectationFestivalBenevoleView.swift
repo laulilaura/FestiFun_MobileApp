@@ -101,7 +101,7 @@ struct AffectationFestivalBenevoleView: View {
                 }
                 .padding()
                 
-                Text(self.errorMessage ?? "")
+                Text(self.errorMessage )
                     .foregroundColor(.red)
                     .font(.footnote)
                     .italic()

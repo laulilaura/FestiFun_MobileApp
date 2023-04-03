@@ -39,13 +39,15 @@ struct BenevolesListAdminView: View {
                                     Text("\(benevole.nom) \(benevole.prenom)").bold()
                                     Text(benevole.email).italic()
                                 }
-                                Button(action: { Task {
-                                        do {
-                                            await self.delete(benevole: benevole, index: index)
-                                        }
-                                }})
-                                {
-                                    Image(systemName: "xmark.bin.circle.fill")
+                                if(loggedBenevole.id != benevole.id) {
+                                    Button(action: { Task {
+                                            do {
+                                                await self.delete(benevole: benevole, index: index)
+                                            }
+                                    }})
+                                    {
+                                        Image(systemName: "xmark.bin.circle.fill")
+                                    }
                                 }
                             }
                             .padding()
