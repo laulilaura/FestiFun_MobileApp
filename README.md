@@ -13,13 +13,13 @@ Lien : https://github.com/auth0/JWTDecode.swift
 
 L'application comporte deux types d'utilisateurs: les bénévoles et les administrateurs. Les identifiants d'un bénévole sont les suivants :
 
-Identifiant: vincent.berry@gmail.com
+Identifiant: Vincent.berry@gmail.com
 
 Mot de passe: test
 
 Les identifiants d'un administrateur sont les suivants :
 
-Identifiant: vincent.berry.admin@gmail.com
+Identifiant: Vincent.berry.admin@gmail.com
 
 Mot de passe: test
 
