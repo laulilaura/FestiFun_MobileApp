@@ -19,7 +19,7 @@ Mot de passe: test
 
 Les identifiants d'un administrateur sont les suivants :
 
-Identifiant: A@g.fr
+Identifiant: vincent.berry.admin@gmail.com
 
 Mot de passe: test
 
