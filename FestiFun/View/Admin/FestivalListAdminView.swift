@@ -32,32 +32,36 @@ struct FestivalListAdminView: View {
                 Image(systemName: "plus.app.fill")
             }
             
-            if !errorMessage.isEmpty {
-                Text(errorMessage).foregroundColor(.red)
+            if self.festivalLVM.loading {
+                ProgressView("En cours de chargement")
             } else {
-                if(festivalLVM.festivals.isEmpty){
-                    Text("Il n'existe pas encore de festival").italic()
+                if !errorMessage.isEmpty {
+                    Text(errorMessage).foregroundColor(.red)
                 } else {
-                    ScrollView {
-                        ForEach(Array(festivalLVM.festivals.enumerated()), id: \.element.id) { index, festival in
-                            NavigationLink(destination : FestivalAfficheAdminView(festVM : FestivalViewModel(model: festival), indexFest : index)){
+                    if(festivalLVM.festivals.isEmpty){
+                        Text("Il n'existe pas encore de festival").italic()
+                    } else {
+                        ScrollView {
+                            ForEach(Array(festivalLVM.festivals.enumerated()), id: \.element.id) { index, festival in
+                                NavigationLink(destination : FestivalAfficheAdminView(festVM : FestivalViewModel(model: festival), indexFest : index)){
                                     VStack(alignment: .leading) {
                                         Text(festival.nom).bold()
                                         Text(festival.annee).italic()
-                                        }.padding()
+                                    }.padding()
                                         .cornerRadius(5.0)
                                         .background(
                                             RoundedRectangle(cornerRadius: 5)
-                                            .stroke(Color.lightyellow, lineWidth: 1)
-                                            .background(Color.lightyellow)
-                                            .frame(width: 360, height: 60)
+                                                .stroke(Color.lightyellow, lineWidth: 1)
+                                                .background(Color.lightyellow)
+                                                .frame(width: 360, height: 60)
                                         )
                                         .disabled(festival.isClosed)
                                 }
+                            }
                         }
+                        .frame(width: 400)
+                        .padding()
                     }
-                    .frame(width: 400)
-                    .padding()
                 }
             }
         }

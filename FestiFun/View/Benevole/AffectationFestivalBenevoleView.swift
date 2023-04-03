@@ -105,7 +105,7 @@ struct AffectationFestivalBenevoleView: View {
                     .foregroundColor(.red)
                     .font(.footnote)
                     .italic()
-                Button("Créer ce festival") {
+                Button("S'inscrire à ce festival") {
                     Task {
                         for j in 0...isChecked.count-1 {
                             debugPrint(j)
