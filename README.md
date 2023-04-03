@@ -1,4 +1,5 @@
 # FestiFun
+Laura BENAITON & Corentin CLEMENT
 
 FestiFun est une application mobile développée en SwiftUI dans le cadre d'un projet universitaire. L'application est destinée à aider les bénévoles et les organisateurs d'événements à mieux gérer les activités liées aux festivals.
 
@@ -12,7 +13,7 @@ Lien : https://github.com/auth0/JWTDecode.swift
 
 L'application comporte deux types d'utilisateurs: les bénévoles et les administrateurs. Les identifiants d'un bénévole sont les suivants :
 
-Identifiant: a@g.fr
+Identifiant: vincent.berry@gmail.com
 
 Mot de passe: test
 
